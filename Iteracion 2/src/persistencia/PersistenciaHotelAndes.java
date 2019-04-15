@@ -82,6 +82,7 @@ public class PersistenciaHotelAndes {
 		tablas.add("USUARIO");
 		tablas.add("TIPO");
 		tablas.add("APARTAN");
+		tablas.add("CONVENCIONES");
 
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
@@ -222,6 +223,10 @@ public class PersistenciaHotelAndes {
 	public String darTablaApartan()
 	{
 		return tablas.get(13);
+	}
+	public String darTablaConvenciones()
+	{
+		return tablas.get(14);
 	}
 
 
