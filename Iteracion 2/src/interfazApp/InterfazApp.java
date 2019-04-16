@@ -250,10 +250,19 @@ public class InterfazApp extends JFrame implements ActionListener
     {
     	try
     	{
+    		String text="Id de tipo en uso";
+    		for(int i=0; i<hotel.darTipos().size();i++)
+    		{
+    			text+=","+hotel.darTipos().get(i).getId();
+    		}
+    		panelDatos.actualizarInterfaz(text);
     		String tipo = JOptionPane.showInputDialog(this, "Tipo de usuario");
+    		String idTipo=JOptionPane.showInputDialog(this, "Id Tipo");
+    		
+    		long id=Long.parseLong(idTipo);
         	if(tipo != null)
         	{
-        		Tipo ti = hotel.adicionarTipo(tipo);
+        		Tipo ti = hotel.adicionarTipo(tipo,id);
         		if(ti == null)
         		{
         			throw new Exception("No se pudo agregar el tipo de usuario " + tipo);

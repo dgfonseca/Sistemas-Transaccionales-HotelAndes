@@ -1,7 +1,9 @@
 /META-INF/
 /config/
 /hbase-site.xml
+/interfazApp/
 /log4j.properties
+/negocio/
 /package-cassandra.orm
 /package-excel.orm
 /package-h2.orm
@@ -11,5 +13,4 @@
 /package-mysql.orm
 /package-neo4j.orm
 /package-odf.orm
-/interfazApp/
 /persistencia/

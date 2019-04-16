@@ -123,10 +123,10 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public Tipo adicionarTipo (String nombre)
+	public Tipo adicionarTipo (String nombre, long idtipo)
 	{
         log.info ("Adicionando Tipo: " + nombre);
-        Tipo tipoBebida = pp.adicionarTipoBebida(nombre);		
+        Tipo tipoBebida = pp.adicionarTipoUsuario(idtipo,nombre);		
         log.info ("Adicionando Tipo: " + tipoBebida);
         return tipoBebida;
 	}
@@ -138,6 +138,10 @@ public class HotelAndes {
         log.info ("Adicionando usuario: " + tipoBebida);
         return tipoBebida;
 	}
+	public List<Tipo> darTipos()
+	{
+		return pp.darTipos();
+	}
 	
 	//Requerimientos de consulta//
 	public List<long[]> darConsumoUsuario(String pnombre)
@@ -146,16 +150,21 @@ public class HotelAndes {
 		return pp.darConsumoYUsuario(pnombre);
 
 	}
-	public List<long[]> darHabitacionesYDinero()
+	public List<long[]> darHabitacionesYDinero(long inicio, long fin)
 	{
         log.info ("Listando habitaciones");
-		return pp.darHabitacionesYDineroRecolectado();
+		return pp.darHabitacionesYDineroRecolectado(inicio,fin);
 	}
 	
 	public List<long[]> darHabitacionesIndiceOcupacion()
 	{
         log.info ("Listando Habitaciones");
 		return pp.darHabitacionesEIndiceOcupacion();
+	}
+	public List<Servicio> darServiciosPopulares()
+	{
+		log.info("Listando Servicios");
+		return pp.darServiciosPopulares();
 	}
 
 }

@@ -93,12 +93,15 @@ class SQLServicio {
 
 	public List<Servicio> dar20Servicios(PersistenceManager pm)
 	{
-		String sql1= "SELECT serv.nombre, count(*)";
-		sql1+= "FROM"+ pp.darTablaServicio()+" serv";
-		sql1+="INNER JOIN"+ pp.darTablaSirven() +" sirv";
+		String sql1= "SELECT id, count(*) ";
+		sql1+= "FROM "+ pp.darTablaSirven()+" sirv ";
+		sql1+="INNER JOIN "+ pp.darTablaServicio() +" serv";
 		sql1+= "on serv.id=sirv.idServicio";
+		sql1+=" INNER JOIN "+ pp.darTablaServiciosConvencion()+" servco ";
+		sql1+=" on  ON SERV.ID=SERVCO.ID_SERVICIO ";
         sql1+="WHERE ROWNUM<=20";
-        sql1+="GROUP BY serv.nombre";
+        sql1+="GROUP BY id ";
+        sql1+=" ORDER BY COUNT(ID) DESC";
 		Query q = pm.newQuery(SQL, sql1);
 		q.setResultClass(Servicio.class);
 		return (List<Servicio>) q.executeList();
