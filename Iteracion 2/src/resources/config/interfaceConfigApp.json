@@ -1,85 +1,116 @@
 {
-	"title": "Aplicación transaccional de Parranderos Uniandes",
+	"title": "Hotel Andes",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/main/resources/config/logo.png",
+	"bannerPath": "./src/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Requerimientos Funcionales",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"label": "Registrar roles de usuarios",
+					"event": "nada"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
+					"label": "Registrar usuario",
+					"event": "nada"
 				},
 				{
-					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
+					"label": "Registrar tipo de habitación",
+					"event": "nada"
 				},
 				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
-				}
+					"label": "Registrar habitación",
+					"event": "nada"
+				},
+                {
+                    "label": "Registrar un servicio del hotel",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar un plan de consumo",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar una reserva de alojamiento",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar una reserva de un servicio por parte de un cliente",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar la llegada de un cliente",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar un consumo de un cliente",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar salida de un cliente",
+                    "event": "nada"
+                },
+                {
+                    "label": "Reservar alojamiento y servicios convención",
+                    "event": "nada"
+                },
+                {
+                    "label": "Cancelar reservas convención",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar fin convención",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar mantenimiento",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar fin mantenimiento",
+                    "event": "nada"
+                }
 			]
 		},
-		{ "menuTitle": "Mantenimiento",
+		{ "menuTitle": "Requerimientos Funcionales de Consulta",
 		  "options":
 			[
 				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Mostrar dinero recolectado",
+					"event": "nada"
 				},
 				{
-					"label": "Mostrar log datanucleus",
-					"event": "mostrarLogDatanuecleus"
+					"label": "Mostrar los 20 servicios más populares",
+					"event": "nada"
 				},
 				{
-					"label": "Limpiar log de parranderos",
-					"event": "limpiarLogParranderos"
+					"label": "Mostrar el índice de ocupación",
+					"event": "nada"
 				},
 				{
-					"label": "Limpiar log de datanucleus",
-					"event": "limpiarLogDatanucleus"
+					"label": "Mostrar servicios con característica",
+					"event": "nada"
 				},
 				{
-					"label": "Limpiar Base de Datos",
-					"event": "limpiarBD"
-				}
+					"label": "Mostrar el consumo de un usuario",
+					"event": "nada"
+				},
+                {
+                    "label": "Analizar operación",
+                    "event": "nada"
+                },
+                {
+                    "label": "Encontrar buenos clientes",
+                    "event": "nada"
+                },
+                {
+                    "label": "Encontrar servicios poca demanda",
+                    "event": "nada"
+                }
 			]
-		},		
-		{ "menuTitle": "Documentación",
-		  "options":
-			[
-				{
-					"label": "Presentación general",
-					"event": "mostrarPresentacionGeneral"
-				},
-				{
-					"label": "Modelo conceptual",
-					"event": "mostrarModeloConceptual"
-				},
-				{
-					"label": "Esquema de la BD",
-					"event": "mostrarEsquemaBD"
-				},
-				{
-					"label": "Script creación de la BD",
-					"event": "mostrarScriptBD"
-				},
-				{
-					"label": "Arquitectura de referencia",
-					"event": "mostrarArqRef"
-				},
-				{
-					"label": "Javadoc Parranderos",
-					"event": "mostrarJavadoc"
-				}
-			]
-		},		
+		},
 		{ "menuTitle": "Acerca de ...",
 		  "options":
 			[

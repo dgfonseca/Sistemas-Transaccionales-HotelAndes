@@ -1,8 +1,8 @@
 {
-	"title": "Aplicación transaccional de Parranderos Uniandes",
+	"title": "Hotel Andes",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/main/resources/config/logo.png",
+	"bannerPath": "./src/resources/config/logo.png",
 	"menuBar":
 	[
 		{ "menuTitle": "TipoBebida",
