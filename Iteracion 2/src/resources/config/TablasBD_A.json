@@ -4,12 +4,26 @@
 	"tablas":
 	[
 		"Parranderos_sequence",
-		"A_TIPOBEBIDA",
-		"A_BEBIDA",
-		"A_BAR",
-		"A_BEBEDOR",
-		"A_GUSTAN",
-		"A_SIRVEN",
-		"A_VISITAN"
+		"PAGOSPSE",
+        "PLANES",
+        "CONSUMEN",
+        "HABITACION",
+        "HOSPEDAN",
+        "OFRECEN",
+        "PRODUCTOS",
+        "RESERVAS",
+        "SERVICIOS",
+        "SIRVEN",
+        "USUARIO",
+        "TIPO",
+        "APARTAN",
+        "CONVENCIONES",
+        "CONVENCION_USUARIO",
+        "RESERVA_CONVENCIONES",
+        "SERVICIOS_CONVENCION",
+        "HABITACION_CONVENCION",
+        "MANTENIMIENTOS",
+        "SERVICIO_MANTENIMIENTO",
+        "HABITACION_MANTENIMIENTO"
 	]
 }

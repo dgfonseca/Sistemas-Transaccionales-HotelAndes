@@ -10,11 +10,11 @@
 			[
 				{
 					"label": "Registrar roles de usuarios",
-					"event": "nada"
+					"event": "adicionarTipo"
 				},
 				{
 					"label": "Registrar usuario",
-					"event": "nada"
+					"event": "adicionarUsuario"
 				},
 				{
 					"label": "Registrar tipo de habitación",

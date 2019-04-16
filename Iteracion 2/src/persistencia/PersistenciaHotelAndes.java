@@ -125,7 +125,7 @@ public class PersistenciaHotelAndes {
 	}
 
 	/**
-	 * Cierra la conexión con la base de datos
+	 * Cierra la conexiï¿½n con la base de datos
 	 */
 	public void cerrarUnidadPersistencia ()
 	{
@@ -270,9 +270,9 @@ public class PersistenciaHotelAndes {
 	}
 
 	/**
-	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
-	 * @param e - La excepción que ocurrio
-	 * @return El mensaje de la excepción JDO
+	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle especï¿½fico del problema encontrado
+	 * @param e - La excepciï¿½n que ocurrio
+	 * @return El mensaje de la excepciï¿½n JDO
 	 */
 	private String darDetalleException(Exception e) 
 	{
@@ -294,16 +294,18 @@ public class PersistenciaHotelAndes {
 		{
 			tx.begin();
 			long idTipo = nextval ();
+			System.out.println(idTipo);
+			System.out.println(nombre);
 			long tuplasInsertadas = sqlTipo.adicionarTipo(pm, idTipo, nombre);
 			tx.commit();
 
-			log.trace ("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserciï¿½n de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
 			return new Tipo (idTipo , nombre);
 		}
 		catch (Exception e)
 		{
-			//        	e.printStackTrace();
+	      	e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		}
@@ -349,7 +351,7 @@ public class PersistenciaHotelAndes {
 			long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, capacidad, numeroHabitacion, costo, descripcion, disponible);
 			tx.commit();
 
-			log.trace ("Inserción Habitacion: " + numeroHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserciï¿½n Habitacion: " + numeroHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Habitacion(capacidad, numeroHabitacion, costo, descripcion, disponible);
 		}
 		catch (Exception e)
@@ -379,7 +381,7 @@ public class PersistenciaHotelAndes {
 			long tuplasInsertadas = sqlServicio.adicionarServicio(pm, id, inicio, fin, personas, costo, nombre, descripcion);
 			tx.commit();
 
-			log.trace ("Inserción Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserciï¿½n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Servicio(personas, id, costo, nombre, inicio, fin, descripcion);
 		}
 		catch (Exception e)
@@ -409,7 +411,7 @@ public class PersistenciaHotelAndes {
 			long tuplasInsertadas = sqlReserva.adicionarProducto(pm, id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
 			tx.commit();
 
-			log.trace ("Inserción Habitacion: " + personas + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserciï¿½n Habitacion: " + personas + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Reserva(id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
 		}
 		catch (Exception e)
@@ -443,7 +445,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlPlan.adicionarPlan(pm, id, nombre, descripcion);
             tx.commit();
             
-            log.trace ("Inserción Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             return new Plan(id, nombre, descripcion);
         }
         catch (Exception e)
@@ -474,7 +476,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlProducto.adicionarProducto(pm, id, nombre, costo, cantidad);
             tx.commit();
             
-            log.trace ("Inserción Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             return new Producto(id, nombre, costo, cantidad);
         }
         catch (Exception e)
@@ -504,12 +506,12 @@ public class PersistenciaHotelAndes {
             tx.commit();
             
             
-            log.trace ("Inserción Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             return new Usuario(identificacion, tipoid, idTipo, correo, nombre);
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
+        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -534,7 +536,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlOfrecen.adicionarOfrecen(pm, idServicio, idProducto);
             tx.commit();
 
-            log.trace ("Inserción de gustan: [" + idServicio + ", " + idProducto + "]. " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de gustan: [" + idServicio + ", " + idProducto + "]. " + tuplasInsertadas + " tuplas insertadas");
 
             return new Ofrecen (idServicio, idProducto);
         }
@@ -566,7 +568,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlContienen.adicionarContienen(pm, idProducto, numeroHabitacion);
             tx.commit();
 
-            log.trace ("Inserción de gustan: [" + numeroHabitacion + ", " + idProducto + "]. " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de gustan: [" + numeroHabitacion + ", " + idProducto + "]. " + tuplasInsertadas + " tuplas insertadas");
 
             return new Consumen (idProducto, numeroHabitacion);
         }
@@ -597,7 +599,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlSirven.adicionarSirven(pm, idServicio, numeroHabitacion);
             tx.commit();
 
-            log.trace ("Inserción de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
 
             return new Sirven (idServicio, numeroHabitacion);
         }
@@ -627,7 +629,7 @@ public class PersistenciaHotelAndes {
             long tuplasInsertadas = sqlApartan.adicionaApartan(pm, idServicio, numeroHabitacion);
             tx.commit();
 
-            log.trace ("Inserción de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
+            log.trace ("Inserciï¿½n de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
 
             return new Apartan (numeroHabitacion, idServicio);
         }

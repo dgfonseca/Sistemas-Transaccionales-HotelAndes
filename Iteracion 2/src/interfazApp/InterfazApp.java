@@ -47,6 +47,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
+import negocio.Tipo;
+import negocio.Usuario;
 
 
 /**
@@ -126,7 +128,8 @@ public class InterfazApp extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        //hotel = new HotelAndes (tableConfig);
+        hotel = new HotelAndes (tableConfig);
+//        hotel = new HotelAndes ();
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );
@@ -239,6 +242,77 @@ public class InterfazApp extends JFrame implements ActionListener
     
     public void nada()
     {
+    	
+    }
+    
+    
+    public void adicionarTipo()
+    {
+    	try
+    	{
+    		String tipo = JOptionPane.showInputDialog(this, "Tipo de usuario");
+        	if(tipo != null)
+        	{
+        		Tipo ti = hotel.adicionarTipo(tipo);
+        		if(ti == null)
+        		{
+        			throw new Exception("No se pudo agregar el tipo de usuario " + tipo);
+        		}
+        		
+        		String rta = "Agregar nuevo tipo de usuario \n\n";
+        		rta += "Tipo de usuario " + tipo  + " agregado exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
+    }
+    public void adicionarUsuario()
+    {
+    	try
+    	{
+    		String idUsuario = JOptionPane.showInputDialog(this, "Identificacion del usuario");
+    		
+    		
+    		if(idUsuario != null)
+    		{
+    			String tipoId = JOptionPane.showInputDialog(this, "Tipo de identificacion");
+    			String nombre = JOptionPane.showInputDialog(this, "Nombre del usuario");
+        		String correo = JOptionPane.showInputDialog(this, "Correo de usuario");
+        		String tipoUsuario = JOptionPane.showInputDialog(this, "Tipo de usuario");
+    			int identificacion = Integer.parseInt(idUsuario);
+    			int idTipo = Integer.parseInt(tipoUsuario);
+    			Usuario u = hotel.adicionarUsuario(nombre, identificacion, tipoId, correo, idTipo);
+    			if (u == null)
+    			{
+    				throw new Exception ("No se pudo crear el usuario con id " + identificacion);
+    			}
+    			String rta = "Adicionar nuevo usuario \n\n";
+    			rta += "Usuario "+ identificacion  + " añadido exitosamente. \n";
+    			rta += "Operación terminada";
+    			panelDatos.actualizarInterfaz(rta);
+    		}
+    		else
+        	{
+        		panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    	
     	
     }
     

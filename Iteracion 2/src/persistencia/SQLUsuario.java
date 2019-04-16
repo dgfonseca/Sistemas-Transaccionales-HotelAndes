@@ -16,17 +16,17 @@ class SQLUsuario {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLUsuario (PersistenciaHotelAndes pp)
 	{
@@ -37,7 +37,7 @@ class SQLUsuario {
 	
 	public long adicionarUsuario (PersistenceManager pm, int identificacion, String nombre, String tipoid, String correo, long idTipo) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario () + "(identificacion, nombre, tipoIdentificacion, correo, idTipo, ) values ( ?, ?, ?, ?,?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario () + "(identificacion, nombre, tipoIdentificacion, correo, idTipo ) values ( ?, ?, ?, ?,?)");
         q.setParameters(identificacion, nombre, tipoid, correo, idTipo);
         return (long) q.executeUnique();
 	}
