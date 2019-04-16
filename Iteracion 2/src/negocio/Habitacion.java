@@ -7,7 +7,6 @@ public class Habitacion implements VOHabitacion{
 	private double costo;
 	private String descripcion;
 	private char disponible;
-	private long reservaId;
 	
 	public Habitacion()
 	{
@@ -16,26 +15,17 @@ public class Habitacion implements VOHabitacion{
 		this.costo=0;
 		this.descripcion="";
 		this.disponible='T';
-		this.reservaId=0;
 	}
-	public Habitacion(int pcapacidad, int pnumerohabitacion, double pcosto, String pdescripcion, char pdisponible,long preserva)
+	public Habitacion(int pcapacidad, int pnumerohabitacion, double pcosto, String pdescripcion, char pdisponible)
 	{
 		this.capacidad=pcapacidad;
 		this.numeroHabitacion=pnumerohabitacion;
 		this.costo=pcosto;
 		this.descripcion=pdescripcion;
 		this.disponible=pdisponible;
-		this.reservaId=preserva;
 	}
 	
-	public void setReservaId(long pid)
-	{
-		this.reservaId=pid;
-	}
-	public long getReservaId()
-	{
-		return reservaId;
-	}
+
 	
 	@Override
 	public int getCapacidad() {

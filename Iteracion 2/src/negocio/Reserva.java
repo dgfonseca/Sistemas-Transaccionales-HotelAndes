@@ -10,7 +10,7 @@ public class Reserva implements VOReserva {
 	private char registrado;
 	private char pago;
 	private long idPlan;
-	private int facturaPago;
+	private long idUsuario;
 	public Reserva() {
 		this.id=0;
         this.fechaFin=0;
@@ -20,7 +20,7 @@ public class Reserva implements VOReserva {
         this.registrado='F';
         this.pago='T';
         this.idPlan=0;
-        this.facturaPago=0;
+        this.idUsuario=0;
 	}
 	public Reserva(long pid, long pfechainicio,long pfechafin,int pnumeropersonas,double pcosto,char pregistrado,char ppago, long pPlan,int idpago)
 	{
@@ -32,19 +32,19 @@ public class Reserva implements VOReserva {
 		this.registrado=pregistrado;
 		this.pago=ppago;
 		this.idPlan=pPlan;
-		this.facturaPago=idpago;
+		this.idUsuario=idpago;
 		
 		
 	}
 	
 	
-	public void setPagoId(int pid)
+	public void setUsuarioId(int pid)
 	{
-		this.facturaPago=pid;
+		this.idUsuario=pid;
 	}
-	public int getPagoId()
+	public long getUsuarioId()
 	{
-		return facturaPago;
+		return idUsuario;
 	}
 	public long getPlanId()
 	{

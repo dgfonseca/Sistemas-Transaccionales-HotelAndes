@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Hospedan;
 import negocio.Ofrecen;
 
  class SQLOfrecen {

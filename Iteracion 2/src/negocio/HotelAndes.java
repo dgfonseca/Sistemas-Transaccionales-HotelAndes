@@ -57,18 +57,18 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public Contienen adicionarContienen (long idProducto,int numeroHabitacion)
+	public Consumen adicionarContienen (long idProducto,int numeroHabitacion)
 	{
         log.info ("Adicionando Contienen: " + idProducto+" "+  numeroHabitacion);
-        Contienen tipoBebida = pp.adicionarContienen(idProducto, numeroHabitacion);		
+        Consumen tipoBebida = pp.adicionarContienen(idProducto, numeroHabitacion);		
         log.info ("Adicionando Contienen: " + tipoBebida);
         return tipoBebida;
 	}
 	
-	public Habitacion adicionarHabitacion (int capacidad,int numeroHabitacion, double costo, String descripcion, char disponible, long idReserva)
+	public Habitacion adicionarHabitacion (int capacidad,int numeroHabitacion, double costo, String descripcion, char disponible)
 	{
         log.info ("Adicionando Habitacion: " + descripcion+" "+  numeroHabitacion);
-        Habitacion tipoBebida = pp.adicionarHabitacion(capacidad, numeroHabitacion, costo, descripcion, disponible, idReserva);		
+        Habitacion tipoBebida = pp.adicionarHabitacion(capacidad, numeroHabitacion, costo, descripcion, disponible);		
         log.info ("Adicionando HAbitacion: " + tipoBebida);
         return tipoBebida;
 	}
@@ -81,13 +81,7 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public PagoPSE adicionarPago (int numFactura,int numCuenta,String banco, double saldopagar, int identificacion)
-	{
-        log.info ("Adicionando Pago: " + identificacion+" "+  numFactura);
-        PagoPSE tipoBebida = pp.adicionarPago(numFactura, numCuenta, banco, saldopagar, identificacion);		
-        log.info ("Adicionando Pago: " + tipoBebida);
-        return tipoBebida;
-	}
+	
 	
 	public Plan adicionarPlan (String nombre,String descripcion)
 	{

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Contienen;
+import negocio.Consumen;
 import negocio.Convencion;
 
 class SQLConvencion {
@@ -34,7 +34,7 @@ class SQLConvencion {
 	public List<Convencion> darConvenciones(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL,"SELECT * FROM "+ pp.darTablaConvenciones());
-		q.setResultClass(Contienen.class);
+		q.setResultClass(Consumen.class);
 		List<Convencion> rta = (List<Convencion>) q.execute();
 		return rta;
 	}

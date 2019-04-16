@@ -5,10 +5,11 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Contienen;
-import negocio.Hospedan;
+import negocio.Consumen;
 
-class SQLHospedan {
+
+
+class SQLConsumen {
 
 	/* ****************************************************************
 	 * 			Constantes
@@ -34,33 +35,34 @@ class SQLHospedan {
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLHospedan (PersistenciaHotelAndes pp)
+	public SQLConsumen (PersistenciaHotelAndes pp)
 	{
 		this.pp = pp;
 	}
 	
 
-	public long adicionarHospedan(PersistenceManager pm, int identificacion, Long idReserva) 
+	public long adicionarContienen(PersistenceManager pm, long idProducto, int numeroHabitacion) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospedan () + "(identificacion, idReserva) values (?, ?)");
-        q.setParameters(identificacion, idReserva);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsumen () + "(id_Producto, numeroHabitacion) values (?, ?)");
+        q.setParameters(idProducto, numeroHabitacion);
         return (long) q.executeUnique();
 	}
 
 
-	public long eliminarHospedan (PersistenceManager pm, int identificacion, long idReserva)
+	public long eliminarContienen (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospedan () + " WHERE identificacion = ? AND idReserva = ?");
-        q.setParameters(identificacion, idReserva);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsumen () + " WHERE idProducto = ? AND numeroHabitacion = ?");
+        q.setParameters(idProducto, numeroHabitacion);
         return (long) q.executeUnique();
 	}
 
 
-	public List<Hospedan> darHospedan (PersistenceManager pm)
+	public List<Consumen> darContienen (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospedan ());
-		q.setResultClass(Hospedan.class);
-		List<Hospedan> resp = (List<Hospedan>) q.execute();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConsumen ());
+		q.setResultClass(Consumen.class);
+		List<Consumen> resp = (List<Consumen>) q.execute();
 		return resp;
 	}
+
 }

@@ -6,7 +6,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Apartan;
-import negocio.Contienen;
+import negocio.Consumen;
 
 class SQLApartan extends Object {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Contienen;
+import negocio.Consumen;
 import negocio.Sirven;
 
 class SQLSirven {

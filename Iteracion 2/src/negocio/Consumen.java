@@ -1,15 +1,15 @@
 package negocio;
 
-public class Contienen implements VOContienen {
+public class Consumen implements VOContienen {
 
 	private long idProducto;
 	private int numeroHabitacion;
-	public Contienen() {
+	public Consumen() {
 
 		this.idProducto=0;
 		this.numeroHabitacion=0;
 	}
-	public Contienen(Long pid,int numHabitacion)
+	public Consumen(Long pid,int numHabitacion)
 	{
 		this.idProducto=pid;
 		this.numeroHabitacion=numHabitacion;

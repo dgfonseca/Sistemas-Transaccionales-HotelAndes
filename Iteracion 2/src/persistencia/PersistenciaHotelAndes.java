@@ -17,11 +17,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import negocio.Apartan;
-import negocio.Contienen;
+import negocio.Consumen;
+import negocio.Convencion;
 import negocio.Habitacion;
-import negocio.Hospedan;
 import negocio.Ofrecen;
-import negocio.PagoPSE;
 import negocio.Plan;
 import negocio.Producto;
 import negocio.Reserva;
@@ -41,11 +40,9 @@ public class PersistenciaHotelAndes {
 	public final static String SQL = "javax.jdo.query.SQL";
 
 	private static PersistenciaHotelAndes instance;
-	private SQLPagoPSE sqlPago;
 	private SQLPlan sqlPlan;
-	private SQLContienen sqlContienen;
+	private SQLConsumen sqlContienen;
 	private SQLHabitacion sqlHabitacion;
-	private SQLHospedan sqlHospedan;
 	private SQLOfrecen sqlOfrecen;
 	private SQLProducto sqlProducto;
 	private SQLReserva sqlReserva;
@@ -55,6 +52,7 @@ public class PersistenciaHotelAndes {
 	private SQLTipo sqlTipo;
 	private SQLApartan sqlApartan;
 	private SQLUtil sqlUtil;
+	private SQLConvencion sqlConvencion;
 
 
 	
@@ -71,8 +69,8 @@ public class PersistenciaHotelAndes {
 		tablas.add ("Parranderos_sequence");
 		tablas.add("PAGOSPSE");
 		tablas.add("PLANES");
-		tablas.add("CONTIENEN");
-		tablas.add("HABITACIONES");
+		tablas.add("CONSUMEN");
+		tablas.add("HABITACION");
 		tablas.add("HOSPEDAN");
 		tablas.add("OFRECEN");
 		tablas.add("PRODUCTOS");
@@ -83,6 +81,13 @@ public class PersistenciaHotelAndes {
 		tablas.add("TIPO");
 		tablas.add("APARTAN");
 		tablas.add("CONVENCIONES");
+		tablas.add("CONVENCION_USUARIO");
+		tablas.add("RESERVA_CONVENCIONES");
+		tablas.add("SERVICIOS_CONVENCION");
+		tablas.add("HABITACION_CONVENCION");
+		tablas.add("MANTENIMIENTOS");
+		tablas.add("SERVICIO_MANTENIMIENTO");
+		tablas.add("HABITACION_MANTENIMIENTOs");
 
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
@@ -153,11 +158,9 @@ public class PersistenciaHotelAndes {
 	{
 
 
-		sqlPago = new SQLPagoPSE(this);
 		sqlPlan=new SQLPlan(this);
-		sqlContienen=new SQLContienen(this);
+		sqlContienen=new SQLConsumen(this);
 		sqlHabitacion= new SQLHabitacion(this);
-		sqlHospedan = new SQLHospedan(this);
 		sqlOfrecen= new SQLOfrecen(this);
 		sqlProducto=new SQLProducto(this);
 		sqlReserva = new SQLReserva(this);
@@ -167,6 +170,7 @@ public class PersistenciaHotelAndes {
 		sqlUtil=new SQLUtil(this);
 		sqlTipo=new SQLTipo(this);
 		sqlApartan=new SQLApartan(this);
+		sqlConvencion=new SQLConvencion(this);
 
 	}
 
@@ -182,7 +186,7 @@ public class PersistenciaHotelAndes {
 	{
 		return tablas.get(2);
 	}
-	public String darTablaContienen()
+	public String darTablaConsumen()
 	{
 		return tablas.get(3);
 	}
@@ -227,6 +231,34 @@ public class PersistenciaHotelAndes {
 	public String darTablaConvenciones()
 	{
 		return tablas.get(14);
+	}
+	public String darTablaConvencionUsuario()
+	{
+		return tablas.get(15);
+	}
+	public String darTablaReservaConvenciones()
+	{
+		return tablas.get(16);
+	}
+	public String darTablaServiciosConvencion()
+	{
+		return tablas.get(17);
+	}
+	public String darTablaHabitacionConvencion()
+	{
+		return tablas.get(18);
+	}
+	public String darTablaMantenimientos()
+	{
+		return tablas.get(19);
+	}
+	public String darTablaServicioMantenimiento()
+	{
+		return tablas.get(20);
+	}
+	public String darTablaHabitacionMantenimiento()
+	{
+		return tablas.get(21);
 	}
 
 
@@ -298,22 +330,27 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlTipo.darTiposPorNombre (pmf.getPersistenceManager(), nombre);
 	}
+	
+	public List<Convencion> darConvenciones()
+	{
+		return sqlConvencion.darConvenciones(pmf.getPersistenceManager());
+	}
 
 
 	//METODOS AGREGACION//
 
-	public Habitacion adicionarHabitacion(int capacidad, int numeroHabitacion, double costo, String descripcion,char disponible,long idReserva) 
+	public Habitacion adicionarHabitacion(int capacidad, int numeroHabitacion, double costo, String descripcion,char disponible) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();            
-			long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, capacidad, numeroHabitacion, costo, descripcion, disponible, idReserva);
+			long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, capacidad, numeroHabitacion, costo, descripcion, disponible);
 			tx.commit();
 
 			log.trace ("Inserción Habitacion: " + numeroHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Habitacion(capacidad, numeroHabitacion, costo, descripcion, disponible, idReserva);
+			return new Habitacion(capacidad, numeroHabitacion, costo, descripcion, disponible);
 		}
 		catch (Exception e)
 		{
@@ -361,7 +398,7 @@ public class PersistenciaHotelAndes {
 		}
 	}
 
-	public Reserva adicionarReserva(int personas, long inicio, long fin, double costo, String descripcion, char registrado, char pago, long idreserva,int idpago) 
+	public Reserva adicionarReserva(int personas, long inicio, long fin, double costo, String descripcion, char registrado, char pago, long idplan,int idpago) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -369,11 +406,11 @@ public class PersistenciaHotelAndes {
 		{
 			tx.begin();  
 			long id = nextval ();
-			long tuplasInsertadas = sqlReserva.adicionarProducto(pm, id, inicio, fin, personas, costo, registrado, pago, idreserva, idpago);
+			long tuplasInsertadas = sqlReserva.adicionarProducto(pm, id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
 			tx.commit();
 
 			log.trace ("Inserción Habitacion: " + personas + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Reserva(id, inicio, fin, personas, costo, registrado, pago, idreserva, idpago);
+			return new Reserva(id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
 		}
 		catch (Exception e)
 		{
@@ -392,35 +429,7 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	public PagoPSE adicionarPago(int numFactura, double numCuenta, String banco,double saldopagar, int identificacion) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();  
-			long id = nextval ();
-			long tuplasInsertadas = sqlPago.adicionarPago(pm,(int)id, numCuenta, banco, saldopagar,identificacion);
-			tx.commit();
-
-			log.trace ("Inserción Habitacion: " + numCuenta + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new PagoPSE((int)id, numCuenta, banco, saldopagar,identificacion);
-		}
-		catch (Exception e)
-		{
-			//        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-			return null;
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
-	}
+	
 	
 	
 	public Plan adicionarPlan(String nombre, String descripcion) 
@@ -547,7 +556,7 @@ public class PersistenciaHotelAndes {
 	
 	
 	
-	public Contienen adicionarContienen(long idProducto, int numeroHabitacion) 
+	public Consumen adicionarContienen(long idProducto, int numeroHabitacion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
@@ -559,7 +568,7 @@ public class PersistenciaHotelAndes {
 
             log.trace ("Inserción de gustan: [" + numeroHabitacion + ", " + idProducto + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Contienen (idProducto, numeroHabitacion);
+            return new Consumen (idProducto, numeroHabitacion);
         }
         catch (Exception e)
         {
@@ -638,35 +647,7 @@ public class PersistenciaHotelAndes {
         }
 	}
 	
-	public Hospedan adicionarHospedan(int identificacion, long idReserva) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlHospedan.adicionarHospedan(pm, identificacion, idReserva);
-            tx.commit();
-
-            log.trace ("Inserción de gustan: [" + identificacion + ", " + idReserva + "]. " + tuplasInsertadas + " tuplas insertadas");
-
-            return new Hospedan (identificacion, idReserva);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
+	
 	
 	
 	
@@ -750,7 +731,7 @@ public class PersistenciaHotelAndes {
 	
 	
 	//Dar los elementos de la tabla//
-	public List<Contienen> darContienen ()
+	public List<Consumen> darContienen ()
 	{
 		return sqlContienen.darContienen (pmf.getPersistenceManager());
 	}
@@ -761,18 +742,11 @@ public class PersistenciaHotelAndes {
 		return sqlHabitacion.darHabitaciones (pmf.getPersistenceManager());
 	}
 	
-	public List<Hospedan> darHospedan ()
-	{
-		return sqlHospedan.darHospedan (pmf.getPersistenceManager());
-	}
 	public List<Ofrecen> darOfrecen ()
 	{
 		return sqlOfrecen.darOfrecen (pmf.getPersistenceManager());
 	}
-	public List<PagoPSE> darPagos ()
-	{
-		return sqlPago.darPagos (pmf.getPersistenceManager());
-	}
+	
 	
 	public List<Plan> darPlanes ()
 	{

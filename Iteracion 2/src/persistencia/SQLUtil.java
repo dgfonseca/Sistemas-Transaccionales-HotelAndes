@@ -48,7 +48,7 @@ class SQLUtil {
 
 	public long [] limpiarHotelandes (PersistenceManager pm)
 	{
-        Query qContienen = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaContienen ());          
+        Query qContienen = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsumen ());          
         Query qHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacion ());
         Query qHospedan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospedan() );
         Query qOfrecen = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOfrecen() );
