@@ -15,7 +15,7 @@ class SQLServiciosConvencion {
 	 *****************************************************************/
 	/**
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
-	 * Se renombra acá para facilitar la escritura de las sentencias
+	 * Se renombra acï¿½ para facilitar la escritura de las sentencias
 	 */
 	private final static String SQL = PersistenciaHotelAndes.SQL;
 
@@ -23,16 +23,16 @@ class SQLServiciosConvencion {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public  SQLServiciosConvencion(PersistenciaHotelAndes pp)
 	{
@@ -63,6 +63,7 @@ class SQLServiciosConvencion {
 		List<ServiciosConvencion> resp = (List<ServiciosConvencion>) q.execute();
 		return resp;
 	}
+	
 
 
 }

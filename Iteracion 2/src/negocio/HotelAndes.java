@@ -101,6 +101,10 @@ public class HotelAndes {
 	{
 		return pp.darServicios();
 	}
+	public List<Object[]> darServiciosObjeto()
+	{
+		return pp.darServiciosObjeto();
+	}
 	
 	public long registrarSalida(long idReserva)
 	{
@@ -136,15 +140,10 @@ public class HotelAndes {
 	
 	public Servicio adicionarServicio (long id,int personas,long inicio,long fin,double costo,String nombre,String descripcion) throws Exception
 	{
-		if(inicio>20190000&&fin>=inicio) {
         log.info ("Adicionando servicio: " + nombre+" "+  descripcion);
         Servicio tipoBebida = pp.adicionarServicio(id,personas, inicio, fin, costo, nombre, descripcion);		
         log.info ("Adicionando Servicio: " + tipoBebida);
-        return tipoBebida;}
-		else
-		{
-			throw new Exception("Ese a�o es invalido, tiene que ser escrito a�o-mes-dia, sin las barras espaciadoras ej 20190211 donde a�o es 2019 mes es 02 y dia es 11");
-		}
+        return tipoBebida;
 	}
 	
 	public Sirven adicionarSirven (long idServicio,int numeroHabitacion, long fechaUso) throws Exception
@@ -245,6 +244,23 @@ public class HotelAndes {
 	public List<Usuario> darBuenosClientes()
 	{
 		return pp.darBuenosClientes();
+	}
+	
+	public List<Object[]> darServiciosOcupados()
+	{
+		log.info("Obteniendo servicios ocupados");
+		return pp.darServiciosOcupados();
+	}
+	
+	public ServiciosConvencion adicionarServicioConvencion(long idReserva, int idServicio)
+	{
+		log.info("Añadiendo reserva de servicio a convencion");
+		return pp.adicionarServicioConvencion(idReserva, idServicio);
+	}
+	
+	public List<Convencion> darConvenciones()
+	{
+		return pp.darConvenciones();
 	}
 
 }

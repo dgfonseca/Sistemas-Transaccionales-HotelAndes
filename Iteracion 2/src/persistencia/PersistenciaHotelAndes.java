@@ -27,6 +27,7 @@ import negocio.Producto;
 import negocio.Reserva;
 import negocio.ReservaConvencion;
 import negocio.Servicio;
+import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
 import negocio.Usuario;
@@ -57,6 +58,7 @@ public class PersistenciaHotelAndes {
 	private SQLConvencion sqlConvencion;
 	private SQLReservaConvencion sqlReservaConvencion;
 	private SQLHabitacionConvencion sqlHabitacionConvencion;
+	private SQLServiciosConvencion sqlServiciosConvencion;
 
 
 
@@ -177,6 +179,7 @@ public class PersistenciaHotelAndes {
 		sqlConvencion=new SQLConvencion(this);
 		sqlReservaConvencion = new SQLReservaConvencion(this);
 		sqlHabitacionConvencion = new SQLHabitacionConvencion(this);
+		sqlServiciosConvencion = new SQLServiciosConvencion(this);
 
 	}
 
@@ -414,6 +417,10 @@ public class PersistenciaHotelAndes {
 	public List<Servicio> darServicios ()
 	{
 		return sqlServicio.darServicios (pmf.getPersistenceManager());
+	}
+	public List<Object[]> darServiciosObjeto ()
+	{
+		return sqlServicio.darServiciosObjeto (pmf.getPersistenceManager());
 	}
 	public List<Sirven> darSirven ()
 	{
@@ -914,6 +921,40 @@ public class PersistenciaHotelAndes {
 
 			log.trace ("Inserci�n Habitacion convención: " + idHabitacion +" " + "idReserva" + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new HabitacionConvencion(idReserva, idHabitacion);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public List<Object[]> darServiciosOcupados()
+	{
+		return sqlServicio.darServiciosOcupados(pmf.getPersistenceManager());
+	}
+	
+	public ServiciosConvencion adicionarServicioConvencion(long idReserva, int idServicio)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();            
+			long tuplasInsertadas = sqlServiciosConvencion.adicionaServiciosConvencion(pmf.getPersistenceManager(), idReserva, idServicio);
+			tx.commit();
+
+			log.trace ("Inserci�n Servicio convención: " + idServicio +" " + "idReserva" + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new ServiciosConvencion(idReserva, idServicio);
 		}
 		catch (Exception e)
 		{

@@ -34,7 +34,7 @@ class SQLConvencion {
 	public List<Convencion> darConvenciones(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL,"SELECT * FROM "+ pp.darTablaConvenciones());
-		q.setResultClass(Consumen.class);
+		q.setResultClass(Convencion.class);
 		List<Convencion> rta = (List<Convencion>) q.execute();
 		return rta;
 	}

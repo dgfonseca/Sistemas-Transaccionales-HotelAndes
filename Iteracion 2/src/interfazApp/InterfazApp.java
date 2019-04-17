@@ -49,6 +49,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.Apartan;
+import negocio.Convencion;
 import negocio.Habitacion;
 import negocio.HabitacionConvencion;
 import negocio.HotelAndes;
@@ -56,6 +57,7 @@ import negocio.Plan;
 import negocio.Reserva;
 import negocio.ReservaConvencion;
 import negocio.Servicio;
+import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
 import negocio.Usuario;
@@ -331,6 +333,12 @@ public class InterfazApp extends JFrame implements ActionListener
 
 
 	}
+	
+	public void darConvenciones()
+	{
+		List<Object[]> con = hotel.darServiciosObjeto();
+		panelDatos.actualizarInterfaz(con.size() + "");
+	}
 
 	public void reservarConvencion()
 	{
@@ -353,13 +361,16 @@ public class InterfazApp extends JFrame implements ActionListener
 
 					rta += "Fechas de la convencion: desde " + rc[0] + " hasta " + rc[1] +  "\n";
 
+					BigDecimal f3 = (BigDecimal) rc[0];
+					BigDecimal f4 = (BigDecimal) rc[1];
+					
 					List<Habitacion> habs = hotel.darHabitacionesCapacidad(tamanioHabitaciones);
 					rta += "Habitaciones disponibles: \n";
 
 					List<Habitacion> habs2 = new ArrayList();
 					for (Habitacion habitacion : habs) 
 					{
-						rta += habitacion.getNumeroHabitacion() + "\n";
+						//rta += habitacion.getNumeroHabitacion() + "\n";
 						habs2.add(habitacion);
 					}
 
@@ -369,12 +380,11 @@ public class InterfazApp extends JFrame implements ActionListener
 						BigDecimal f1 = (BigDecimal) objeto[0];
 						BigDecimal f2 = (BigDecimal) objeto[1];
 
-						BigDecimal f3 = (BigDecimal) rc[0];
-						BigDecimal f4 = (BigDecimal) rc[1];
+						
 						if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
 						{
 							BigDecimal num = (BigDecimal) objeto[2];
-							rta += "Habitacion ocupada: " + objeto[2] + " desde: " + objeto[0] + " hasta: " + objeto[1] + "\n";
+							//rta += "Habitacion ocupada: " + objeto[2] + " desde: " + objeto[0] + " hasta: " + objeto[1] + "\n";
 							for (int i = 0; i<habs.size(); i++)
 							{
 								Habitacion hab = habs.get(i);
@@ -411,7 +421,66 @@ public class InterfazApp extends JFrame implements ActionListener
 						}
 
 						rta += "Reservadas  "+ cont2  + " habitaciones para " + tamanioHabitaciones + " personas cada una. \n";
-						rta += "OperaciÃ³n terminada";
+						panelDatos.actualizarInterfaz(rta);
+						
+						List<Object[]> servicios = hotel.darServiciosObjeto();
+						List<Object[]> serviciosDisponibles = new ArrayList();
+						List<Object[]> serviciosOcupados = hotel.darServiciosOcupados();
+						
+						rta += "Servicios del hotel \n" + servicios.size() + "\n";
+						for(Object[] ser:servicios)
+						{
+							//rta += "Servicio: " + ser[5] + " " + ser[6] + "\n";
+							serviciosDisponibles.add(ser);
+						}
+						for(Object[] objeto: serviciosOcupados)
+						{
+							BigDecimal f1 = (BigDecimal) objeto[2];
+							BigDecimal f2 = (BigDecimal) objeto[3];
+							BigDecimal num = (BigDecimal) objeto[0];
+							if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
+							{
+								for(int i = 0; i<serviciosDisponibles.size(); i++)
+								{
+									Object[] s = serviciosDisponibles.get(i);
+									BigDecimal num2 = (BigDecimal) s[0];
+									if(num.equals(num2))
+									{
+										serviciosDisponibles.remove(i);
+									}
+								}
+							}
+						}
+						
+						rta += "Servicios del hotel disponibles para la convencion \n";
+						for(Object[] ser:serviciosDisponibles)
+						{
+							rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[5] + " " + ser[6] + "\n";
+						}
+						panelDatos.actualizarInterfaz(rta);
+						
+						JOptionPane.showMessageDialog(this, "Por favor aÃ±ada los id de los servicios que desea adicionar. Revise la lista generada. (Separados por coma");
+						String algo = JOptionPane.showInputDialog(this, "Id, separados por coma");
+						
+						if(algo != null)
+						{
+							String[] ids = algo.split(",");
+							for(int i = 0; i<ids.length; i++)
+							{
+								String idAnadir = ids[i];
+								int idA = Integer.parseInt(idAnadir);
+								ServiciosConvencion anadido = hotel.adicionarServicioConvencion(id, idA);
+								if(anadido != null)
+								{
+									rta += "Anadido el servicio con id " + idA + " \n";
+								}
+							}
+						}
+						else
+						{
+							rta += "No ha aÃ±adido ningÃºn servicio a la convenciÃ³n. \n";
+						}
+						
 					}
 					else
 					{
@@ -750,14 +819,14 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				String capacidad = JOptionPane.showInputDialog(this, "Cantidad Personas");
 				String costo = JOptionPane.showInputDialog(this, "Costo de la reserva");
-				String año=JOptionPane.showInputDialog(this,"año de la reserva");
+				String ano=JOptionPane.showInputDialog(this,"aï¿½o de la reserva");
 				String mes=JOptionPane.showInputDialog(this,"Mes de la reserva  ej 05");
 				String dia=JOptionPane.showInputDialog(this,"Dia de la reserva ej: 05");
-				String ini=año+mes+dia;				
-				String año2=JOptionPane.showInputDialog(this,"año de fin de la reserva");
+				String ini=ano+mes+dia;				
+				String ano2=JOptionPane.showInputDialog(this,"aï¿½o de fin de la reserva");
 				String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej 05");
 				String dia2=JOptionPane.showInputDialog(this,"Dia de fin de la reserva ej: 05");
-				String fini=año2+mes2+dia2;				
+				String fini=ano2+mes2+dia2;				
 				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
 				String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
 				String pagoo=JOptionPane.showInputDialog(this,"Esta pago T o F");
@@ -806,12 +875,12 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
 				String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
-				String año=JOptionPane.showInputDialog(this,"hora de apertura servicio ej 22");
+				String ano=JOptionPane.showInputDialog(this,"hora de apertura servicio ej 22");
 				String mes=JOptionPane.showInputDialog(this,"Minuto de aprtura del servicio ej 05");
-				String fechaInicio=año+mes;        		
-				String año2=JOptionPane.showInputDialog(this,"hora de cierre servicio ej 22");
+				String fechaInicio=ano+mes;        		
+				String ano2=JOptionPane.showInputDialog(this,"hora de cierre servicio ej 22");
 				String mes2=JOptionPane.showInputDialog(this,"Minuto de cierre del servicio ej 05");
-				String fini=año2+mes2;        		        		
+				String fini=ano2+mes2;        		        		
 				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
 				String nombre=JOptionPane.showInputDialog(this,"Nombre del servicio");
 				long iden=Long.parseLong(id);
@@ -940,10 +1009,10 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(text);
 			String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
 			String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
-			String año=JOptionPane.showInputDialog(this,"año de uso del servicio");
+			String ano=JOptionPane.showInputDialog(this,"aï¿½o de uso del servicio");
 			String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej 05");
 			String dia=JOptionPane.showInputDialog(this,"Dia de uso del servicio ej: 05");
-			String fecha=año+mes+dia;
+			String fecha=ano+mes+dia;
 			long ids=Long.parseLong(idServicio);
 			int numHabitacion=Integer.parseInt(numeroHabitacion);
 			long uso=Long.parseLong(fecha);

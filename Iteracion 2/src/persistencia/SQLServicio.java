@@ -16,17 +16,17 @@ class SQLServicio {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLServicio (PersistenciaHotelAndes pp)
 	{
@@ -79,16 +79,19 @@ class SQLServicio {
 		return  q.executeList();
 	}
 
-
-
-
-
-
 	public List<Servicio> darServicios (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio ());
 		q.setResultClass(Servicio.class);
-		return (List<Servicio>) q.executeList();
+		List<Servicio> servicios = (List<Servicio>) q.executeList();
+		return  servicios;
+	}
+	
+	public List<Object[]> darServiciosObjeto (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio ());
+		List<Object[]> servicios = (List<Object[]>) q.executeList();
+		return  servicios;
 	}
 
 	public List<Object[]> dar20Servicios(PersistenceManager pm)
@@ -104,6 +107,19 @@ class SQLServicio {
         sql1+=" ORDER BY COUNT(ID) DESC";
 		Query q = pm.newQuery(SQL, sql1);
 		return  q.executeList();
+	}
+	
+	public List<Object[]> darServiciosOcupados(PersistenceManager pm)
+	{
+		String sql = "Select s.id, sm.id_mantenimiento, m.fechaInicio, m.fechaFin\r\n" + 
+				"From servicios s, servicio_mantenimiento sm, mantenimientos m\r\n" + 
+				"Where s.id=sm.id_servicio and sm.id_mantenimiento = m.id  \r\n" + 
+				"union all \r\n" + 
+				"Select s.id, sc.id_reserva, rc.fechainicio, rc.fechafin\r\n" + 
+				"From servicios s, servicios_convencion sc, reserva_convenciones rc\r\n" + 
+				"Where s.id = sc.id_servicio and sc.id_reserva = rc.id";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList();
 	}
 
 
