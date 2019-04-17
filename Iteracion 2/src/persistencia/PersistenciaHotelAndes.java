@@ -1018,6 +1018,11 @@ public class PersistenciaHotelAndes {
 		return sqlHabitacion.darHabitacionesOcupadas(pmf.getPersistenceManager());
 	}
 	
+	public List<Object[]> darConsumoUsuarioDado(long id,long ini,long fin)
+	{
+		return sqlUsuario.darConsumoPorUsuarioDado(pmf.getPersistenceManager(), id, ini, fin);
+	}
+	
 	public Object[] darFechaConvencion(long id)
 	{
 		return sqlReservaConvencion.darFechaConvencion(pmf.getPersistenceManager(), id);

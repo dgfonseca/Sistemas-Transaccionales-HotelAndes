@@ -125,6 +125,11 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
+	public List<Object[]> darConsumoUsuarioDado(long id,long ini,long fin)
+	{
+		return pp.darConsumoUsuarioDado(id, ini, fin);
+	}
+	
 	public Reserva adicionarReserva (long id,int personas,long inicio, long fin, double costo, String descripcion, String registrado,String pago,long idplan,long idusuario) throws Exception
 	{
 		if(inicio>20190000&&fin>=inicio) {
