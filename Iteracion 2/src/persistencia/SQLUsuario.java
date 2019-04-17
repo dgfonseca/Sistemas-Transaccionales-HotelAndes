@@ -108,5 +108,19 @@ class SQLUsuario {
 		
 		
 	}
+	
+	
+	public List<Object[]> darConsumoPorUsuarioDado(PersistenceManager pm,long id,long ini,long fin)
+	{
+		String sql1="SELECT US.IDENTIFICACION, SUM(RES.COSTO) ";
+		sql1+=" FROM "+ pp.darTablaUsuario() +" US";
+		sql1+=" INNER JOIN "+pp.darTablaReserva() +" res";
+		sql1+=" ON US.IDENTIFICACION=RES.ID_USUARIO ";
+		sql1+="WHERE(us.identificacion=?) and (res.fechainicio between ? and ?) and (res.fechafin between ? and ?)";
+		sql1+=" GROUP BY US.IDENTIFICACION";
+		Query q=pm.newQuery(SQL,sql1);
+		q.setParameters(id,ini,fin,ini,fin);
+		return q.executeList();
+	}
 
 }

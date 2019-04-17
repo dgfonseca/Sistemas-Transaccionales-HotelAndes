@@ -117,12 +117,17 @@ public class HotelAndes {
 		return pp.registrarLlegada(idReserva);
 	}
 	
-	public Producto adicionarProducto (double costo,String nombre,int cantidad)
+	public Producto adicionarProducto (long id,double costo,String nombre,int cantidad)
 	{
         log.info ("Adicionando Producto: " + nombre+" "+  cantidad);
-        Producto tipoBebida = pp.adicionarProducto(costo, nombre, cantidad);		
+        Producto tipoBebida = pp.adicionarProducto(id,costo, nombre, cantidad);		
         log.info ("Adicionando Producto: " + tipoBebida);
         return tipoBebida;
+	}
+	
+	public List<Object[]> darConsumoUsuarioDado(long id,long ini,long fin)
+	{
+		return pp.darConsumoUsuarioDado(id, ini, fin);
 	}
 	
 	public Reserva adicionarReserva (long id,int personas,long inicio, long fin, double costo, String descripcion, String registrado,String pago,long idplan,long idusuario) throws Exception
@@ -315,6 +320,32 @@ public class HotelAndes {
 	{
 		log.info("Insertando servicio en mantenimiento");
 		return pp.adicionarServicioMantenimiento(id, idServicio);
+	}
+	
+	public Convencion adicionarConvencion(long identificacion,String nombre,String descripcion)
+	{
+		return pp.adicionarConvencion(identificacion, nombre, descripcion);
+	}
+	
+	
+	public long [] limpiarParranderos ()
+	{
+        log.info ("Limpiando la BD de Parranderos");
+        long [] borrrados = pp.limpiarParranderos();	
+        log.info ("Limpiando la BD de Parranderos: Listo!");
+        return borrrados;
+	}
+	public List<Usuario> darUsuarios()
+	{
+		return pp.darUsuarios();
+	}
+	public List<Reserva> darReservas()
+	{
+		return pp.darReservas();
+	}
+	public List<Producto> darProductos()
+	{
+		return pp.darProductos();
 	}
 	
 	public List<Mantenimiento> darMantenimientos()

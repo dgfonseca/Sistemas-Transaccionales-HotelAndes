@@ -1452,6 +1452,31 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(generarMensajeError(e));
 		}
 	}
+	
+	public void darConsumoUsuarioDado()
+	{
+		try
+		{
+			String texto = "";
+			String ide =JOptionPane.showInputDialog(this,"Id de usuario a buscar");
+			String inic=JOptionPane.showInputDialog(this,"Fecha inicial a buscar");
+			String finc=JOptionPane.showInputDialog(this,"Fecha final a buscar");
+			long id=Long.parseLong(ide);
+			long ini=Long.parseLong(inic);
+			long fin=Long.parseLong(finc);
+			List<Object[]> rta = hotel.darConsumoUsuarioDado(id, ini, fin);
+			for(int i=0;i<rta.size();i++)
+			{
+				texto+="Usuario : "+rta.get(i)[0]+" Consumo: "+rta.get(i)[1];
+			}
+			panelDatos.actualizarInterfaz(texto);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			panelDatos.actualizarInterfaz(generarMensajeError(e));
+		}
+	}
 	public void darBuenosClientes() {
 		try
 		{
