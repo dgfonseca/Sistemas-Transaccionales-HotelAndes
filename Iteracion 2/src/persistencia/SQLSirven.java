@@ -40,10 +40,10 @@ class SQLSirven {
 	}
 	
 
-	public long adicionarSirven(PersistenceManager pm, long idServicio, int numeroHabitacion) 
+	public long adicionarSirven(PersistenceManager pm, long idServicio, int numeroHabitacion, long fechauso) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaSirven () + "(idServicio, numeroHabitacion) values (?, ?)");
-        q.setParameters(idServicio, numeroHabitacion);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaSirven () + "(idServicio, numeroHabitacion, fechauso) values (?, ?,?)");
+        q.setParameters(idServicio, numeroHabitacion,fechauso);
         return (long) q.executeUnique();
 	}
 

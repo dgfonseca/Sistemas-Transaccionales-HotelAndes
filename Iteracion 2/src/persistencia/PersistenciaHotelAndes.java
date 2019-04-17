@@ -331,6 +331,11 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlConvencion.darConvenciones(pmf.getPersistenceManager());
 	}
+	
+	public Servicio darServicioPorId(long pnombre)
+	{
+		return sqlServicio.darServicioPorId(pmf.getPersistenceManager(), pnombre);
+	}
 
 
 
@@ -431,6 +436,7 @@ public class PersistenciaHotelAndes {
 
 
 
+
 ///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
 ///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
 ///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
@@ -478,9 +484,18 @@ public class PersistenciaHotelAndes {
 	 * Requerimiento Funcional 2
 	 * @return
 	 */
-	public List<Servicio> darServiciosPopulares(){
-		return sqlServicio.dar20Servicios(pmf.getPersistenceManager());
+	public List<long[]> darServiciosPopulares(){
+		List<long []> resp = new LinkedList<long []> ();
+		List<Object []> tuplas =  sqlServicio.dar20Servicios(pmf.getPersistenceManager());
+		for ( Object [] tupla : tuplas)
+		{
+			long [] datosResp = new long [2];
 
+			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
+			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
+			resp.add (datosResp);
+		}
+		return resp;
 	}
 	
 	
@@ -750,19 +765,19 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	public Sirven adicionarSirven(long idServicio, int numeroHabitacion) 
+	public Sirven adicionarSirven(long idServicio, int numeroHabitacion, long fechauso) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlSirven.adicionarSirven(pm, idServicio, numeroHabitacion);
+			long tuplasInsertadas = sqlSirven.adicionarSirven(pm, idServicio, numeroHabitacion, fechauso);
 			tx.commit();
 
 			log.trace ("Inserci�n de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Sirven (idServicio, numeroHabitacion);
+			return new Sirven (idServicio, numeroHabitacion,fechauso);
 		}
 		catch (Exception e)
 		{

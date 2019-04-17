@@ -48,6 +48,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
+import negocio.Apartan;
 import negocio.Habitacion;
 import negocio.HabitacionConvencion;
 import negocio.HotelAndes;
@@ -878,7 +879,45 @@ public class InterfazApp extends JFrame implements ActionListener
 		}
     }
     
-    
+    public void adicionarApartan()
+    {
+    	try
+    	{
+    		String text="habitaciones : ";
+    		for(int i=0; i<hotel.darHabitaciones().size();i++)
+    		{
+    			text+="identificacion: "+hotel.darHabitaciones().get(i).getNumeroHabitacion()+" Disponibilidad: "+hotel.darHabitaciones().get(i).isDisponible();
+    		}
+    		panelDatos.actualizarInterfaz(text);
+    		String idServicio = JOptionPane.showInputDialog(this, "Id de la reserva a cargar");
+    		String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar a la reserva");
+    		long ids=Long.parseLong(idServicio);
+    		int numHabitacion=Integer.parseInt(numeroHabitacion);
+
+        	if(idServicio != null)
+        	{
+        		Apartan ti = hotel.adicionarApartan(ids, numHabitacion);
+        		if(ti == null)
+        		{
+        			throw new Exception("No se pudo agregar la reserva a la habitacion" + numHabitacion);
+        		}
+        		
+        		String rta = "Agregar nuevo reserva a habitacion \n\n";
+        		rta += "reserva a habitacion " + ti  + " agregado exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    }
     public void adicionarSirven()
     {
     	try
@@ -891,13 +930,14 @@ public class InterfazApp extends JFrame implements ActionListener
     		panelDatos.actualizarInterfaz(text);
     		String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
     		String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
-    		
+    		String fecha=JOptionPane.showInputDialog(this,"Fecha de uso del servicio");
     		long ids=Long.parseLong(idServicio);
     		int numHabitacion=Integer.parseInt(numeroHabitacion);
+    		long uso=Long.parseLong(fecha);
 
         	if(idServicio != null)
         	{
-        		Sirven ti = hotel.adicionarSirven(ids, numHabitacion);
+        		Sirven ti = hotel.adicionarSirven(ids, numHabitacion,uso);
         		if(ti == null)
         		{
         			throw new Exception("No se pudo agregar el Servicio a la habitacion" + numHabitacion);
@@ -1036,7 +1076,24 @@ public class InterfazApp extends JFrame implements ActionListener
     	}
     	
     }
-    
+    public void darServiciosPopulares()
+    {
+    	try
+    	{
+    		String texto = "";
+    		List<long[]>rta = hotel.darServiciosPopulares();
+    		for(int i=0;i<rta.size();i++)
+    		{
+    			texto+=" Servicio con id: "+rta.get(i)[0]+" Cantidad Veces: "+rta.get(i)[1];
+    		}
+    		panelDatos.actualizarInterfaz(texto);
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    }
     public void darHabitacionesYDinero()
     {
     	try
@@ -1053,10 +1110,6 @@ public class InterfazApp extends JFrame implements ActionListener
     			
     		}
     		panelDatos.actualizarInterfaz(text);
-    		
-        	
-        	
-        
     	}
     	catch (Exception e)
     	{
