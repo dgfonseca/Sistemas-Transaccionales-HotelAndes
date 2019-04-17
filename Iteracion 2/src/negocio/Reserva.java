@@ -22,7 +22,7 @@ public class Reserva implements VOReserva {
         this.idPlan=0;
         this.idUsuario=0;
 	}
-	public Reserva(long pid, long pfechainicio,long pfechafin,int pnumeropersonas,double pcosto,char pregistrado,char ppago, long pPlan,int idpago)
+	public Reserva(long pid, long pfechainicio,long pfechafin,int pnumeropersonas,double pcosto,char pregistrado,char ppago, long pPlan,long idpago)
 	{
 		this.id=pid;
 		this.fechaFin=pfechafin;

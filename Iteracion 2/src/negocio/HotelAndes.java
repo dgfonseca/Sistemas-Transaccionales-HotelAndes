@@ -83,12 +83,22 @@ public class HotelAndes {
 	
 	
 	
-	public Plan adicionarPlan (String nombre,String descripcion)
+	public Plan adicionarPlan (long id,String nombre,String descripcion)
 	{
         log.info ("Adicionando Plan: " + nombre+" "+  descripcion);
-        Plan tipoBebida = pp.adicionarPlan(nombre, descripcion);		
+        Plan tipoBebida = pp.adicionarPlan(id,nombre, descripcion);		
         log.info ("Adicionando Plan: " + tipoBebida);
         return tipoBebida;
+	}
+	
+	public List<Plan> darPlanes()
+	{
+		return pp.darPlanes();
+	}
+	
+	public List<Servicio> darServicios()
+	{
+		return pp.darServicios();
 	}
 	
 	public Producto adicionarProducto (double costo,String nombre,int cantidad)
@@ -99,20 +109,30 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public Reserva adicionarReserva (int personas,long inicio, long fin, double costo, String descripcion, char registrado,char pago,long idreserva,int idpago)
+	public Reserva adicionarReserva (long id,int personas,long inicio, long fin, double costo, String descripcion, char registrado,char pago,long idplan,long idusuario) throws Exception
 	{
-        log.info ("Adicionando Reserva: " + idpago+" "+  descripcion);
-        Reserva tipoBebida = pp.adicionarReserva(personas, inicio, fin, costo, descripcion, registrado, pago, idreserva, idpago);		
+		if(inicio>20190000&&fin>=inicio) {
+        log.info ("Adicionando Reserva: " + id+" "+  descripcion);
+        Reserva tipoBebida = pp.adicionarReserva(id, personas, inicio, fin, costo, descripcion, registrado, pago, idplan, idusuario);		
         log.info ("Adicionando Reserva: " + tipoBebida);
-        return tipoBebida;
+        return tipoBebida;}
+		else
+		{
+			throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+		}
 	}
 	
-	public Servicio adicionarServicio (int personas,long inicio,long fin,double costo,String nombre,String descripcion)
+	public Servicio adicionarServicio (long id,int personas,long inicio,long fin,double costo,String nombre,String descripcion) throws Exception
 	{
+		if(inicio>20190000&&fin>=inicio) {
         log.info ("Adicionando servicio: " + nombre+" "+  descripcion);
-        Servicio tipoBebida = pp.adicionarServicio(personas, inicio, fin, costo, nombre, descripcion);		
+        Servicio tipoBebida = pp.adicionarServicio(id,personas, inicio, fin, costo, nombre, descripcion);		
         log.info ("Adicionando Servicio: " + tipoBebida);
-        return tipoBebida;
+        return tipoBebida;}
+		else
+		{
+			throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+		}
 	}
 	
 	public Sirven adicionarSirven (long idServicio,int numeroHabitacion)

@@ -46,7 +46,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
+import negocio.Habitacion;
 import negocio.HotelAndes;
+import negocio.Plan;
+import negocio.Reserva;
+import negocio.Servicio;
+import negocio.Sirven;
 import negocio.Tipo;
 import negocio.Usuario;
 
@@ -240,17 +245,11 @@ public class InterfazApp extends JFrame implements ActionListener
     }
     
     
-    public void nada()
-    {
-    	
-    }
-    
-    
     public void adicionarTipo()
     {
     	try
     	{
-    		String text="Id de tipo en uso";
+    		String text="Id de tipo en uso, no usar los id's siguientes";
     		for(int i=0; i<hotel.darTipos().size();i++)
     		{
     			text+=","+hotel.darTipos().get(i).getId();
@@ -285,6 +284,9 @@ public class InterfazApp extends JFrame implements ActionListener
     	}
     	
     }
+   
+    
+    
     public void adicionarUsuario()
     {
     	try
@@ -325,132 +327,7 @@ public class InterfazApp extends JFrame implements ActionListener
     	
     }
     
-	/* ****************************************************************
-	 * 			CRUD de TipoBebida
-	 *****************************************************************/
-    /**
-     * Adiciona un tipo de bebida con la información dada por el usuario
-     * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo de bebida con ese nombre no existía
-     */
-    public void adicionarTipoBebida( )
-    {
-//    	try 
-//    	{
-//    		String nombreTipo = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Adicionar tipo de bebida", JOptionPane.QUESTION_MESSAGE);
-//    		if (nombreTipo != null)
-//    		{
-//        		VOTipoBebida tb = parranderos.adicionarTipoBebida (nombreTipo);
-//        		if (tb == null)
-//        		{
-//        			throw new Exception ("No se pudo crear un tipo de bebida con nombre: " + nombreTipo);
-//        		}
-//        		String resultado = "En adicionarTipoBebida\n\n";
-//        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-    }
 
-    /**
-     * Consulta en la base de datos los tipos de bebida existentes y los muestra en el panel de datos de la aplicación
-     */
-    public void listarTipoBebida( )
-    {
-//    	try 
-//    	{
-//			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
-//
-//			String resultado = "En listarTipoBebida";
-//			resultado +=  "\n" + listarTiposBebida (lista);
-//			panelDatos.actualizarInterfaz(resultado);
-//			resultado += "\n Operación terminada";
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-    }
-
-    /**
-     * Borra de la base de datos el tipo de bebida con el identificador dado po el usuario
-     * Cuando dicho tipo de bebida no existe, se indica que se borraron 0 registros de la base de datos
-     */
-    public void eliminarTipoBebidaPorId( )
-    {
-//    	try 
-//    	{
-//    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del tipo de bedida?", "Borrar tipo de bebida por Id", JOptionPane.QUESTION_MESSAGE);
-//    		if (idTipoStr != null)
-//    		{
-//    			long idTipo = Long.valueOf (idTipoStr);
-//    			long tbEliminados = parranderos.eliminarTipoBebidaPorId (idTipo);
-//
-//    			String resultado = "En eliminar TipoBebida\n\n";
-//    			resultado += tbEliminados + " Tipos de bebida eliminados\n";
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-    }
-
-    /**
-     * Busca el tipo de bebida con el nombre indicado por el usuario y lo muestra en el panel de datos
-     */
-    public void buscarTipoBebidaPorNombre( )
-    {
-//    	try 
-//    	{
-//    		String nombreTb = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Buscar tipo de bebida por nombre", JOptionPane.QUESTION_MESSAGE);
-//    		if (nombreTb != null)
-//    		{
-//    			VOTipoBebida tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTb);
-//    			String resultado = "En buscar Tipo Bebida por nombre\n\n";
-//    			if (tipoBebida != null)
-//    			{
-//        			resultado += "El tipo de bebida es: " + tipoBebida;
-//    			}
-//    			else
-//    			{
-//        			resultado += "Un tipo de bebida con nombre: " + nombreTb + " NO EXISTE\n";    				
-//    			}
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-    }
 
 
 	/* ****************************************************************
@@ -739,5 +616,242 @@ public class InterfazApp extends JFrame implements ActionListener
         {
             e.printStackTrace( );
         }
+    }
+    
+    
+    
+    ///lo mio///
+    
+    public void adicionarReserva()
+    {
+    	try
+    	{
+    		String text="Id de plan en uso, no usar los id's siguientes";
+    		for(int i=0; i<hotel.darPlanes().size();i++)
+    		{
+    			text+=","+hotel.darPlanes().get(i).geId();
+    		}
+    		panelDatos.actualizarInterfaz(text);
+    		String id = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+    		
+    		
+    		if(id != null)
+    		{
+    			String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
+        		String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
+        		String ini=JOptionPane.showInputDialog(this,"Hora Apertura");
+        		String fini=JOptionPane.showInputDialog(this,"Hora cierre");
+        		String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
+        		String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
+        		String pagoo=JOptionPane.showInputDialog(this,"Esta pago T o F");
+        		String plan=JOptionPane.showInputDialog(this,"Id del plan");
+        		String identificacion=JOptionPane.showInputDialog(this,"Identificacion del usuario de la reserva");
+        		long idplan=Long.parseLong(plan);
+        		long idusuario=Long.parseLong(identificacion);
+        		long iden=Long.parseLong(id);
+    			long inicio=Long.parseLong(ini);
+    			long fin=Long.parseLong(fini);
+    			int capa = Integer.parseInt(capacidad);
+    			char registrado=nombre.charAt(0);
+    			char pago=pagoo.charAt(0);
+    			double cos=Double.parseDouble(costo);
+    			Reserva u = hotel.adicionarReserva(iden, capa, inicio, fin, cos, descripcion, registrado, pago, idplan, idusuario);
+    			if (u == null)
+    			{
+    				throw new Exception ("No se pudo crear el servicio con id " + id);
+    			}
+    			String rta = "Adicionar nuevo servicio \n\n";
+    			rta += "servicio "+ id  + " añadido exitosamente. \n";
+    			rta += "Operación terminada";
+    			panelDatos.actualizarInterfaz(rta);
+    		}
+    		else
+        	{
+        		panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
+    public void adicionarServicio()
+    {
+    	try
+    	{
+    		String id = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+    		
+    		
+    		if(id != null)
+    		{
+    			String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
+        		String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
+        		String ini=JOptionPane.showInputDialog(this,"Hora Apertura");
+        		String fini=JOptionPane.showInputDialog(this,"Hora cierre");
+        		String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
+        		String nombre=JOptionPane.showInputDialog(this,"Nombre del servicio");
+        		long iden=Long.parseLong(id);
+    			long inicio=Long.parseLong(ini);
+    			long fin=Long.parseLong(fini);
+    			int capa = Integer.parseInt(capacidad);
+    			double cos=Double.parseDouble(costo);
+    			Servicio u = hotel.adicionarServicio(iden,capa, inicio, fin, cos, nombre, descripcion);
+    			if (u == null)
+    			{
+    				throw new Exception ("No se pudo crear el servicio con id " + id);
+    			}
+    			String rta = "Adicionar nuevo servicio \n\n";
+    			rta += "servicio "+ id  + " añadido exitosamente. \n";
+    			rta += "Operación terminada";
+    			panelDatos.actualizarInterfaz(rta);
+    		}
+    		else
+        	{
+        		panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
+    
+    
+    public void adicionarHabitacion()
+    {
+    	try
+    	{
+    		String numeroHabitacion = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+    		
+    		
+    		if(numeroHabitacion != null)
+    		{
+    			String capacidad = JOptionPane.showInputDialog(this, "Tipo de identificacion");
+        		String costo = JOptionPane.showInputDialog(this, "Correo de usuario");
+        		String descripcion = JOptionPane.showInputDialog(this, "Tipo de usuario");
+        		String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
+    			int num = Integer.parseInt(numeroHabitacion);
+    			int capa = Integer.parseInt(capacidad);
+    			double cos=Double.parseDouble(costo);
+    			char disp=disponible.charAt(0);
+    			Habitacion u = hotel.adicionarHabitacion(capa, num, cos, descripcion, disp);
+    			if (u == null)
+    			{
+    				throw new Exception ("No se pudo crear la habitacion con id " + numeroHabitacion);
+    			}
+    			String rta = "Adicionar nueva habitacion \n\n";
+    			rta += "habitacion "+ numeroHabitacion  + " añadido exitosamente. \n";
+    			rta += "Operación terminada";
+    			panelDatos.actualizarInterfaz(rta);
+    		}
+    		else
+        	{
+        		panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void adicionarSirven()
+    {
+    	try
+    	{
+    		String text="Servicios : ";
+    		for(int i=0; i<hotel.darServicios().size();i++)
+    		{
+    			text+="identificacion: "+hotel.darServicios().get(i).getid()+" Nombre: "+hotel.darServicios().get(i).getNombre();
+    		}
+    		panelDatos.actualizarInterfaz(text);
+    		String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
+    		String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
+    		
+    		long ids=Long.parseLong(idServicio);
+    		int numHabitacion=Integer.parseInt(numeroHabitacion);
+
+        	if(idServicio != null)
+        	{
+        		Sirven ti = hotel.adicionarSirven(ids, numHabitacion);
+        		if(ti == null)
+        		{
+        			throw new Exception("No se pudo agregar el Servicio a la habitacion" + numHabitacion);
+        		}
+        		
+        		String rta = "Agregar nuevo servicio a habitacion \n\n";
+        		rta += "servicio a habitacion " + ti  + " agregado exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
+    }
+    	
+    	
+    
+    
+    
+    public void adicionarPlan()
+    {
+    	try
+    	{
+    		String text="Id de plan en uso, no usar los id's siguientes";
+    		for(int i=0; i<hotel.darPlanes().size();i++)
+    		{
+    			text+=","+hotel.darPlanes().get(i).geId();
+    		}
+    		panelDatos.actualizarInterfaz(text);
+    		String nombre = JOptionPane.showInputDialog(this, "Nombre de plan");
+    		String descripcion=JOptionPane.showInputDialog(this, "descripcion de plan");
+    		String idTipo=JOptionPane.showInputDialog(this,"id del plan");
+    		
+    		long id=Long.parseLong(idTipo);
+        	if(idTipo != null)
+        	{
+        		Plan ti = hotel.adicionarPlan(id, nombre, descripcion);
+        		if(ti == null)
+        		{
+        			throw new Exception("No se pudo agregar el tipo de usuario " + nombre);
+        		}
+        		
+        		String rta = "Agregar nuevo plan \n\n";
+        		rta += "Plan " + ti  + " agregado exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
     }
 }

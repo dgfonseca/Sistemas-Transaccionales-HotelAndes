@@ -35,7 +35,7 @@ class SQLReserva {
 	
 
 	
-	public long adicionarProducto (PersistenceManager pm, long id, long inicio, long fin, int personas,double costo, char registrado, char pago,long idreserva, int idUsuario) 
+	public long adicionarReserva (PersistenceManager pm, long id, long inicio, long fin, int personas,double costo, char registrado, char pago,long idreserva, long idUsuario) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReserva () + "(id, fechaInicio, fechaFin, cantidadPersonas,costo,estaRegistrado,estaPago, idPlan, ID_USUARIO) values (?, ?, ?, ?,?,?,?,?,?)");
         q.setParameters(id, inicio, fin, personas,costo,registrado,pago, idreserva, idUsuario);

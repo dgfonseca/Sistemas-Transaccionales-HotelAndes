@@ -3481,3 +3481,631 @@ With the Partitioning, OLAP, Advanced Analytics and Real Application Testing opt
 10:04:25,207 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
 10:04:25,207 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
 10:04:25,207 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@79467af7 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@681fde42, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:17:51,937 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+10:17:51,978 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-api-jdo-5.1.7.jar.
+10:17:52,010 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+10:17:52,035 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-core-5.1.10.jar.
+10:17:52,040 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+10:17:52,058 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-rdbms-5.1.10.jar.
+10:17:52,071 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
+10:17:52,122 (main) DEBUG [DataNucleus.MetaData] - Analizando el MetaData "file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/bin/META-INF/persistence.xml" con handler "persistence" (validar="false")
+10:17:52,155 (main) DEBUG [DataNucleus.Persistence] - Tipos de Java inicializando ...
+10:17:52,252 (main) DEBUG [DataNucleus.Persistence] - Soporte para tipos de Java listo : tipos soportados = [B, [C, [D, [F, [I, [J, [Ljava.lang.Boolean;, [Ljava.lang.Byte;, [Ljava.lang.Character;, [Ljava.lang.Double;, [Ljava.lang.Enum;, [Ljava.lang.Float;, [Ljava.lang.Integer;, [Ljava.lang.Long;, [Ljava.lang.Number;, [Ljava.lang.Object;, [Ljava.lang.Short;, [Ljava.lang.String;, [Ljava.math.BigDecimal;, [Ljava.math.BigInteger;, [Ljava.util.Date;, [Ljava.util.Locale;, [S, [Z, boolean, byte, char, double, float, int, java.awt.Color, java.awt.image.BufferedImage, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Class, java.lang.Double, java.lang.Enum, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Number, java.lang.Short, java.lang.String, java.lang.StringBuffer, java.lang.StringBuilder, java.math.BigDecimal, java.math.BigInteger, java.net.URI, java.net.URL, java.sql.Date, java.sql.Time, java.sql.Timestamp, java.time.Duration, java.time.Instant, java.time.LocalDate, java.time.LocalDateTime, java.time.LocalTime, java.time.MonthDay, java.time.OffsetDateTime, java.time.OffsetTime, java.time.Period, java.time.Year, java.time.YearMonth, java.time.ZonedDateTime, java.time.ZoneId, java.time.ZoneOffset, java.util.ArrayList, java.util.Arrays$ArrayList, java.util.BitSet, java.util.Calendar, java.util.Collection, java.util.Currency, java.util.Date, java.util.GregorianCalendar, java.util.HashMap, java.util.HashSet, java.util.Hashtable, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.LinkedList, java.util.List, java.util.Locale, java.util.Map, java.util.Optional, java.util.PriorityQueue, java.util.Properties, java.util.Queue, java.util.Set, java.util.SortedMap, java.util.SortedSet, java.util.Stack, java.util.TimeZone, java.util.TreeMap, java.util.TreeSet, java.util.UUID, java.util.Vector, long, short
+10:17:52,252 (main) DEBUG [DataNucleus.Persistence] - Inicializando TypeConverters ...
+10:17:52,328 (main) DEBUG [DataNucleus.Persistence] - TypeConverters listo
+10:17:52,329 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for byte[] to : java.nio.ByteBuffer
+10:17:52,329 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for char[] to : java.nio.ByteBuffer
+10:17:52,329 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for double[] to : java.nio.ByteBuffer
+10:17:52,329 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for float[] to : java.nio.ByteBuffer
+10:17:52,329 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for int[] to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for long[] to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigDecimal; to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigInteger; to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for short[] to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for boolean[] to : java.nio.ByteBuffer
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.Color to : java.lang.String,int[]
+10:17:52,330 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.image.BufferedImage to : java.nio.ByteBuffer,byte[]
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.io.Serializable to : java.lang.String,java.nio.ByteBuffer,byte[]
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Boolean to : java.lang.Character,java.lang.Integer
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Character to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Class to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Integer to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Long to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuffer to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuilder to : java.lang.String
+10:17:52,331 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigDecimal to : java.lang.String,java.lang.Double
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigInteger to : java.lang.String,java.lang.Long
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URI to : java.lang.String
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URL to : java.lang.String
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Date to : java.lang.String,java.lang.Long,java.util.Date
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Time to : java.lang.String,java.lang.Long,java.util.Date
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Timestamp to : java.lang.String,java.lang.Long,java.util.Date
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Duration to : java.lang.String,java.lang.Long,java.lang.Double
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Instant to : java.lang.String,java.sql.Timestamp,java.lang.Long,java.util.Date
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDate to : java.lang.String,java.sql.Date,java.util.Date
+10:17:52,332 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDateTime to : java.lang.String,java.sql.Timestamp,java.util.Date
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalTime to : java.lang.String,java.sql.Time,java.lang.Long,java.util.Date
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.MonthDay to : java.lang.String,int[],java.sql.Date,java.util.Date
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetDateTime to : java.lang.String,java.sql.Timestamp,java.util.Date
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetTime to : java.lang.String,java.sql.Time,java.lang.Long
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Period to : java.lang.String,int[]
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Year to : java.lang.String,java.lang.Integer
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.YearMonth to : java.lang.String,int[],java.sql.Date,java.util.Date
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZonedDateTime to : java.lang.String,java.sql.Timestamp
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneId to : java.lang.String
+10:17:52,333 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneOffset to : java.lang.String
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.BitSet to : java.lang.String
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Calendar to : java.lang.String,[Ljava.lang.Object;,java.sql.Timestamp,java.util.Date
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Currency to : java.lang.String
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Date to : java.lang.String,java.lang.Long
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Locale to : java.lang.String
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.TimeZone to : java.lang.String
+10:17:52,334 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.UUID to : java.lang.String
+10:17:52,335 (main) DEBUG [DataNucleus.MetaData] - MetaDataManager : Input=(XML,Annotations), XML-Validation=false, XML-Suffices=(persistence=*.jdo, orm=orm, query=*.jdoquery) mapping-name=oracle, JDO-listener=false
+10:17:52,335 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata del persistence-unit "Parranderos" ...
+10:17:52,335 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata ya ha terminado
+10:17:52,342 (main) DEBUG [DataNucleus.Datastore] - Creating StoreManager for datastore
+10:17:52,663 (main) DEBUG [DataNucleus.Connection] - Creado ConnectionPool "tx" con data source de tipo dbcp2-builtin
+10:17:52,663 (main) DEBUG [DataNucleus.Connection] - Registrado la factoria de connecciones transaccionales bajo el nombre "rdbms/tx"
+10:17:52,664 (main) DEBUG [DataNucleus.Connection] - Registrado la factoria de connecciones nontransaccionales bajo el nombre "rdbms/nontx"
+10:17:52,687 (main) DEBUG [DataNucleus.Connection] - Creado ConnectionPool "nontx" con data source de tipo dbcp2-builtin
+10:17:54,937 (main) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@58695725 [conn=null, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx"
+10:17:55,346 (main) DEBUG [DataNucleus.Datastore] - No Soportando el tipo RDBMS de Java java.lang.Boolean, jdbc-type=BOOLEAN
+10:17:55,347 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "[B" con jdbc-types=[BLOB, VARBINARY, LONGVARBINARY], sql-types=[BLOB, VARBINARY, LONGVARBINARY] y defecto (jdbc-type=BLOB, sql-type=BLOB)
+10:17:55,347 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.io.File" con jdbc-types=[LONGVARBINARY], sql-types=[LONGVARBINARY] y defecto (jdbc-type=LONGVARBINARY, sql-type=LONGVARBINARY)
+10:17:55,347 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.io.Serializable" con jdbc-types=[BLOB, VARBINARY, LONGVARBINARY], sql-types=[BLOB, VARBINARY, LONGVARBINARY] y defecto (jdbc-type=BLOB, sql-type=BLOB)
+10:17:55,347 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Boolean" con jdbc-types=[NUMERIC, SMALLINT, CHAR, BIT, TINYINT], sql-types=[NUMERIC, SMALLINT, CHAR, BIT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,348 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Byte" con jdbc-types=[NUMERIC, SMALLINT, TINYINT], sql-types=[NUMERIC, SMALLINT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,348 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Character" con jdbc-types=[NUMERIC, CHAR, INTEGER], sql-types=[NUMERIC, CHAR, INTEGER] y defecto (jdbc-type=CHAR, sql-type=CHAR)
+10:17:55,348 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Double" con jdbc-types=[FLOAT, NUMERIC, DECIMAL, DOUBLE], sql-types=[FLOAT, NUMBER, DECIMAL, DOUBLE] y defecto (jdbc-type=FLOAT, sql-type=FLOAT)
+10:17:55,348 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Float" con jdbc-types=[FLOAT, NUMERIC, REAL, DECIMAL, DOUBLE], sql-types=[FLOAT, NUMBER, REAL, DECIMAL, DOUBLE] y defecto (jdbc-type=FLOAT, sql-type=FLOAT)
+10:17:55,348 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Integer" con jdbc-types=[NUMERIC, SMALLINT, BIGINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, BIGINT, TINYINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,349 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Long" con jdbc-types=[NUMERIC, SMALLINT, BIGINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, BIGINT, INT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,349 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Short" con jdbc-types=[NUMERIC, SMALLINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, TINYINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,349 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.String" con jdbc-types=[XMLTYPE, BLOB, LONGVARCHAR, CLOB, VARCHAR, CHAR, BIGINT, NVARCHAR, NCHAR], sql-types=[NVARCHAR2, XMLTYPE, BLOB, LONGVARCHAR, CLOB, VARCHAR, CHAR, BIGINT, NVARCHAR, NCHAR] y defecto (jdbc-type=VARCHAR, sql-type=VARCHAR)
+10:17:55,349 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.math.BigDecimal" con jdbc-types=[NUMERIC, DECIMAL], sql-types=[NUMERIC, NUMBER, DECIMAL] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,349 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.math.BigInteger" con jdbc-types=[NUMERIC], sql-types=[NUMERIC, NUMBER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,350 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Date" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, BIGINT], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, BIGINT] y defecto (jdbc-type=DATE, sql-type=DATE)
+10:17:55,350 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Time" con jdbc-types=[TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT], sql-types=[TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT] y defecto (jdbc-type=TIME, sql-type=TIME)
+10:17:55,350 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Timestamp" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME] y defecto (jdbc-type=TIMESTAMP, sql-type=TIMESTAMP)
+10:17:55,350 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.util.Date" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT] y defecto (jdbc-type=TIMESTAMP, sql-type=TIMESTAMP)
+10:17:55,350 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "org.datanucleus.identity.DatastoreId" con jdbc-types=[NUMERIC, VARCHAR, CHAR, BIGINT, INTEGER], sql-types=[NUMERIC, VARCHAR, CHAR, BIGINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:17:55,384 (main) DEBUG [DataNucleus.Datastore] - ======================= Datastore =========================
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - StoreManager : "rdbms" (org.datanucleus.store.rdbms.RDBMSStoreManager)
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - Datastore : read-write
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - Schema Control : AutoCreate(None), Validate(None)
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - Schema : NamingFactory=datanucleus2 identifierCase=null
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - Query Languages : JDOQL, JPQL, STOREDPROC, SQL
+10:17:55,385 (main) DEBUG [DataNucleus.Datastore] - Queries : Timeout=0
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - ===========================================================
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - Datastore Adapter : org.datanucleus.store.rdbms.adapter.OracleAdapter
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - Datastore : name="Oracle" version="Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options"
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - Datastore Driver : name="Oracle JDBC driver" version="12.2.0.1.0"
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - Primary Connection Factory : URL[jdbc:oracle:thin:@fn3.oracle.virtual.uniandes.edu.co:1521:prod]
+10:17:55,386 (main) DEBUG [DataNucleus.Datastore] - Secondary Connection Factory : URL[jdbc:oracle:thin:@fn3.oracle.virtual.uniandes.edu.co:1521:prod]
+10:17:55,387 (main) DEBUG [DataNucleus.Datastore] - Datastore Identifiers : factory="datanucleus2" case=UPPERCASE schema=ISIS2304A141910
+10:17:55,387 (main) DEBUG [DataNucleus.Datastore] - Supported Identifier Cases : "MixedCase" UPPERCASE "MixedCase-Sensitive" 
+10:17:55,388 (main) DEBUG [DataNucleus.Datastore] - Supported Identifier Lengths (max) : Table=30 Column=30 Constraint=30 Index=30 Delimiter="
+10:17:55,388 (main) DEBUG [DataNucleus.Datastore] - Support for Identifiers in DDL : catalog=false schema=true
+10:17:55,388 (main) DEBUG [DataNucleus.Datastore] - Datastore : checkTableViewExistence, rdbmsConstraintCreateMode=DataNucleus, initialiseColumnInfo=ALL
+10:17:55,389 (main) DEBUG [DataNucleus.Datastore] - Support Statement Batching : yes (max-batch-size=50)
+10:17:55,389 (main) DEBUG [DataNucleus.Datastore] - Queries : Results direction=forward, type=forward-only, concurrency=read-only
+10:17:55,389 (main) DEBUG [DataNucleus.Datastore] - Java-Types : string-default-length=255
+10:17:55,389 (main) DEBUG [DataNucleus.Datastore] - JDBC-Types : NCLOB, NCHAR, [id=2007], REF, CLOB, BLOB, ARRAY, STRUCT, DATE, TIME, TIMESTAMP, VARCHAR, LONGVARCHAR, VARBINARY, LONGVARBINARY, BIGINT, TINYINT, BIT, NVARCHAR, [id=-101], CHAR, [id=-103], NUMERIC, [id=-102], DECIMAL, INTEGER, SMALLINT, FLOAT, REAL, DOUBLE, [id=-104]
+10:17:55,389 (main) DEBUG [DataNucleus.Datastore] - ===========================================================
+10:17:55,389 (main) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@58695725 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72d6b3ba, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:17:55,391 (main) DEBUG [DataNucleus.Datastore] - StoreManager now created
+10:17:55,398 (main) DEBUG [DataNucleus.Persistence] - Started pool of ExecutionContext (maxPool=20, reaperThread=false)
+10:17:55,412 (main) DEBUG [DataNucleus.Persistence] - ================= NucleusContext ===============
+10:17:55,413 (main) DEBUG [DataNucleus.Persistence] - DataNucleus Context : Versión: "5.1.10" con JRE "1.8.0_181" en "Windows 10"
+10:17:55,413 (main) DEBUG [DataNucleus.Persistence] - Persistence API : JDO
+10:17:55,413 (main) DEBUG [DataNucleus.Persistence] - Persistence-Unit : Parranderos
+10:17:55,414 (main) DEBUG [DataNucleus.Persistence] - Plugin Registry : org.datanucleus.plugin.NonManagedPluginRegistry
+10:17:55,414 (main) DEBUG [DataNucleus.Persistence] - ClassLoading : default
+10:17:55,414 (main) DEBUG [DataNucleus.Persistence] - Persistence : pm-singlethreaded, nontransactional-read, nontransactional-write, reachability-at-commit, copy-on-attach, managed-relations(checked), deletion-policy=JDO2, serverTimeZone=America/Bogota
+10:17:55,414 (main) DEBUG [DataNucleus.Persistence] - Transactions : type=RESOURCE_LOCAL, mode=datastore, isolation=read-committed
+10:17:55,414 (main) DEBUG [DataNucleus.Persistence] - ValueGeneration : txn-isolation=read-committed connection=New
+10:17:55,415 (main) DEBUG [DataNucleus.Persistence] - Cache : Level1 (soft), Level2 (soft, mode=UNSPECIFIED), QueryResults (soft), Collections/Maps 
+10:17:55,415 (main) DEBUG [DataNucleus.Persistence] - ================================================
+10:18:22,347 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@77eb3fbb" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@3ebc6810"
+10:18:22,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:22,409 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6ec8d95c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6e12cb2e, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:22,502 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@5ceeebe7" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6e12cb2e"
+10:18:22,506 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:22,644 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 138 ms
+10:18:22,669 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6ec8d95c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6e12cb2e, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:22,695 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:22,698 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,698 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,699 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,699 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,700 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,701 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,702 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,703 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,703 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6ec8d95c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6e12cb2e, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:22,727 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@538819c5" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@4da36c29"
+10:18:22,727 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:22,727 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2db1e3d4 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3e649196, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:22,728 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@68f06057" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3e649196"
+10:18:22,728 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:22,745 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 17 ms
+10:18:22,746 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2db1e3d4 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3e649196, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:22,764 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:22,764 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,764 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,764 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,765 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,766 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,767 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2db1e3d4 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3e649196, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:22,784 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@2e5b6588" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@3429b9f4"
+10:18:22,784 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:22,784 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@671aacbd [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@1218e2f3, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:22,785 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@6b870f5d" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@1218e2f3"
+10:18:22,785 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:22,806 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 21 ms
+10:18:22,806 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@671aacbd [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@1218e2f3, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:22,830 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:22,830 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,830 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,831 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,831 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,832 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,833 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,834 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,835 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,835 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,835 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@671aacbd [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@1218e2f3, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:22,859 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@20e5547" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@5754208f"
+10:18:22,860 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:22,860 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2f57fe3e [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@5f8322fe, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:22,862 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@292531d9" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@5f8322fe"
+10:18:22,863 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:22,879 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 16 ms
+10:18:22,880 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2f57fe3e [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@5f8322fe, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:22,907 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:22,908 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,908 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,909 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,909 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,909 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,909 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,910 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,911 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,911 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,911 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:22,912 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:22,913 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@2f57fe3e [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@5f8322fe, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,336 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@3654656f" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@fed8c11"
+10:18:23,336 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,338 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@55272eef [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@404d4639, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,338 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@23a3c725" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@404d4639"
+10:18:23,338 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,365 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 27 ms
+10:18:23,365 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@55272eef [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@404d4639, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,383 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,384 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,385 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,385 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,385 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,385 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@55272eef [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@404d4639, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,403 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@567ec42e" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@7c282c56"
+10:18:23,403 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,404 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6dcf9fda [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4db079f9, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,404 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@7047a685" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4db079f9"
+10:18:23,404 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,428 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 24 ms
+10:18:23,428 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6dcf9fda [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4db079f9, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,461 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,462 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,462 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,462 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,462 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,463 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,463 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,464 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,465 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,465 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,465 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,465 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,465 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,466 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,466 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,466 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,466 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,466 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,467 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@6dcf9fda [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4db079f9, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,494 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@5a63fee7" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@14d23be3"
+10:18:23,494 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,494 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@e308d1c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4be1defb, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,495 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@4ee9f947" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4be1defb"
+10:18:23,495 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,512 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 17 ms
+10:18:23,513 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@e308d1c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4be1defb, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,529 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,530 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,531 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,532 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,532 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,532 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,532 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,532 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@e308d1c [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@4be1defb, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,567 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@7bcb40fe" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@3e984f7a"
+10:18:23,567 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,567 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@5c4726f [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@24a90e99, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,568 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@583666e9" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@24a90e99"
+10:18:23,568 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,610 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 42 ms
+10:18:23,610 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@5c4726f [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@24a90e99, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,637 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,638 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,639 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,639 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,639 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,639 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,639 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,640 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,641 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,641 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,641 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,641 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@5c4726f [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@24a90e99, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,691 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@14469f21" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@787796f6"
+10:18:23,692 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,692 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@1f86e79a [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3f99ccdc, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,692 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@7b9d3dff" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3f99ccdc"
+10:18:23,692 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,745 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 53 ms
+10:18:23,746 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@1f86e79a [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3f99ccdc, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,775 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,775 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,775 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,776 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,776 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,776 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,776 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,777 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,777 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,777 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,777 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,778 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,778 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,778 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,778 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,778 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,779 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,780 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,780 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,780 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,780 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,781 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@1f86e79a [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@3f99ccdc, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,800 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@2d5d4de9" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@5cd38bb2"
+10:18:23,800 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,801 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@35805e11 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72f57f4d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,801 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@323bf4ba" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72f57f4d"
+10:18:23,802 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,823 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 21 ms
+10:18:23,824 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@35805e11 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72f57f4d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,838 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,838 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,838 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,838 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,839 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,840 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,841 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@35805e11 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72f57f4d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:18:23,873 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@5220f423" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@5533edc7" con transaccion="org.datanucleus.TransactionImpl@b76f63d"
+10:18:23,874 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM TIPO"
+10:18:23,874 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@39cfcadb [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6c9bb02d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+10:18:23,874 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@5060649d" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6c9bb02d"
+10:18:23,874 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM TIPO
+10:18:23,900 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 26 ms
+10:18:23,901 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@39cfcadb [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6c9bb02d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+10:18:23,937 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@c981e9e8" como la conneccion va a cerrar o cometer
+10:18:23,938 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,938 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,938 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,938 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,939 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,940 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un constructor con arguments de tipos [class java.math.BigDecimal, class java.lang.String]
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "id"
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=ID using setId() method after converting value
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "negocio.Tipo" no tiene un campo publico "nombre"
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - ResultObject set field=NOMBRE using public setNombre() method
+10:18:23,941 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@39cfcadb [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@6c9bb02d, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:23:31,504 (main) DEBUG [DataNucleus.General] - Using PluginRegistry org.datanucleus.plugin.NonManagedPluginRegistry
+10:23:31,558 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.api.jdo version 5.1.7 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-api-jdo-5.1.7.jar.
+10:23:31,589 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-api-jdo-5.1.7.jar!/plugin.xml.
+10:23:31,607 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus version 5.1.10 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-core-5.1.10.jar.
+10:23:31,613 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-core-5.1.10.jar!/plugin.xml.
+10:23:31,633 (main) DEBUG [DataNucleus.General] - Registering bundle org.datanucleus.store.rdbms version 5.1.10 at URL file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-rdbms-5.1.10.jar.
+10:23:31,643 (main) DEBUG [DataNucleus.General] - Leyendo extension-points y extensiones del archivo de plug-in jar:file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/lib/datanucleus-rdbms-5.1.10.jar!/plugin.xml.
+10:23:31,710 (main) DEBUG [DataNucleus.MetaData] - Analizando el MetaData "file:/C:/Users/david/Desktop/Clases%20Universidad/Semestre%204/Sistrans/ITERACION2/It2/Iteracion2_Sistrans/Iteracion%202/bin/META-INF/persistence.xml" con handler "persistence" (validar="false")
+10:23:31,752 (main) DEBUG [DataNucleus.Persistence] - Tipos de Java inicializando ...
+10:23:31,866 (main) DEBUG [DataNucleus.Persistence] - Soporte para tipos de Java listo : tipos soportados = [B, [C, [D, [F, [I, [J, [Ljava.lang.Boolean;, [Ljava.lang.Byte;, [Ljava.lang.Character;, [Ljava.lang.Double;, [Ljava.lang.Enum;, [Ljava.lang.Float;, [Ljava.lang.Integer;, [Ljava.lang.Long;, [Ljava.lang.Number;, [Ljava.lang.Object;, [Ljava.lang.Short;, [Ljava.lang.String;, [Ljava.math.BigDecimal;, [Ljava.math.BigInteger;, [Ljava.util.Date;, [Ljava.util.Locale;, [S, [Z, boolean, byte, char, double, float, int, java.awt.Color, java.awt.image.BufferedImage, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Class, java.lang.Double, java.lang.Enum, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Number, java.lang.Short, java.lang.String, java.lang.StringBuffer, java.lang.StringBuilder, java.math.BigDecimal, java.math.BigInteger, java.net.URI, java.net.URL, java.sql.Date, java.sql.Time, java.sql.Timestamp, java.time.Duration, java.time.Instant, java.time.LocalDate, java.time.LocalDateTime, java.time.LocalTime, java.time.MonthDay, java.time.OffsetDateTime, java.time.OffsetTime, java.time.Period, java.time.Year, java.time.YearMonth, java.time.ZonedDateTime, java.time.ZoneId, java.time.ZoneOffset, java.util.ArrayList, java.util.Arrays$ArrayList, java.util.BitSet, java.util.Calendar, java.util.Collection, java.util.Currency, java.util.Date, java.util.GregorianCalendar, java.util.HashMap, java.util.HashSet, java.util.Hashtable, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.LinkedList, java.util.List, java.util.Locale, java.util.Map, java.util.Optional, java.util.PriorityQueue, java.util.Properties, java.util.Queue, java.util.Set, java.util.SortedMap, java.util.SortedSet, java.util.Stack, java.util.TimeZone, java.util.TreeMap, java.util.TreeSet, java.util.UUID, java.util.Vector, long, short
+10:23:31,867 (main) DEBUG [DataNucleus.Persistence] - Inicializando TypeConverters ...
+10:23:31,952 (main) DEBUG [DataNucleus.Persistence] - TypeConverters listo
+10:23:31,953 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for byte[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for char[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for double[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for float[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for int[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for long[] to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigDecimal; to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for [Ljava.math.BigInteger; to : java.nio.ByteBuffer
+10:23:31,954 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for short[] to : java.nio.ByteBuffer
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for boolean[] to : java.nio.ByteBuffer
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.Color to : java.lang.String,int[]
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.awt.image.BufferedImage to : java.nio.ByteBuffer,byte[]
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.io.Serializable to : java.lang.String,java.nio.ByteBuffer,byte[]
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Boolean to : java.lang.Character,java.lang.Integer
+10:23:31,955 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Character to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Class to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Integer to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.Long to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuffer to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.lang.StringBuilder to : java.lang.String
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigDecimal to : java.lang.String,java.lang.Double
+10:23:31,956 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.math.BigInteger to : java.lang.String,java.lang.Long
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URI to : java.lang.String
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.net.URL to : java.lang.String
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Date to : java.lang.String,java.lang.Long,java.util.Date
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Time to : java.lang.String,java.lang.Long,java.util.Date
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.sql.Timestamp to : java.lang.String,java.lang.Long,java.util.Date
+10:23:31,957 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Duration to : java.lang.String,java.lang.Long,java.lang.Double
+10:23:31,958 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Instant to : java.lang.String,java.sql.Timestamp,java.lang.Long,java.util.Date
+10:23:31,958 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDate to : java.lang.String,java.sql.Date,java.util.Date
+10:23:31,958 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalDateTime to : java.lang.String,java.sql.Timestamp,java.util.Date
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.LocalTime to : java.lang.String,java.sql.Time,java.lang.Long,java.util.Date
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.MonthDay to : java.lang.String,int[],java.sql.Date,java.util.Date
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetDateTime to : java.lang.String,java.sql.Timestamp,java.util.Date
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.OffsetTime to : java.lang.String,java.sql.Time,java.lang.Long
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Period to : java.lang.String,int[]
+10:23:31,959 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.Year to : java.lang.String,java.lang.Integer
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.YearMonth to : java.lang.String,int[],java.sql.Date,java.util.Date
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZonedDateTime to : java.lang.String,java.sql.Timestamp
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneId to : java.lang.String
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.time.ZoneOffset to : java.lang.String
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.BitSet to : java.lang.String
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Calendar to : java.lang.String,[Ljava.lang.Object;,java.sql.Timestamp,java.util.Date
+10:23:31,960 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Currency to : java.lang.String
+10:23:31,961 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Date to : java.lang.String,java.lang.Long
+10:23:31,961 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.Locale to : java.lang.String
+10:23:31,961 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.TimeZone to : java.lang.String
+10:23:31,961 (main) DEBUG [DataNucleus.Persistence] - TypeConverter(s) available for java.util.UUID to : java.lang.String
+10:23:31,962 (main) DEBUG [DataNucleus.MetaData] - MetaDataManager : Input=(XML,Annotations), XML-Validation=false, XML-Suffices=(persistence=*.jdo, orm=orm, query=*.jdoquery) mapping-name=oracle, JDO-listener=false
+10:23:31,962 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata del persistence-unit "Parranderos" ...
+10:23:31,963 (main) DEBUG [DataNucleus.MetaData] - MetaData Management : Carga de Metadata ya ha terminado
+10:23:31,971 (main) DEBUG [DataNucleus.Datastore] - Creating StoreManager for datastore
+10:23:32,367 (main) DEBUG [DataNucleus.Connection] - Creado ConnectionPool "tx" con data source de tipo dbcp2-builtin
+10:23:32,368 (main) DEBUG [DataNucleus.Connection] - Registrado la factoria de connecciones transaccionales bajo el nombre "rdbms/tx"
+10:23:32,368 (main) DEBUG [DataNucleus.Connection] - Registrado la factoria de connecciones nontransaccionales bajo el nombre "rdbms/nontx"
+10:23:32,400 (main) DEBUG [DataNucleus.Connection] - Creado ConnectionPool "nontx" con data source de tipo dbcp2-builtin
+10:23:35,294 (main) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@58695725 [conn=null, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx"
+10:23:36,008 (main) DEBUG [DataNucleus.Datastore] - No Soportando el tipo RDBMS de Java java.lang.Boolean, jdbc-type=BOOLEAN
+10:23:36,009 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "[B" con jdbc-types=[BLOB, VARBINARY, LONGVARBINARY], sql-types=[BLOB, VARBINARY, LONGVARBINARY] y defecto (jdbc-type=BLOB, sql-type=BLOB)
+10:23:36,009 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.io.File" con jdbc-types=[LONGVARBINARY], sql-types=[LONGVARBINARY] y defecto (jdbc-type=LONGVARBINARY, sql-type=LONGVARBINARY)
+10:23:36,009 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.io.Serializable" con jdbc-types=[BLOB, VARBINARY, LONGVARBINARY], sql-types=[BLOB, VARBINARY, LONGVARBINARY] y defecto (jdbc-type=BLOB, sql-type=BLOB)
+10:23:36,009 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Boolean" con jdbc-types=[NUMERIC, SMALLINT, CHAR, BIT, TINYINT], sql-types=[NUMERIC, SMALLINT, CHAR, BIT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Byte" con jdbc-types=[NUMERIC, SMALLINT, TINYINT], sql-types=[NUMERIC, SMALLINT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Character" con jdbc-types=[NUMERIC, CHAR, INTEGER], sql-types=[NUMERIC, CHAR, INTEGER] y defecto (jdbc-type=CHAR, sql-type=CHAR)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Double" con jdbc-types=[FLOAT, NUMERIC, DECIMAL, DOUBLE], sql-types=[FLOAT, NUMBER, DECIMAL, DOUBLE] y defecto (jdbc-type=FLOAT, sql-type=FLOAT)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Float" con jdbc-types=[FLOAT, NUMERIC, REAL, DECIMAL, DOUBLE], sql-types=[FLOAT, NUMBER, REAL, DECIMAL, DOUBLE] y defecto (jdbc-type=FLOAT, sql-type=FLOAT)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Integer" con jdbc-types=[NUMERIC, SMALLINT, BIGINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, BIGINT, TINYINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,010 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Long" con jdbc-types=[NUMERIC, SMALLINT, BIGINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, BIGINT, INT, TINYINT] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.Short" con jdbc-types=[NUMERIC, SMALLINT, TINYINT, INTEGER], sql-types=[NUMERIC, NUMBER, SMALLINT, TINYINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.lang.String" con jdbc-types=[XMLTYPE, BLOB, LONGVARCHAR, CLOB, VARCHAR, CHAR, BIGINT, NVARCHAR, NCHAR], sql-types=[NVARCHAR2, XMLTYPE, BLOB, LONGVARCHAR, CLOB, VARCHAR, CHAR, BIGINT, NVARCHAR, NCHAR] y defecto (jdbc-type=VARCHAR, sql-type=VARCHAR)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.math.BigDecimal" con jdbc-types=[NUMERIC, DECIMAL], sql-types=[NUMERIC, NUMBER, DECIMAL] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.math.BigInteger" con jdbc-types=[NUMERIC], sql-types=[NUMERIC, NUMBER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Date" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, BIGINT], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, BIGINT] y defecto (jdbc-type=DATE, sql-type=DATE)
+10:23:36,011 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Time" con jdbc-types=[TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT], sql-types=[TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT] y defecto (jdbc-type=TIME, sql-type=TIME)
+10:23:36,012 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.sql.Timestamp" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME] y defecto (jdbc-type=TIMESTAMP, sql-type=TIMESTAMP)
+10:23:36,012 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "java.util.Date" con jdbc-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT], sql-types=[DATE, TIMESTAMP, VARCHAR, CHAR, TIME, BIGINT] y defecto (jdbc-type=TIMESTAMP, sql-type=TIMESTAMP)
+10:23:36,012 (main) DEBUG [DataNucleus.Datastore] - Soporte de RDBMS configurado para el tipo "org.datanucleus.identity.DatastoreId" con jdbc-types=[NUMERIC, VARCHAR, CHAR, BIGINT, INTEGER], sql-types=[NUMERIC, VARCHAR, CHAR, BIGINT, INTEGER] y defecto (jdbc-type=NUMERIC, sql-type=NUMERIC)
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - ======================= Datastore =========================
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - StoreManager : "rdbms" (org.datanucleus.store.rdbms.RDBMSStoreManager)
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - Datastore : read-write
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - Schema Control : AutoCreate(None), Validate(None)
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - Schema : NamingFactory=datanucleus2 identifierCase=null
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - Query Languages : JDOQL, JPQL, STOREDPROC, SQL
+10:23:36,040 (main) DEBUG [DataNucleus.Datastore] - Queries : Timeout=0
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - ===========================================================
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - Datastore Adapter : org.datanucleus.store.rdbms.adapter.OracleAdapter
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - Datastore : name="Oracle" version="Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options"
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - Datastore Driver : name="Oracle JDBC driver" version="12.2.0.1.0"
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - Primary Connection Factory : URL[jdbc:oracle:thin:@fn3.oracle.virtual.uniandes.edu.co:1521:prod]
+10:23:36,041 (main) DEBUG [DataNucleus.Datastore] - Secondary Connection Factory : URL[jdbc:oracle:thin:@fn3.oracle.virtual.uniandes.edu.co:1521:prod]
+10:23:36,042 (main) DEBUG [DataNucleus.Datastore] - Datastore Identifiers : factory="datanucleus2" case=UPPERCASE schema=ISIS2304A141910
+10:23:36,042 (main) DEBUG [DataNucleus.Datastore] - Supported Identifier Cases : "MixedCase" UPPERCASE "MixedCase-Sensitive" 
+10:23:36,043 (main) DEBUG [DataNucleus.Datastore] - Supported Identifier Lengths (max) : Table=30 Column=30 Constraint=30 Index=30 Delimiter="
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - Support for Identifiers in DDL : catalog=false schema=true
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - Datastore : checkTableViewExistence, rdbmsConstraintCreateMode=DataNucleus, initialiseColumnInfo=ALL
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - Support Statement Batching : yes (max-batch-size=50)
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - Queries : Results direction=forward, type=forward-only, concurrency=read-only
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - Java-Types : string-default-length=255
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - JDBC-Types : NCLOB, NCHAR, [id=2007], REF, CLOB, BLOB, ARRAY, STRUCT, DATE, TIME, TIMESTAMP, VARCHAR, LONGVARCHAR, VARBINARY, LONGVARBINARY, BIGINT, TINYINT, BIT, NVARCHAR, [id=-101], CHAR, [id=-103], NUMERIC, [id=-102], DECIMAL, INTEGER, SMALLINT, FLOAT, REAL, DOUBLE, [id=-104]
+10:23:36,044 (main) DEBUG [DataNucleus.Datastore] - ===========================================================
+10:23:36,045 (main) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@58695725 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@72d6b3ba, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+10:23:36,047 (main) DEBUG [DataNucleus.Datastore] - StoreManager now created
+10:23:36,053 (main) DEBUG [DataNucleus.Persistence] - Started pool of ExecutionContext (maxPool=20, reaperThread=false)
+10:23:36,064 (main) DEBUG [DataNucleus.Persistence] - ================= NucleusContext ===============
+10:23:36,064 (main) DEBUG [DataNucleus.Persistence] - DataNucleus Context : Versión: "5.1.10" con JRE "1.8.0_181" en "Windows 10"
+10:23:36,064 (main) DEBUG [DataNucleus.Persistence] - Persistence API : JDO
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - Persistence-Unit : Parranderos
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - Plugin Registry : org.datanucleus.plugin.NonManagedPluginRegistry
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - ClassLoading : default
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - Persistence : pm-singlethreaded, nontransactional-read, nontransactional-write, reachability-at-commit, copy-on-attach, managed-relations(checked), deletion-policy=JDO2, serverTimeZone=America/Bogota
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - Transactions : type=RESOURCE_LOCAL, mode=datastore, isolation=read-committed
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - ValueGeneration : txn-isolation=read-committed connection=New
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - Cache : Level1 (soft), Level2 (soft, mode=UNSPECIFIED), QueryResults (soft), Collections/Maps 
+10:23:36,065 (main) DEBUG [DataNucleus.Persistence] - ================================================

@@ -327,8 +327,177 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	//METODOS AGREGACION//
 
+
+
+
+
+
+
+
+	public long [] limpiarHotelAndes ()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long [] resp = sqlUtil.limpiarHotelandes (pm);
+			tx.commit ();
+			log.info ("Borrada la base de datos");
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return new long[] {-1, -1, -1, -1, -1, -1, -1};
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+
+	//Dar los elementos de la tabla//
+	public List<Consumen> darContienen ()
+	{
+		return sqlContienen.darContienen (pmf.getPersistenceManager());
+	}
+
+
+	public List<Habitacion> darHabitaciones ()
+	{
+		return sqlHabitacion.darHabitaciones (pmf.getPersistenceManager());
+	}
+
+	public List<Ofrecen> darOfrecen ()
+	{
+		return sqlOfrecen.darOfrecen (pmf.getPersistenceManager());
+	}
+
+
+	public List<Plan> darPlanes ()
+	{
+		return sqlPlan.darPlanes (pmf.getPersistenceManager());
+	}
+	public List<Producto> darProductos ()
+	{
+		return sqlProducto.darProductos (pmf.getPersistenceManager());
+	}
+	public List<Reserva> darReservas ()
+	{
+		return sqlReserva.darReservas (pmf.getPersistenceManager());
+	}
+	public List<Servicio> darServicios ()
+	{
+		return sqlServicio.darServicios (pmf.getPersistenceManager());
+	}
+	public List<Sirven> darSirven ()
+	{
+		return sqlSirven.darSirven (pmf.getPersistenceManager());
+	}
+	public List<Tipo> darTipo ()
+	{
+		return sqlTipo.darTipos (pmf.getPersistenceManager());
+	}
+	public List<Usuario> darUsuarios ()
+	{
+		return sqlUsuario.darUsuarios (pmf.getPersistenceManager());
+	}
+
+	public List<Apartan> darApartan()
+	{
+		return sqlApartan.darContienen(pmf.getPersistenceManager());
+	}
+
+
+
+
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
+///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////	
+	public List<long []> darHabitacionesEIndiceOcupacion ()
+	{
+		List<long []> resp = new LinkedList<long []> ();
+		List<Object []> tuplas =  sqlHabitacion.darIndiceOcupacionHabitacion (pmf.getPersistenceManager());
+		for ( Object [] tupla : tuplas)
+		{
+			long [] datosResp = new long [2];
+
+			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
+			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
+			resp.add (datosResp);
+		}
+		return resp;
+	}
+
+
+	/**
+	 * Requerimiento funcional 1
+	 * @param inicio
+	 * @param fin
+	 * @return
+	 */
+	public List<long []> darHabitacionesYDineroRecolectado (long inicio, long fin)
+	{
+		List<long []> resp = new LinkedList<long []> ();
+		List<Object []> tuplas =  sqlHabitacion.darHabitacionesYDineroRecolectado(pmf.getPersistenceManager(),inicio,fin);
+		for ( Object [] tupla : tuplas)
+		{
+			long [] datosResp = new long [2];
+
+			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
+			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
+			resp.add (datosResp);
+		}
+		return resp;
+	}
+
+	/**
+	 * Requerimiento Funcional 2
+	 * @return
+	 */
+	public List<Servicio> darServiciosPopulares(){
+		return sqlServicio.dar20Servicios(pmf.getPersistenceManager());
+
+	}
+	
+	
+
+	public List<long []> darConsumoYUsuario (String pnombre)
+	{
+		List<long []> resp = new LinkedList<long []> ();
+		List<Object []> tuplas =  sqlUsuario.darConsumoUsuario(pmf.getPersistenceManager(),pnombre);
+		for ( Object [] tupla : tuplas)
+		{
+			long [] datosResp = new long [2];
+
+			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
+			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
+			resp.add (datosResp);
+		}
+		return resp;
+	}
+	
+	
+///////////////////////////////////METODOS AGREGACION/////////////////////////////////////////////////
+///////////////////////////////////METODOS AGREGACION/////////////////////////////////////////////////
+///////////////////////////////////METODOS AGREGACION/////////////////////////////////////////////////
+///////////////////////////////////METODOS AGREGACION/////////////////////////////////////////////////
+///////////////////////////////////METODOS AGREGACION/////////////////////////////////////////////////
+	
+	
+	
 	public Habitacion adicionarHabitacion(int capacidad, int numeroHabitacion, double costo, String descripcion,char disponible) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -358,14 +527,13 @@ public class PersistenciaHotelAndes {
 		}
 	}
 
-	public Servicio adicionarServicio(int personas, long inicio, long fin, double costo,String nombre, String descripcion) 
+	public Servicio adicionarServicio(long id,int personas, long inicio, long fin, double costo,String nombre, String descripcion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();  
-			long id = nextval ();
 			long tuplasInsertadas = sqlServicio.adicionarServicio(pm, id, inicio, fin, personas, costo, nombre, descripcion);
 			tx.commit();
 
@@ -388,19 +556,18 @@ public class PersistenciaHotelAndes {
 		}
 	}
 
-	public Reserva adicionarReserva(int personas, long inicio, long fin, double costo, String descripcion, char registrado, char pago, long idplan,int idpago) 
+	public Reserva adicionarReserva(long id,int personas, long inicio, long fin, double costo, String descripcion, char registrado, char pago, long idplan,long idusuario) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();  
-			long id = nextval ();
-			long tuplasInsertadas = sqlReserva.adicionarProducto(pm, id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
+			long tuplasInsertadas = sqlReserva.adicionarReserva(pm, id, inicio, fin, personas, costo, registrado, pago, idplan, idusuario);
 			tx.commit();
 
-			log.trace ("Inserci�n Habitacion: " + personas + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Reserva(id, inicio, fin, personas, costo, registrado, pago, idplan, idpago);
+			log.trace ("Inserci�n Habitacion: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Reserva(id, inicio, fin,personas, costo, registrado, pago, idplan, idusuario);
 		}
 		catch (Exception e)
 		{
@@ -417,14 +584,13 @@ public class PersistenciaHotelAndes {
 			pm.close();
 		}
 	}
-	public Plan adicionarPlan(String nombre, String descripcion) 
+	public Plan adicionarPlan(long id,String nombre, String descripcion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();  
-			long id = nextval ();
 			long tuplasInsertadas = sqlPlan.adicionarPlan(pm, id, nombre, descripcion);
 			tx.commit();
 
@@ -631,163 +797,8 @@ public class PersistenciaHotelAndes {
 			pm.close();
 		}
 	}
-
-
-
-
-
-
-	public long [] limpiarHotelAndes ()
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
-			long [] resp = sqlUtil.limpiarHotelandes (pm);
-			tx.commit ();
-			log.info ("Borrada la base de datos");
-			return resp;
-		}
-		catch (Exception e)
-		{
-			//        	e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-			return new long[] {-1, -1, -1, -1, -1, -1, -1};
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
-
-	}
-
-
-	//Dar los elementos de la tabla//
-	public List<Consumen> darContienen ()
-	{
-		return sqlContienen.darContienen (pmf.getPersistenceManager());
-	}
-
-
-	public List<Habitacion> darHabitaciones ()
-	{
-		return sqlHabitacion.darHabitaciones (pmf.getPersistenceManager());
-	}
-
-	public List<Ofrecen> darOfrecen ()
-	{
-		return sqlOfrecen.darOfrecen (pmf.getPersistenceManager());
-	}
-
-
-	public List<Plan> darPlanes ()
-	{
-		return sqlPlan.darPlanes (pmf.getPersistenceManager());
-	}
-	public List<Producto> darProductos ()
-	{
-		return sqlProducto.darProductos (pmf.getPersistenceManager());
-	}
-	public List<Reserva> darReservas ()
-	{
-		return sqlReserva.darReservas (pmf.getPersistenceManager());
-	}
-	public List<Servicio> darServicios ()
-	{
-		return sqlServicio.darServicios (pmf.getPersistenceManager());
-	}
-	public List<Sirven> darSirven ()
-	{
-		return sqlSirven.darSirven (pmf.getPersistenceManager());
-	}
-	public List<Tipo> darTipo ()
-	{
-		return sqlTipo.darTipos (pmf.getPersistenceManager());
-	}
-	public List<Usuario> darUsuarios ()
-	{
-		return sqlUsuario.darUsuarios (pmf.getPersistenceManager());
-	}
-
-	public List<Apartan> darApartan()
-	{
-		return sqlApartan.darContienen(pmf.getPersistenceManager());
-	}
-
-
-
-
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////
-///////////////////////REQUERIMIENTOS FUNCIONALES DE CONSULTA////////////////////////////////	
-	public List<long []> darHabitacionesEIndiceOcupacion ()
-	{
-		List<long []> resp = new LinkedList<long []> ();
-		List<Object []> tuplas =  sqlHabitacion.darIndiceOcupacionHabitacion (pmf.getPersistenceManager());
-		for ( Object [] tupla : tuplas)
-		{
-			long [] datosResp = new long [2];
-
-			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
-			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
-			resp.add (datosResp);
-		}
-		return resp;
-	}
-
-
-	/**
-	 * Requerimiento funcional 1
-	 * @param inicio
-	 * @param fin
-	 * @return
-	 */
-	public List<long []> darHabitacionesYDineroRecolectado (long inicio, long fin)
-	{
-		List<long []> resp = new LinkedList<long []> ();
-		List<Object []> tuplas =  sqlHabitacion.darHabitacionesYDineroRecolectado(pmf.getPersistenceManager(),inicio,fin);
-		for ( Object [] tupla : tuplas)
-		{
-			long [] datosResp = new long [2];
-
-			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
-			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
-			resp.add (datosResp);
-		}
-		return resp;
-	}
-
-	/**
-	 * Requerimiento Funcional 2
-	 * @return
-	 */
-	public List<Servicio> darServiciosPopulares(){
-		return sqlServicio.dar20Servicios(pmf.getPersistenceManager());
-
-	}
-
-	public List<long []> darConsumoYUsuario (String pnombre)
-	{
-		List<long []> resp = new LinkedList<long []> ();
-		List<Object []> tuplas =  sqlUsuario.darConsumoUsuario(pmf.getPersistenceManager(),pnombre);
-		for ( Object [] tupla : tuplas)
-		{
-			long [] datosResp = new long [2];
-
-			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
-			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
-			resp.add (datosResp);
-		}
-		return resp;
-	}
+	
+	
 
 
 
