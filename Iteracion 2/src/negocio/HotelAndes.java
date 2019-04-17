@@ -65,10 +65,10 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public Habitacion adicionarHabitacion (int capacidad,int numeroHabitacion, double costo, String descripcion, char disponible)
+	public Habitacion adicionarHabitacion (int capacidad,int numeroHabitacion, int costo, String descripcion, String disponible)
 	{
         log.info ("Adicionando Habitacion: " + descripcion+" "+  numeroHabitacion);
-        Habitacion tipoBebida = pp.adicionarHabitacion(capacidad, numeroHabitacion, costo, descripcion, disponible);		
+        Habitacion tipoBebida = pp.adicionarHabitacion(capacidad, numeroHabitacion, costo, descripcion, disponible);
         log.info ("Adicionando HAbitacion: " + tipoBebida);
         return tipoBebida;
 	}
@@ -120,7 +120,7 @@ public class HotelAndes {
         return tipoBebida;
 	}
 	
-	public Reserva adicionarReserva (long id,int personas,long inicio, long fin, double costo, String descripcion, char registrado,char pago,long idplan,long idusuario) throws Exception
+	public Reserva adicionarReserva (long id,int personas,long inicio, long fin, double costo, String descripcion, String registrado,String pago,long idplan,long idusuario) throws Exception
 	{
 		if(inicio>20190000&&fin>=inicio) {
         log.info ("Adicionando Reserva: " + id+" "+  descripcion);

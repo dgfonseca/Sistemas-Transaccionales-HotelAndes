@@ -4,9 +4,9 @@ public interface VOHabitacion
 {
 	public int getCapacidad();
 	public int getNumeroHabitacion();
-	public double getCosto();
+	public int getCosto();
 	public String getDescripcion();
-	public char isDisponible();
+	public String isDisponible();
 	public String toString();
 	
 	

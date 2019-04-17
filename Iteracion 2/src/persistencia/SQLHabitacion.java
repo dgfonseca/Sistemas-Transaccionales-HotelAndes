@@ -38,9 +38,9 @@ class SQLHabitacion {
 	
 
 	
-	public long adicionarHabitacion (PersistenceManager pm, int capacidad, int numeroHabitacion, double costo, String descripcion, char disponible) 
+	public long adicionarHabitacion (PersistenceManager pm, int capacidad, int numeroHabitacion, int costo, String descripcion, String disponible) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(capacidad, numeroHabitacion, costo, descripcion, disponible) values (?, ?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion() + " (CAPACIDAD, NUMEROHABITACION , COSTO , DESCRIPCION, DISPONIBLE) values ( ?,?,?,?,?)");
         q.setParameters(capacidad, numeroHabitacion, costo, descripcion, disponible);
         return (long) q.executeUnique();
 	}

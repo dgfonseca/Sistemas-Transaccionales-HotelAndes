@@ -18,39 +18,39 @@
 				},
 				{
 					"label": "Registrar tipo de habitación",
-					"event": "nada"
+					"event": "adicionarHabitacion"
 				},
 				{
 					"label": "Registrar habitación",
-					"event": "nada"
+					"event": "adicionarHabitacion"
 				},
                 {
                     "label": "Registrar un servicio del hotel",
-                    "event": "nada"
+                    "event": "adicionarServicio"
                 },
                 {
                     "label": "Registrar un plan de consumo",
-                    "event": "nada"
+                    "event": "adicionarPlan"
                 },
                 {
                     "label": "Registrar una reserva de alojamiento",
-                    "event": "nada"
+                    "event": "adicionarReserva"
                 },
                 {
                     "label": "Registrar una reserva de un servicio por parte de un cliente",
-                    "event": "nada"
+                    "event": "adicionarReserva"
                 },
                 {
                     "label": "Registrar la llegada de un cliente",
-                    "event": "nada"
+                    "event": "registrarLlegada"
                 },
                 {
                     "label": "Registrar un consumo de un cliente",
-                    "event": "nada"
+                    "event": "adicionarSirven"
                 },
                 {
                     "label": "Registrar salida de un cliente",
-                    "event": "nada"
+                    "event": "registrarSalida"
                 },
                 {
                     "label": "Reservar alojamiento y servicios convención",

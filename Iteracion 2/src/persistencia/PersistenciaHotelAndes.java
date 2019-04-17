@@ -68,13 +68,13 @@ public class PersistenciaHotelAndes {
 		tablas = new LinkedList<String> ();
 		tablas.add ("Parranderos_sequence");
 		tablas.add("PAGOSPSE");
-		tablas.add("PLANES");
+		tablas.add("PLAN");
 		tablas.add("CONSUMEN");
 		tablas.add("HABITACION");
 		tablas.add("HOSPEDAN");
 		tablas.add("OFRECEN");
 		tablas.add("PRODUCTOS");
-		tablas.add("RESERVAS");
+		tablas.add("RESERVA");
 		tablas.add("SERVICIOS");
 		tablas.add("SIRVEN");
 		tablas.add("USUARIO");
@@ -498,7 +498,7 @@ public class PersistenciaHotelAndes {
 	
 	
 	
-	public Habitacion adicionarHabitacion(int capacidad, int numeroHabitacion, double costo, String descripcion,char disponible) 
+	public Habitacion adicionarHabitacion(int capacidad, int numeroHabitacion, int costo, String descripcion,String disponible) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -556,12 +556,13 @@ public class PersistenciaHotelAndes {
 		}
 	}
 
-	public Reserva adicionarReserva(long id,int personas, long inicio, long fin, double costo, String descripcion, char registrado, char pago, long idplan,long idusuario) 
+	public Reserva adicionarReserva(long id,int personas, long inicio, long fin, double costo, String descripcion, String registrado, String pago, long idplan,long idusuario) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			System.out.println("ENTROOO");
 			tx.begin();  
 			long tuplasInsertadas = sqlReserva.adicionarReserva(pm, id, inicio, fin, personas, costo, registrado, pago, idplan, idusuario);
 			tx.commit();

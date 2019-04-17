@@ -6,7 +6,7 @@ public interface VOReserva{
 	public long getFechaFin();
 	public int getNumeroPersonas();
 	public double getCosto();
-	public char getRegistrado();
-	public char getPago();
+	public String getRegistrado();
+	public String getPago();
 
 }

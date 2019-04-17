@@ -626,21 +626,16 @@ public class InterfazApp extends JFrame implements ActionListener
     {
     	try
     	{
-    		String text="Id de plan en uso, no usar los id's siguientes";
-    		for(int i=0; i<hotel.darPlanes().size();i++)
-    		{
-    			text+=","+hotel.darPlanes().get(i).geId();
-    		}
-    		panelDatos.actualizarInterfaz(text);
-    		String id = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+    		
+    		String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva");
     		
     		
     		if(id != null)
     		{
-    			String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
-        		String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
-        		String ini=JOptionPane.showInputDialog(this,"Hora Apertura");
-        		String fini=JOptionPane.showInputDialog(this,"Hora cierre");
+    			String capacidad = JOptionPane.showInputDialog(this, "Cantidad Personas");
+        		String costo = JOptionPane.showInputDialog(this, "Costo de la reserva");
+        		String ini=JOptionPane.showInputDialog(this,"Hora Inicio");
+        		String fini=JOptionPane.showInputDialog(this,"Hora Fin");
         		String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
         		String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
         		String pagoo=JOptionPane.showInputDialog(this,"Esta pago T o F");
@@ -652,10 +647,8 @@ public class InterfazApp extends JFrame implements ActionListener
     			long inicio=Long.parseLong(ini);
     			long fin=Long.parseLong(fini);
     			int capa = Integer.parseInt(capacidad);
-    			char registrado=nombre.charAt(0);
-    			char pago=pagoo.charAt(0);
     			double cos=Double.parseDouble(costo);
-    			Reserva u = hotel.adicionarReserva(iden, capa, inicio, fin, cos, descripcion, registrado, pago, idplan, idusuario);
+    			Reserva u = hotel.adicionarReserva(iden, capa, inicio, fin, cos, descripcion, nombre, pagoo, idplan, idusuario);
     			if (u == null)
     			{
     				throw new Exception ("No se pudo crear el servicio con id " + id);
@@ -684,7 +677,7 @@ public class InterfazApp extends JFrame implements ActionListener
     {
     	try
     	{
-    		String id = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+    		String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio");
     		
     		
     		if(id != null)
@@ -736,15 +729,18 @@ public class InterfazApp extends JFrame implements ActionListener
     		
     		if(numeroHabitacion != null)
     		{
-    			String capacidad = JOptionPane.showInputDialog(this, "Tipo de identificacion");
-        		String costo = JOptionPane.showInputDialog(this, "Correo de usuario");
-        		String descripcion = JOptionPane.showInputDialog(this, "Tipo de usuario");
+    			String capacidad = JOptionPane.showInputDialog(this, "Capacidad de habitacion");
+        		String costo = JOptionPane.showInputDialog(this, "Costo de habitacion");
+        		String descripcion = JOptionPane.showInputDialog(this, "Descripcion de habitacion");
         		String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
+        		if(disponible.length()>1)
+        		{
+        			throw new Exception("Tamaño Incorrecto en disponibilidad, solo se puede Usar T o F");
+        		}
     			int num = Integer.parseInt(numeroHabitacion);
     			int capa = Integer.parseInt(capacidad);
-    			double cos=Double.parseDouble(costo);
-    			char disp=disponible.charAt(0);
-    			Habitacion u = hotel.adicionarHabitacion(capa, num, cos, descripcion, disp);
+    			int cos=Integer.parseInt(costo);
+    			Habitacion u = hotel.adicionarHabitacion(capa, num, cos, descripcion, disponible);
     			if (u == null)
     			{
     				throw new Exception ("No se pudo crear la habitacion con id " + numeroHabitacion);

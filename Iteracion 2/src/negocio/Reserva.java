@@ -7,8 +7,8 @@ public class Reserva implements VOReserva {
 	private long fechaFin;
 	private int numeroPersonas;
 	private double costo;
-	private char registrado;
-	private char pago;
+	private String registrado;
+	private String pago;
 	private long idPlan;
 	private long idUsuario;
 	public Reserva() {
@@ -17,12 +17,12 @@ public class Reserva implements VOReserva {
         this.fechaInicio=0;
         this.numeroPersonas=0;
         this.costo=0;
-        this.registrado='F';
-        this.pago='T';
+        this.registrado="F";
+        this.pago="F";
         this.idPlan=0;
         this.idUsuario=0;
 	}
-	public Reserva(long pid, long pfechainicio,long pfechafin,int pnumeropersonas,double pcosto,char pregistrado,char ppago, long pPlan,long idpago)
+	public Reserva(long pid, long pfechainicio,long pfechafin,int pnumeropersonas,double pcosto,String pregistrado,String ppago, long pPlan,long idpago)
 	{
 		this.id=pid;
 		this.fechaFin=pfechafin;
@@ -86,13 +86,13 @@ public class Reserva implements VOReserva {
 	}
 
 	@Override
-	public char getRegistrado() {
+	public String getRegistrado() {
 		// TODO Auto-generated method stub
 		return registrado;
 	}
 
 	@Override
-	public char getPago() {
+	public String getPago() {
 		// TODO Auto-generated method stub
 		return pago;
 	}
@@ -116,11 +116,11 @@ public class Reserva implements VOReserva {
 	{
 		this.costo=pcosto;
 	}
-	public void setRegistrado(char pregistrado)
+	public void setRegistrado(String pregistrado)
 	{
 		this.registrado=pregistrado;
 	}
-	public void setPago(char ppago)
+	public void setPago(String ppago)
 	{
 		this.pago=ppago;
 	}

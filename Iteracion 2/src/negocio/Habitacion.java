@@ -4,9 +4,9 @@ public class Habitacion implements VOHabitacion{
 
 	private int capacidad;
 	private int numeroHabitacion;
-	private double costo;
+	private int costo;
 	private String descripcion;
-	private char disponible;
+	private String disponible;
 	
 	public Habitacion()
 	{
@@ -14,9 +14,9 @@ public class Habitacion implements VOHabitacion{
 		this.numeroHabitacion=0;
 		this.costo=0;
 		this.descripcion="";
-		this.disponible='T';
+		this.disponible="T";
 	}
-	public Habitacion(int pcapacidad, int pnumerohabitacion, double pcosto, String pdescripcion, char pdisponible)
+	public Habitacion(int pcapacidad, int pnumerohabitacion, int pcosto, String pdescripcion, String pdisponible)
 	{
 		this.capacidad=pcapacidad;
 		this.numeroHabitacion=pnumerohabitacion;
@@ -40,7 +40,7 @@ public class Habitacion implements VOHabitacion{
 	}
 
 	@Override
-	public double getCosto() {
+	public int getCosto() {
 		// TODO Auto-generated method stub
 		return costo;
 	}
@@ -52,7 +52,7 @@ public class Habitacion implements VOHabitacion{
 	}
 
 	@Override
-	public char isDisponible() {
+	public String isDisponible() {
 		// TODO Auto-generated method stub
 		return disponible;
 	}
@@ -64,7 +64,7 @@ public class Habitacion implements VOHabitacion{
 	{
 		this.numeroHabitacion=pnumero;
 	}
-	public void setCosto(double pcosto)
+	public void setCosto(int pcosto)
 	{
 		this.costo=pcosto;
 	}
@@ -72,7 +72,7 @@ public class Habitacion implements VOHabitacion{
 	{
 		this.descripcion=pDescripcion;
 	}
-	public void setDisponible(char pdisponible)
+	public void setDisponible(String pdisponible)
 	{
 		this.disponible=pdisponible;
 	}
