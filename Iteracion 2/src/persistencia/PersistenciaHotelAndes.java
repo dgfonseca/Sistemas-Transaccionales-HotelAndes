@@ -679,14 +679,13 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	public Producto adicionarProducto( double costo,String nombre, int cantidad) 
+	public Producto adicionarProducto(long id, double costo,String nombre, int cantidad) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();  
-			long id = nextval ();
 			long tuplasInsertadas = sqlProducto.adicionarProducto(pm, id, nombre, costo, cantidad);
 			tx.commit();
 
@@ -1141,6 +1140,67 @@ public class PersistenciaHotelAndes {
 			//        	e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return 0;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
+	public long [] limpiarParranderos ()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long [] resp = sqlUtil.limpiarHotelandes(pm);
+            tx.commit ();
+            log.info ("Borrada la base de datos");
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+		
+	}
+	
+	
+	public Convencion adicionarConvencion(long identificacion, String nombre,String descripcion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();  
+			long tuplasInsertadas = sqlConvencion.adicionarConvencion(pm, identificacion, nombre, descripcion);
+			tx.commit();
+
+
+			log.trace ("Inserci�n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Convencion(identificacion, nombre, descripcion);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
 		}
 		finally
 		{

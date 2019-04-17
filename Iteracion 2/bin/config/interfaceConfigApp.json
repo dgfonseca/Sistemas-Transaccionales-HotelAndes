@@ -1,0 +1,126 @@
+{
+	"title": "Hotel Andes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/resources/config/logo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Requerimientos Funcionales",
+		  "options":
+			[
+				{
+					"label": "Registrar roles de usuarios",
+					"event": "adicionarTipo"
+				},
+				{
+					"label": "Registrar usuario",
+					"event": "adicionarUsuario"
+				},
+				{
+					"label": "Registrar tipo de habitación",
+					"event": "adicionarHabitacion"
+				},
+				{
+					"label": "Registrar habitación",
+					"event": "adicionarApartan"
+				},
+                {
+                    "label": "Registrar un servicio del hotel",
+                    "event": "adicionarServicio"
+                },
+                {
+                    "label": "Registrar un plan de consumo",
+                    "event": "adicionarPlan"
+                },
+                {
+                    "label": "Registrar una reserva de alojamiento",
+                    "event": "adicionarReserva"
+                },
+                {
+                    "label": "Registrar una reserva de un servicio por parte de un cliente",
+                    "event": "adicionarReserva"
+                },
+                {
+                    "label": "Registrar la llegada de un cliente",
+                    "event": "registrarLlegada"
+                },
+                {
+                    "label": "Registrar un consumo de un cliente",
+                    "event": "adicionarSirven"
+                },
+                {
+                    "label": "Registrar salida de un cliente",
+                    "event": "registrarSalida"
+                },
+                {
+                    "label": "Reservar alojamiento y servicios convención",
+                    "event": "reservarConvencion"
+                },
+                {
+                    "label": "Cancelar reservas convención",
+                    "event": "cancelarReservasConvencion"
+                },
+                {
+                    "label": "Registrar fin convención",
+                    "event": "nada"
+                },
+                {
+                    "label": "Registrar mantenimiento",
+                    "event": "iniciarMantenimiento"
+                },
+                {
+                    "label": "Registrar fin mantenimiento",
+                    "event": "nada"
+                }
+			]
+		},
+		{ "menuTitle": "Requerimientos Funcionales de Consulta",
+		  "options":
+			[
+				{
+					"label": "Mostrar dinero recolectado",
+					"event": "darHabitacionesYDinero"
+				},
+				{
+					"label": "Mostrar los 20 servicios más populares",
+					"event": "darServiciosPopulares"
+				},
+				{
+					"label": "Mostrar el índice de ocupación",
+					"event": "nada"
+				},
+				{
+					"label": "Mostrar servicios con característica",
+					"event": "nada"
+				},
+				{
+					"label": "Mostrar el consumo de un usuario",
+					"event": "nada"
+				},
+                {
+                    "label": "Analizar operación",
+                    "event": "nada"
+                },
+                {
+                    "label": "Encontrar buenos clientes",
+                    "event": "darBuenosClientes"
+                },
+                {
+                    "label": "Encontrar servicios poca demanda",
+                    "event": "nada"
+                }
+			]
+		},
+		{ "menuTitle": "Acerca de ...",
+		  "options":
+			[
+				{
+					"label": "Acerca de ...",
+					"event": "acercaDe"
+				}
+			]
+		}		
+		
+	]
+}
+	
