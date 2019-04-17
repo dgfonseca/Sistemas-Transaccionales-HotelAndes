@@ -26,6 +26,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -47,9 +49,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.Habitacion;
+import negocio.HabitacionConvencion;
 import negocio.HotelAndes;
 import negocio.Plan;
 import negocio.Reserva;
+import negocio.ReservaConvencion;
 import negocio.Servicio;
 import negocio.Sirven;
 import negocio.Tipo;
@@ -325,6 +329,117 @@ public class InterfazApp extends JFrame implements ActionListener
 		}
     	
     	
+    }
+    
+    public void reservarConvencion()
+    {
+    	try
+    	{
+    		String n3 = JOptionPane.showInputDialog(this, "Ingrese el id de la convención");
+    		String n1 = JOptionPane.showInputDialog(this, "Ingrese el número de habitaciones a reservar");
+        	String n2 = JOptionPane.showInputDialog(this, "Ingrese el número de personas por habitacion");
+    		if(n1 != null && n2 != null && n3 != null)
+    		{
+    			long id = Long.parseLong(n3);
+    			int numHabitaciones = Integer.parseInt(n1);
+        		int tamanioHabitaciones = Integer.parseInt(n2);
+        		String rta ="";
+        		String nombre = hotel.darNombreConvencion(id);
+        		if(nombre != null)
+        		{
+        			rta = "Reservando habitaciones para la convención "  + nombre + "\n\n";
+        			Object[] rc = hotel.darFechaConvencion(id);
+        			
+        			rta += "Fechas de la convencion: desde " + rc[0] + " hasta " + rc[1] +  "\n";
+        			
+        			List<Habitacion> habs = hotel.darHabitacionesCapacidad(tamanioHabitaciones);
+            		rta += "Habitaciones disponibles: \n";
+            		
+            		List<Habitacion> habs2 = new ArrayList();
+            		for (Habitacion habitacion : habs) 
+            		{
+    					rta += habitacion.getNumeroHabitacion() + "\n";
+    					habs2.add(habitacion);
+    				}
+            		
+            		List<Object[]> habitacionesOcupadas = hotel.darHabitacionesOcupadas();
+            		for(Object[] objeto : habitacionesOcupadas)
+            		{
+            			BigDecimal f1 = (BigDecimal) objeto[0];
+            			BigDecimal f2 = (BigDecimal) objeto[1];
+            			
+            			BigDecimal f3 = (BigDecimal) rc[0];
+            			BigDecimal f4 = (BigDecimal) rc[1];
+            			if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
+            			{
+            				BigDecimal num = (BigDecimal) objeto[2];
+            				rta += "Habitacion ocupada: " + objeto[2] + " desde: " + objeto[0] + " hasta: " + objeto[1] + "\n";
+            				for (int i = 0; i<habs.size(); i++)
+            				{
+            					Habitacion hab = habs.get(i);
+            					BigDecimal num2 = new BigDecimal(hab.getNumeroHabitacion());
+            					if(num.equals(num2))
+            					{
+            						habs2.remove(hab);
+            					}
+            				}
+            			}
+            			
+            		}
+            		
+            		rta += "Habitaciones disponibles después de validar fechas: \n";
+            		int cont = 0;
+            		for(Habitacion habitacion : habs2)
+            		{
+            			rta += habitacion.getNumeroHabitacion() + "\n";
+            			cont ++;
+            		}
+            		
+            		if(cont >= numHabitaciones)
+            		{
+            			int cont2=0;
+            			rta += "Reservar habitaciones y servicios convención \n\n";
+            			for(int i = 0; i<numHabitaciones; i++)
+            			{
+            				HabitacionConvencion habitacion = hotel.adicionarHabitacionConvencion(id, habs2.get(i).getNumeroHabitacion());
+            				if(habitacion != null)
+            				{
+            					rta += "Reservada la habitación " + habitacion.getNumeroHabitacion() + "\n";
+            					cont2++;
+            				}
+            			}
+            			
+            			rta += "Reservadas  "+ cont2  + " habitaciones para " + tamanioHabitaciones + " personas cada una. \n";
+            			rta += "Operación terminada";
+            		}
+            		else
+            		{
+            			rta += "No hay sufucientes habitaciones disponibles para realizar la reserva. \n";
+            		}
+            		
+            		
+        		}
+        		else
+        		{
+        			rta = "La convención no existe \n\n"; 
+        		}
+        		
+        		
+        		
+    			panelDatos.actualizarInterfaz(rta);
+    		}
+    		else
+        	{
+        		panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+        	}
+        	
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+    	}
     }
     
 
@@ -735,7 +850,7 @@ public class InterfazApp extends JFrame implements ActionListener
         		String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
         		if(disponible.length()>1)
         		{
-        			throw new Exception("Tama�o Incorrecto en disponibilidad, solo se puede Usar T o F");
+        			throw new Exception("Tama�o Incorrecto en disponibilidad, solo se puede Usar T o F");
         		}
     			int num = Integer.parseInt(numeroHabitacion);
     			int capa = Integer.parseInt(capacidad);

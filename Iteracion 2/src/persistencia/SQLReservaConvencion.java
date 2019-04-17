@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -38,6 +39,13 @@ class SQLReservaConvencion {
 		q.setResultClass(Consumen.class);
 		List<ReservaConvencion> rta = (List<ReservaConvencion>) q.execute();
 		return rta;
+	}
+	
+	public Object[] darFechaConvencion(PersistenceManager pm, long id)
+	{
+		Query q = pm.newQuery(SQL, "SELECT FECHAINICIO, FECHAFIN FROM " + pp.darTablaReservaConvenciones() + " WHERE ID_CONVENCION = ?");
+		q.setParameters(id);
+		return (Object[]) q.executeUnique();
 	}
 
 }

@@ -38,5 +38,12 @@ class SQLConvencion {
 		List<Convencion> rta = (List<Convencion>) q.execute();
 		return rta;
 	}
+	
+	public String darNombreConvencion(PersistenceManager pm, long id)
+	{
+		Query q = pm.newQuery(SQL, "SELECT NOMBRE FROM " + pp.darTablaConvenciones() + " WHERE ID = ?");
+		q.setParameters(id);
+		return (String) q.executeUnique();
+	}
 
 }

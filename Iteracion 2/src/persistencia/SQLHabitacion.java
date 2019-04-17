@@ -19,17 +19,17 @@ class SQLHabitacion {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLHabitacion (PersistenciaHotelAndes pp)
 	{
@@ -105,6 +105,33 @@ class SQLHabitacion {
        	String sql = "SELECT count (*) FROM (" + sql1 + ")";
 		Query q = pm.newQuery(SQL, sql);
         return q.executeList();
-}
+	}
+	
+	public List<Habitacion> darHabitacionesCapacidad (PersistenceManager pm, int cap)
+	{
+		String sql1 = "SELECT *";
+		sql1 += " FROM " + pp.darTablaHabitacion();
+		sql1 += " WHERE CAPACIDAD = " + cap;
+		
+		Query q = pm.newQuery(SQL, sql1);
+		q.setResultClass(Habitacion.class);
+		return (List<Habitacion>) q.executeList();
+	}
+	
+	public List<Object[]> darHabitacionesOcupadas(PersistenceManager pm)
+	{
+		String sql = "select r.fechaInicio, r.fechafin, h.numerohabitacion\r\n" + 
+				"from reserva r, apartan a, habitacion h\r\n" + 
+				"where r.id = a.idreserva and a.numerohabitacion = h.numerohabitacion\r\n" + 
+				"\r\n" + 
+				"union all\r\n" + 
+				"\r\n" + 
+				"select rc.fechainicio, rc.fechafin, h.numeroHabitacion\r\n" + 
+				"from reserva_convenciones rc, habitacion_convencion hc, habitacion h\r\n" + 
+				"where rc.id = hc.id_reserva and hc.numerohabitacion = h.numerohabitacion";
+		
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList();
+	}
 
 }

@@ -1,5 +1,6 @@
 package negocio;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,7 +23,7 @@ public class HotelAndes {
 	private PersistenciaHotelAndes pp;
 	
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	/**
 	 * El constructor por defecto
@@ -42,7 +43,7 @@ public class HotelAndes {
 	}
 	
 	/**
-	 * Cierra la conexión con la base de datos (Unidad de persistencia)
+	 * Cierra la conexiï¿½n con la base de datos (Unidad de persistencia)
 	 */
 	public void cerrarUnidadPersistencia ()
 	{
@@ -129,7 +130,7 @@ public class HotelAndes {
         return tipoBebida;}
 		else
 		{
-			throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+			throw new Exception("Ese aï¿½o es invalido, tiene que ser escrito aï¿½o-mes-dia, sin las barras espaciadoras ej 20190211 donde aï¿½o es 2019 mes es 02 y dia es 11");
 		}
 	}
 	
@@ -142,7 +143,7 @@ public class HotelAndes {
         return tipoBebida;}
 		else
 		{
-			throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+			throw new Exception("Ese aï¿½o es invalido, tiene que ser escrito aï¿½o-mes-dia, sin las barras espaciadoras ej 20190211 donde aï¿½o es 2019 mes es 02 y dia es 11");
 		}
 	}
 	
@@ -186,7 +187,7 @@ public class HotelAndes {
         log.info ("Listando habitaciones");
         if(inicio>=20190000&&fin>=inicio)
         	return pp.darHabitacionesYDineroRecolectado(inicio,fin);
-        else throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+        else throw new Exception("Ese aï¿½o es invalido, tiene que ser escrito aï¿½o-mes-dia, sin las barras espaciadoras ej 20190211 donde aï¿½o es 2019 mes es 02 y dia es 11");
 
 	}
 	
@@ -199,6 +200,36 @@ public class HotelAndes {
 	{
 		log.info("Listando Servicios");
 		return pp.darServiciosPopulares();
+	}
+	
+	public List<Habitacion> darHabitacionesCapacidad(int num)
+	{
+		log.info("Listando habitaciones");
+		return pp.darHabitacionesCapacidad(num);
+	}
+	
+	public String darNombreConvencion(long id)
+	{
+		log.info("Obteniendo nombre de convencion");
+		return pp.darNombreConvencion(id);
+	}
+	
+	public List<Object[]> darHabitacionesOcupadas()
+	{
+		log.info("Obteniendo habitaciones ocupadas");
+		return pp.darHabitacionesOcupadas();
+	}
+	
+	public Object[] darFechaConvencion(long id)
+	{
+		log.info("Obteniendo Reserva Convencion");
+		return pp.darFechaConvencion(id);
+	}
+	
+	public HabitacionConvencion adicionarHabitacionConvencion(long idReserva, int idHabitacion)
+	{
+		log.info("AÃ±adiendo reserva de habitacion a convencion");
+		return pp.adicionarHabitacionConvencion(idReserva, idHabitacion);
 	}
 
 }

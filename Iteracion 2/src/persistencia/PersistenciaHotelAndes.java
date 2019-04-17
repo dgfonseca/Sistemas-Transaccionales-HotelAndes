@@ -20,10 +20,12 @@ import negocio.Apartan;
 import negocio.Consumen;
 import negocio.Convencion;
 import negocio.Habitacion;
+import negocio.HabitacionConvencion;
 import negocio.Ofrecen;
 import negocio.Plan;
 import negocio.Producto;
 import negocio.Reserva;
+import negocio.ReservaConvencion;
 import negocio.Servicio;
 import negocio.Sirven;
 import negocio.Tipo;
@@ -53,6 +55,8 @@ public class PersistenciaHotelAndes {
 	private SQLApartan sqlApartan;
 	private SQLUtil sqlUtil;
 	private SQLConvencion sqlConvencion;
+	private SQLReservaConvencion sqlReservaConvencion;
+	private SQLHabitacionConvencion sqlHabitacionConvencion;
 
 
 
@@ -171,6 +175,8 @@ public class PersistenciaHotelAndes {
 		sqlTipo=new SQLTipo(this);
 		sqlApartan=new SQLApartan(this);
 		sqlConvencion=new SQLConvencion(this);
+		sqlReservaConvencion = new SQLReservaConvencion(this);
+		sqlHabitacionConvencion = new SQLHabitacionConvencion(this);
 
 	}
 
@@ -375,6 +381,11 @@ public class PersistenciaHotelAndes {
 	public List<Habitacion> darHabitaciones ()
 	{
 		return sqlHabitacion.darHabitaciones (pmf.getPersistenceManager());
+	}
+	
+	public List<Habitacion> darHabitacionesCapacidad(int num)
+	{
+		return sqlHabitacion.darHabitacionesCapacidad(pmf.getPersistenceManager(), num);
 	}
 
 	public List<Ofrecen> darOfrecen ()
@@ -856,6 +867,49 @@ public class PersistenciaHotelAndes {
         }
 	}
 	
+	public String darNombreConvencion(long id)
+	{
+		return sqlConvencion.darNombreConvencion(pmf.getPersistenceManager(), id);
+	}
+	
+	public List<Object[]> darHabitacionesOcupadas()
+	{
+		return sqlHabitacion.darHabitacionesOcupadas(pmf.getPersistenceManager());
+	}
+	
+	public Object[] darFechaConvencion(long id)
+	{
+		return sqlReservaConvencion.darFechaConvencion(pmf.getPersistenceManager(), id);
+	}
+	
+	public HabitacionConvencion adicionarHabitacionConvencion(long idReserva, int idHabitacion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();            
+			long tuplasInsertadas = sqlHabitacionConvencion.adicionaHabitacionConvencion(pmf.getPersistenceManager(), idReserva, idHabitacion);
+			tx.commit();
+
+			log.trace ("Inserci�n Habitacion convención: " + idHabitacion +" " + "idReserva" + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new HabitacionConvencion(idReserva, idHabitacion);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 	
 
 

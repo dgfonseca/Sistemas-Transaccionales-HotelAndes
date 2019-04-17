@@ -54,7 +54,7 @@
                 },
                 {
                     "label": "Reservar alojamiento y servicios convención",
-                    "event": "nada"
+                    "event": "reservarConvencion"
                 },
                 {
                     "label": "Cancelar reservas convención",
