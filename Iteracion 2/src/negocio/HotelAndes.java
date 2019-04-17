@@ -181,10 +181,13 @@ public class HotelAndes {
 		return pp.darConsumoYUsuario(pnombre);
 
 	}
-	public List<long[]> darHabitacionesYDinero(long inicio, long fin)
+	public List<long[]> darHabitacionesYDinero(long inicio, long fin) throws Exception
 	{
         log.info ("Listando habitaciones");
-		return pp.darHabitacionesYDineroRecolectado(inicio,fin);
+        if(inicio>=20190000&&fin>=inicio)
+        	return pp.darHabitacionesYDineroRecolectado(inicio,fin);
+        else throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+
 	}
 	
 	public List<long[]> darHabitacionesIndiceOcupacion()

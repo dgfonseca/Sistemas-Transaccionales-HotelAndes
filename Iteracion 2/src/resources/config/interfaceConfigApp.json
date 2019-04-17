@@ -79,7 +79,7 @@
 			[
 				{
 					"label": "Mostrar dinero recolectado",
-					"event": "nada"
+					"event": "darHabitacionesYDinero"
 				},
 				{
 					"label": "Mostrar los 20 servicios más populares",

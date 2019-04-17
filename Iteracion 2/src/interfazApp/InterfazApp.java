@@ -921,4 +921,36 @@ public class InterfazApp extends JFrame implements ActionListener
     	}
     	
     }
+    
+    public void darHabitacionesYDinero()
+    {
+    	try
+    	{
+    		String text="";
+    		String ini=JOptionPane.showInputDialog(this,"Hora Apertura");
+    		String fini=JOptionPane.showInputDialog(this,"Hora cierre");
+    		long inicio=Long.parseLong(ini);
+			long fin=Long.parseLong(fini);
+    		List<long[]> rtas = hotel.darHabitacionesYDinero(inicio, fin);
+    		for(int i=0;i<rtas.size();i++)
+    		{
+    			text+="Habitacion: "+ rtas.get(i)[0] +" Dinero: "+ rtas.get(i)[1]+" ---";
+    			
+    		}
+    		panelDatos.actualizarInterfaz(text);
+    		
+        	
+        	
+        
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
+    
+    
+    }
+    
 }

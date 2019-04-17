@@ -79,17 +79,17 @@ class SQLHabitacion {
 	//RF1
 	public List<Object[]> darHabitacionesYDineroRecolectado (PersistenceManager pm, long inicio, long fin)
 	{		
-		String sql1 = "SELECT hab.numeroHabitacion, sum (serv.costo) as dinero";
+		String sql1 = "SELECT hab.numeroHabitacion, sum (serv.costo)";
 		sql1 += " FROM " + pp.darTablaHabitacion()+"  hab";
 		sql1+= " INNER JOIN "+pp.darTablaSirven()+ " sirv";
 		sql1+=" on hab.numerohabitacion=sirv.numerohabitacion";
-		sql1+= "INNER JOIN "+ pp.darTablaServicio() +" serv";
-		sql1+= "on sirv.idservicio=serv.id";
-		sql1+= "INNER JOIN "+pp.darTablaApartan()+" ap";
-		sql1+= " on ON HAB.NUMEROHABITACION=AP.NUMEROHABITACION";
+		sql1+= " INNER JOIN "+ pp.darTablaServicio() +" serv";
+		sql1+= " on sirv.idservicio=serv.id";
+		sql1+= " INNER JOIN "+pp.darTablaApartan()+" ap";
+		sql1+= "  ON HAB.NUMEROHABITACION=AP.NUMEROHABITACION";
 		sql1+=" INNER JOIN "+pp.darTablaReserva() +" res";
 		sql1+=" ON AP.IDRESERVA=RES.ID";
-		sql1+=" WHERE RES.FECHAINICIO IS BETWEEN " +inicio+" AND "+fin;
+		sql1+=" WHERE RES.FECHAINICIO BETWEEN " +inicio+" AND "+fin;
 		sql1 += " GROUP BY hab.numeroHabitacion";
 		
 
