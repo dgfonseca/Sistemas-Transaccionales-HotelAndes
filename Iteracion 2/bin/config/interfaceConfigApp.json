@@ -70,7 +70,7 @@
                 },
                 {
                     "label": "Registrar fin mantenimiento",
-                    "event": "nada"
+                    "event": "finalizarMantenimiento"
                 }
 			]
 		},
@@ -95,7 +95,7 @@
 				},
 				{
 					"label": "Mostrar el consumo de un usuario",
-					"event": "nada"
+					"event": "darConsumoUsuarioDado"
 				},
                 {
                     "label": "Analizar operación",
