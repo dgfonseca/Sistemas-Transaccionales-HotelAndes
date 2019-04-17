@@ -87,11 +87,11 @@
 				},
 				{
 					"label": "Mostrar el índice de ocupación",
-					"event": "nada"
+					"event": "indiceOcupacion"
 				},
 				{
 					"label": "Mostrar servicios con característica",
-					"event": "nada"
+					"event": "serviciosCiertaCategoria"
 				},
 				{
 					"label": "Mostrar el consumo de un usuario",

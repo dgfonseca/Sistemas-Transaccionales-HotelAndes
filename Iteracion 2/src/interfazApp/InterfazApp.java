@@ -772,7 +772,38 @@ public class InterfazApp extends JFrame implements ActionListener
 			String idM = JOptionPane.showInputDialog("Favor ingrese el número del mantenimiento que desea dar por terminado");
 			if(idM != null)
 			{
-				Long id = Long.parseLong(idM);
+				Long id = Long.parseLong(idM.trim());
+				
+				long serviciosEliminados = hotel.eliminarServicioMantenimientoIdMantenimiento(id);
+				if(serviciosEliminados > 0)
+				{
+					rta += serviciosEliminados + " servicios terminaron el mantenimiento. \n";
+					long habitacionesEliminadas = hotel.eliminarHabitacionMantenimientoIdMantenimiento(id);
+					if(habitacionesEliminadas >0)
+					{
+						rta += habitacionesEliminadas + " habitaciones terminaron el mantenimiento. \n";
+						long mantenimientoEliminado = hotel.eliminarMantenimiento(id);
+						if(mantenimientoEliminado > 0)
+						{
+							rta += "El mantenimiento con id " + id + " fue eliminado correctamente. \n";
+						}
+						else
+						{
+							rta += "No se pudo terminar el mantenimiento en los servicios \n";
+						}
+						panelDatos.actualizarInterfaz(rta);
+					}
+					else
+					{
+						rta += "No se pudo terminar el mantenimiento en las habitaciones \n";
+					}
+					panelDatos.actualizarInterfaz(rta);
+				}
+				else
+				{
+					rta += "No se pudo terminar el mantenimiento en los servicios \n";
+				}
+				panelDatos.actualizarInterfaz(rta);
 			}
 			else
 			{
@@ -787,7 +818,95 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	
+	
+	public void indiceOcupacion()
+	{
+		try
+		{
+			String rta = "";
+			String n1 = JOptionPane.showInputDialog("Ingrese una fecha para verificar la ocupación del hotel. Formato AAAAMMDD");
+			BigDecimal f3 = new BigDecimal(n1);
+			List<Object[]> habitacionesOcupadas = hotel.darHabitacionesOcupadas();
+			List<Habitacion> todasHabitaciones = hotel.darHabitaciones();
+			List<Habitacion> habitacionesOcupadasEnDia = new ArrayList<Habitacion>();
+			rta += "Calculando el indice de ocupación del hotel para la fecha: " + n1 + "\n";
+			for(Object[] objeto: habitacionesOcupadas)
+			{
+				BigDecimal f1 = (BigDecimal)objeto[0];
+				BigDecimal f2 = (BigDecimal)objeto[1];
+				if(f1.compareTo(f3)<=0 && f2.compareTo(f3)>=0)
+				{
+					for(Habitacion hab:todasHabitaciones)
+					{
+						BigDecimal num = (BigDecimal)objeto[2];
+						if(hab.getNumeroHabitacion() == Integer.parseInt(num+""))
+						{
+							habitacionesOcupadasEnDia.add(hab);
+						}
+					}
+				}
+			}
+			rta += "El hotel cuenta con un total de " + todasHabitaciones.size() + " habitaciones. \n";
+			rta+= "En la fecha solicitada, hay un total de " + habitacionesOcupadasEnDia.size() + " habitaciones ocupadas. \n";
+			double ocupacion = ((double)habitacionesOcupadasEnDia.size()/(double)todasHabitaciones.size())*100;
+			rta += "El índice de ocupación del hotel en este día es de " + ocupacion + "%. \n";
+			
+			panelDatos.actualizarInterfaz(rta);
+			
+			
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
+	public void serviciosCiertaCategoria()
+	{
+		try
+		{
+			String rta = "Esta característica le permitirá buscar servicios dadas ciertas caracterísitcas. \n";
+			rta += "Por favor seleccione el número de la característica por la cual le gustaría filtrar los servicios. \n";
+			rta += "1. Filtrar por precio (entre un rango de la forma XX,YY) \n";
+			rta += "2. Posibilidad de recibir el servicio en una cierta hora (de la forma XXXX) \n";
+			rta += "3. Aptos para un número de personas (de la forma XX) \n";
+			rta += "4. Palabra clave (buscar la palabra clave en la descripcion del servicio \n";
+			
+			panelDatos.actualizarInterfaz(rta);
+			
+			String cara = JOptionPane.showInputDialog("Seleccione el número de la caracteristica,");
+			if(cara.equals("1"))
+			{
+				
+			}
+			else if(cara.equals("2"))
+			{
+				
+			}
+			else if(cara.equals("3"))
+			{
+				
+			}
+			else if(cara.equals("4"))
+			{
+				
+			}
+			else
+			{
+				rta += "La opción seleccionada no se encuentra entre las opciones posibles. \n";
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
 
 
