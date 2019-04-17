@@ -347,5 +347,11 @@ public class HotelAndes {
 	{
 		return pp.darProductos();
 	}
+	
+	public List<Mantenimiento> darMantenimientos()
+	{
+		log.info("Dando todos los mantenimientos");
+		return pp.darMantenimientos();
+	}
 
 }

@@ -1,6 +1,8 @@
-/negocio/
-/persistencia/
-/asdas/
 /uniandes/
 /interfazApp/
+<<<<<<< HEAD
+=======
 /config/
+>>>>>>> 91ea297e68cb29395adac3142b10fe193ac2820b
+/negocio/
+/persistencia/
