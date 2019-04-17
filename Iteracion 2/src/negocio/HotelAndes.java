@@ -242,5 +242,9 @@ public class HotelAndes {
 		log.info("Añadiendo reserva de habitacion a convencion");
 		return pp.adicionarHabitacionConvencion(idReserva, idHabitacion);
 	}
+	public List<Usuario> darBuenosClientes()
+	{
+		return pp.darBuenosClientes();
+	}
 
 }

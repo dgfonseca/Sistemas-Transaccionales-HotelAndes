@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -82,10 +84,29 @@ class SQLUsuario {
 		sql1+= "on hospeda.idreserva=reserva.id";
 		sql1+="WHERE user.nombre="+pnombre;
 		sql1 += " GROUP BY user.nombre";
-		
-
 		Query q = pm.newQuery(SQL, sql1);
 		return q.executeList();
+	}
+	
+	public List<Usuario> darBuenosClientes(PersistenceManager pm)
+	{
+		Query q=pm.newQuery(SQL,"SELECT US.IDENTIFICACION,US.NOMBRE,US.TIPOIDENTIFICACION,US.CORREO,us.idtipo,SUM(RES.COSTO) FROM " + pp.darTablaUsuario() +" us INNER JOIN "+ pp.darTablaReserva()+" RES ON RES.ID_USUARIO=US.IDENTIFICACION GROUP BY US.IDENTIFICACION,US.NOMBRE,US.TIPOIDENTIFICACION,US.CORREO, us.idtipo HAVING SUM(RES.COSTO)>15000000");
+		List<Usuario> resp= new LinkedList<>();
+		List results=q.executeList();
+		for(Object obj:results)
+		{
+			Object[] datos = (Object[]) obj;
+			long identificacion =  ((BigDecimal) datos [0]).longValue ();
+			String nombre=(String)datos[1];
+			String tipoIdent=(String)datos[2];
+			String correo=(String)datos[3];
+			long iditpo =  ((BigDecimal) datos [4]).longValue ();
+			resp.add(new Usuario(identificacion, tipoIdent, iditpo, correo, nombre));
+			
+		}
+		return resp;
+		
+		
 	}
 
 }

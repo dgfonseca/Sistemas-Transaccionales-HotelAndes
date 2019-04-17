@@ -103,7 +103,7 @@
                 },
                 {
                     "label": "Encontrar buenos clientes",
-                    "event": "nada"
+                    "event": "darBuenosClientes"
                 },
                 {
                     "label": "Encontrar servicios poca demanda",

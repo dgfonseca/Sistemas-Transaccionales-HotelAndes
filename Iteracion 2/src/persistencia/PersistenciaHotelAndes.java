@@ -897,6 +897,11 @@ public class PersistenciaHotelAndes {
 		return sqlReservaConvencion.darFechaConvencion(pmf.getPersistenceManager(), id);
 	}
 	
+	public List<Usuario> darBuenosClientes()
+	{
+		return sqlUsuario.darBuenosClientes(pmf.getPersistenceManager());
+	}
+	
 	public HabitacionConvencion adicionarHabitacionConvencion(long idReserva, int idHabitacion)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
