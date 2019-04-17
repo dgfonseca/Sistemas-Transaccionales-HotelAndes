@@ -27,6 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,11 +53,14 @@ import negocio.Apartan;
 import negocio.Convencion;
 import negocio.Habitacion;
 import negocio.HabitacionConvencion;
+import negocio.HabitacionMantenimiento;
 import negocio.HotelAndes;
+import negocio.Mantenimiento;
 import negocio.Plan;
 import negocio.Reserva;
 import negocio.ReservaConvencion;
 import negocio.Servicio;
+import negocio.ServicioMantenimiento;
 import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
@@ -595,6 +599,155 @@ public class InterfazApp extends JFrame implements ActionListener
 				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 			}
 
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	
+	public void iniciarMantenimiento()
+	{
+		try
+		{
+			String rta = "";
+			String n1 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha inicial del mantenimiento. Formato AAAAMMDD");
+			String n2 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha final del manenimiento. Formato AAAAMMDD");
+		
+			rta+= "Fecha inicio mantenimiento: " + n1 + "\n";
+			rta += "Fecha fin mantenimiento: " + n2  +"\n";
+			panelDatos.actualizarInterfaz(rta);
+			
+			BigDecimal f2 = new BigDecimal(n2);
+			BigDecimal f1 = new BigDecimal(n1);
+			
+			List<Habitacion> habitaciones = hotel.darHabitaciones();
+			List<Habitacion> disponiblesMantenimiento = new ArrayList<Habitacion>();
+			List<Object[]> servicios = hotel.darServiciosObjeto();
+			List<Object[]> disponiblesMantenimientoServicios = new ArrayList<Object[]>();
+			for(Habitacion hab: habitaciones)
+			{
+				disponiblesMantenimiento.add(hab);
+			}
+			for(Object[] servi: servicios)
+			{
+				disponiblesMantenimientoServicios.add(servi);
+			}
+			
+			if(n1 != null && n2 != null)
+			{
+				List<Object[]> habs = hotel.darHabitacionesMantenimientoFecha();
+				for(Object[] objeto:habs)
+				{
+					BigDecimal f3 = (BigDecimal) objeto[1];
+					BigDecimal f4 = (BigDecimal) objeto[2];
+					if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
+					{
+						for(int i = 0; i<disponiblesMantenimiento.size(); i++)
+						{
+							Habitacion habitacion = disponiblesMantenimiento.get(i);
+							BigDecimal numero = (BigDecimal) objeto[5];
+							String num = numero + "";
+							Integer numInt = new Integer(num);
+							if(habitacion.getNumeroHabitacion() == numInt)
+							{
+								disponiblesMantenimiento.remove(i);
+							}
+						}
+					}
+				}
+				List<Object[]> servs = hotel.darServiciosMantenimientoEnFecha();
+				for(Object[] serv:servs)
+				{
+					BigDecimal f3 = (BigDecimal) serv[1];
+					BigDecimal f4 = (BigDecimal) serv[2];
+					if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
+					{
+						for(int i = 0; i<disponiblesMantenimientoServicios.size(); i++)
+						{
+							Object[] objeto = disponiblesMantenimientoServicios.get(i);
+							BigDecimal numero = (BigDecimal) serv[5];
+							if(objeto[0] == numero)
+							{
+								disponiblesMantenimientoServicios.remove(i);
+							}
+						}
+					}
+				}
+				rta += "Habitaciones disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimiento.size() + "\n";
+				for(Habitacion hab: disponiblesMantenimiento)
+				{
+					rta += "Habitación número " + hab.getNumeroHabitacion() + " Descripcion: " + hab.getDescripcion() + "\n";
+				}
+				rta += "\n\n";
+				rta+= "Servicios disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimientoServicios.size() + "\n";
+				for(Object[] objeto: disponiblesMantenimientoServicios)
+				{
+					rta += "Servicio número " + objeto[0] + " Nombre: " + objeto[5] + "\n";
+				}
+				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(this, "Por favor, seleccione las habitaciones que desea poner en mantenimiento, separadas por coma.");
+				String respuesta = JOptionPane.showInputDialog("Habitaciones para el mantenimiento.");
+				
+				JOptionPane.showMessageDialog(this, "Por favor, seleccione los servicios que desea poner en mantenimiento, separados por coma.");
+				String respuesta2 = JOptionPane.showInputDialog("Servicios para el mantenimiento.");
+				
+				String descripcionMantenimiento = JOptionPane.showInputDialog(this, "Descripción del mantenimiento a realizar");
+				
+				String idMantenimiento = JOptionPane.showInputDialog(this, "Id del mantenimiento a realizar");
+				
+				long fI = Long.parseLong(n1);
+				long fF = Long.parseLong(n2);
+				
+				Mantenimiento mantenimiento = hotel.adicionarMantenimiento(Long.parseLong(idMantenimiento), fI, fF, descripcionMantenimiento);
+				if(mantenimiento != null)
+				{
+					rta +="Mantenimiento creado satisfactoriamente. \n";
+					String[] habsRespuesta = respuesta.split(",");
+					for(int i = 0; i<habsRespuesta.length; i++)
+					{
+						String habitacionParaMantenimiento = habsRespuesta[i].trim();
+						HabitacionMantenimiento creada = hotel.adicionarHabitacionMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(habitacionParaMantenimiento));
+						if(creada != null)
+						{
+							rta += creada.getNumeroHabitacion() + " añadida exitosamente al mantenimiento. \n";
+						}
+						else
+						{
+							rta += "No se pudo añadir la habitación " + habitacionParaMantenimiento + " al mantenimiento. \n";
+						}
+					}
+					
+					String[] servRespuesta = respuesta2.split(",");
+					for(int i = 0; i<servRespuesta.length; i++)
+					{
+						String servicioParaMantenimiento = servRespuesta[i].trim();
+						ServicioMantenimiento creada = hotel.adicionarServicioMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(servicioParaMantenimiento));
+						if(creada != null)
+						{
+							rta+= creada.getIdServicio() + " añadida exitosamente al mantenimiento. \n";
+						}
+						else
+						{
+							rta += "No se pudo añadir el servicio " + servicioParaMantenimiento + " al mantenimiento. \n";
+						}
+					}
+				}
+				else
+				{
+					rta+="No se pudo crear el mantenimiento. \n";
+				}
+				
+				panelDatos.actualizarInterfaz(rta);
+				
+				
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario.");
+			}
 		}
 		catch (Exception e)
 		{

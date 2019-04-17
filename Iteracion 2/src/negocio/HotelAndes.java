@@ -286,5 +286,35 @@ public class HotelAndes {
 		log.info("Eliminando servicios de la convención ");
 		return pp.eliminarServiciosConvencion(id, numeroServicio);
 	}
+	
+	public List<Object[]> darHabitacionesMantenimientoFecha()
+	{
+		log.info("Dando habitaciones en mantenimiento con fecha");
+		return pp.darHabitacionesEnMantenimientoFecha();
+	}
+	
+	public Mantenimiento adicionarMantenimiento(long idServicio, long fechaInicio, long fechaFin, String descripcion)
+	{
+		log.info("Generando mantenimiento");
+		return pp.adicionarMantenimiento(idServicio, fechaInicio, fechaFin, descripcion);
+	}
+	
+	public HabitacionMantenimiento adicionarHabitacionMantenimiento(long id, int numeroHabitacion)
+	{
+		log.info("Insertando habitacion en mantenimiento");
+		return pp.adicionarHabitacionMantenimiento(id, numeroHabitacion);
+	}
+	
+	public List<Object[]> darServiciosMantenimientoEnFecha()
+	{
+		log.info("Dando servicios en mantenimiento con fecha");
+		return pp.darServiciosEnMantenimientoFecha();
+	}
+	
+	public ServicioMantenimiento adicionarServicioMantenimiento(long id, int idServicio)
+	{
+		log.info("Insertando servicio en mantenimiento");
+		return pp.adicionarServicioMantenimiento(id, idServicio);
+	}
 
 }

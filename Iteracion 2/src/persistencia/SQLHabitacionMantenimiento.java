@@ -15,7 +15,7 @@ class SQLHabitacionMantenimiento {
 	 *****************************************************************/
 	/**
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
-	 * Se renombra acá para facilitar la escritura de las sentencias
+	 * Se renombra acï¿½ para facilitar la escritura de las sentencias
 	 */
 	private final static String SQL = PersistenciaHotelAndes.SQL;
 
@@ -23,16 +23,16 @@ class SQLHabitacionMantenimiento {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLHabitacionMantenimiento (PersistenciaHotelAndes pp)
 	{
@@ -61,6 +61,15 @@ class SQLHabitacionMantenimiento {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionMantenimiento ());
 		q.setResultClass(HabitacionMantenimiento.class);
 		List<HabitacionMantenimiento> resp = (List<HabitacionMantenimiento>) q.execute();
+		return resp;
+	}
+	
+	public List<Object[]> darHabitacionesEnMantenimientoFecha(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "select *\n" + 
+				"from mantenimientos m, habitacion_mantenimientos hm\n" + 
+				"where m.id = hm.id_mantenimiento");
+		List<Object[]> resp = (List<Object[]>) q.executeList();
 		return resp;
 	}
 

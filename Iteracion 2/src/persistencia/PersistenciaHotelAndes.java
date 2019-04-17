@@ -21,12 +21,15 @@ import negocio.Consumen;
 import negocio.Convencion;
 import negocio.Habitacion;
 import negocio.HabitacionConvencion;
+import negocio.HabitacionMantenimiento;
+import negocio.Mantenimiento;
 import negocio.Ofrecen;
 import negocio.Plan;
 import negocio.Producto;
 import negocio.Reserva;
 import negocio.ReservaConvencion;
 import negocio.Servicio;
+import negocio.ServicioMantenimiento;
 import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
@@ -59,6 +62,9 @@ public class PersistenciaHotelAndes {
 	private SQLReservaConvencion sqlReservaConvencion;
 	private SQLHabitacionConvencion sqlHabitacionConvencion;
 	private SQLServiciosConvencion sqlServiciosConvencion;
+	private SQLHabitacionMantenimiento sqlHabitacionMantenimiento;
+	private SQLMantenimiento sqlMantenimiento;
+	private SQLServicioMantenimiento sqlServicioMantenimiento;
 
 
 
@@ -93,7 +99,7 @@ public class PersistenciaHotelAndes {
 		tablas.add("HABITACION_CONVENCION");
 		tablas.add("MANTENIMIENTOS");
 		tablas.add("SERVICIO_MANTENIMIENTO");
-		tablas.add("HABITACION_MANTENIMIENTOs");
+		tablas.add("HABITACION_MANTENIMIENTOS");
 
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
@@ -180,6 +186,9 @@ public class PersistenciaHotelAndes {
 		sqlReservaConvencion = new SQLReservaConvencion(this);
 		sqlHabitacionConvencion = new SQLHabitacionConvencion(this);
 		sqlServiciosConvencion = new SQLServiciosConvencion(this);
+		sqlHabitacionMantenimiento = new SQLHabitacionMantenimiento(this);
+		sqlMantenimiento = new SQLMantenimiento(this);
+		sqlServicioMantenimiento = new SQLServicioMantenimiento(this);
 
 	}
 
@@ -449,6 +458,18 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlServiciosConvencion.darServiciosConvencionIdConvencion(pmf.getPersistenceManager(), id);
 	}
+	
+	public List<Object[]> darHabitacionesEnMantenimientoFecha()
+	{
+		return sqlHabitacionMantenimiento.darHabitacionesEnMantenimientoFecha(pmf.getPersistenceManager());
+	}
+	
+	public List<Object[]> darServiciosEnMantenimientoFecha()
+	{
+		return sqlServicioMantenimiento.darServiciosEnMantenimientoFecha(pmf.getPersistenceManager());
+	}
+	
+	
 
 
 
@@ -825,6 +846,95 @@ public class PersistenciaHotelAndes {
 			log.trace ("Inserci�n de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
 
 			return new Apartan (numeroHabitacion, idServicio);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	public Mantenimiento adicionarMantenimiento(long idServicio, long fechaInicio, long fechaFin, String descripcion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlMantenimiento.adicionarMantenimiento(pm, idServicio, fechaInicio, fechaFin, descripcion);
+			tx.commit();
+
+			log.trace ("Inserci�n de mantenimiento: [" + fechaInicio + ", "+fechaFin + ", " + descripcion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Mantenimiento (idServicio, fechaInicio, fechaFin, descripcion);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public HabitacionMantenimiento adicionarHabitacionMantenimiento(long idServicio, int numeroHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlHabitacionMantenimiento.adicionaHabitacionMantenimiento(pmf.getPersistenceManager(), idServicio, numeroHabitacion);
+			tx.commit();
+
+			log.trace ("Inserci�n de habitacion en mantenimiento: [" + idServicio + ", "+ numeroHabitacion + "]. " + tuplasInsertadas + " tuplas insertadas");
+
+			return new HabitacionMantenimiento(idServicio, numeroHabitacion);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public ServicioMantenimiento adicionarServicioMantenimiento(long idMantenimiento, int idServicio) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlServicioMantenimiento.adicionaServicioMantenimiento(pmf.getPersistenceManager(), idMantenimiento, idServicio);
+			tx.commit();
+
+			log.trace ("Inserci�n de servicio en mantenimiento: [" + idMantenimiento + ", "+ idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
+
+			return new ServicioMantenimiento(idMantenimiento, idServicio);
 		}
 		catch (Exception e)
 		{
