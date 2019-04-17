@@ -70,7 +70,7 @@
                 },
                 {
                     "label": "Registrar fin mantenimiento",
-                    "event": "nada"
+                    "event": "finalizarMantenimiento"
                 }
 			]
 		},

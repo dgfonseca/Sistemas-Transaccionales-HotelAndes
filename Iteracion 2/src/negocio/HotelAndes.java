@@ -316,5 +316,11 @@ public class HotelAndes {
 		log.info("Insertando servicio en mantenimiento");
 		return pp.adicionarServicioMantenimiento(id, idServicio);
 	}
+	
+	public List<Mantenimiento> darMantenimientos()
+	{
+		log.info("Dando todos los mantenimientos");
+		return pp.darMantenimientos();
+	}
 
 }

@@ -469,6 +469,11 @@ public class PersistenciaHotelAndes {
 		return sqlServicioMantenimiento.darServiciosEnMantenimientoFecha(pmf.getPersistenceManager());
 	}
 	
+	public List<Mantenimiento> darMantenimientos()
+	{
+		return sqlMantenimiento.darMantenimientos(pmf.getPersistenceManager());
+	}
+	
 	
 
 
