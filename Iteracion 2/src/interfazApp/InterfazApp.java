@@ -756,6 +756,37 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	
+	public void finalizarMantenimiento()
+	{
+		try
+		{
+			String rta ="";
+			List<Mantenimiento> mantenimientos = hotel.darMantenimientos();
+			for(Mantenimiento man: mantenimientos)
+			{
+				rta += "Id del mantenimiento: " + man.getId() + " Descripcion del mantenimiento: " + man.getDescripcion() + " Desde-hasta: " + man.getFechaInicio() + "-" + man.getFechaFin() + "\n";
+			}
+			panelDatos.actualizarInterfaz(rta);
+			
+			String idM = JOptionPane.showInputDialog("Favor ingrese el número del mantenimiento que desea dar por terminado");
+			if(idM != null)
+			{
+				Long id = Long.parseLong(idM);
+			}
+			else
+			{
+				rta += "Operación cancelada por el usuario. \n";
+			}
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
 
 
