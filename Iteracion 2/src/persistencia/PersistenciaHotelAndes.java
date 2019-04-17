@@ -439,6 +439,16 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlApartan.darContienen(pmf.getPersistenceManager());
 	}
+	
+	public List<Object[]> darHabitacionConvencionIdConvencion(long id)
+	{
+		return sqlHabitacionConvencion.darHabitacionConvencionIdConvencion(pmf.getPersistenceManager(), id);
+	}
+	
+	public List<Object[]> darServiciosConvencionIdConvencion(long id)
+	{
+		return sqlServiciosConvencion.darServiciosConvencionIdConvencion(pmf.getPersistenceManager(), id);
+	}
 
 
 
@@ -971,6 +981,68 @@ public class PersistenciaHotelAndes {
 			pm.close();
 		}
 	}
+	
+	public long eliminarHabitacionConvencion(long id, int numeroHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasEliminadas = sqlHabitacionConvencion.eliminarHabitacionConvencion(pm, id, numeroHabitacion);
+			tx.commit();
+
+			log.trace ("Eliminacion habitacion convencion: [" + numeroHabitacion + ", " + id + "]. " + tuplasEliminadas + " tuplas eliminadas");
+
+			return tuplasEliminadas;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return 0;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public long eliminarServiciosConvencion(long id, int numeroServicio) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasEliminadas = sqlServiciosConvencion.eliminarServiciosConvencion(pm, id, numeroServicio);
+			tx.commit();
+
+			log.trace ("Eliminacion servicio convencion: [" + numeroServicio + ", " + id + "]. " + tuplasEliminadas + " tuplas eliminadas");
+
+			return tuplasEliminadas;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return 0;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
 	
 
 

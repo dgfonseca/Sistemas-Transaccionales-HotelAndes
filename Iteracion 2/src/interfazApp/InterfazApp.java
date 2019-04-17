@@ -334,10 +334,102 @@ public class InterfazApp extends JFrame implements ActionListener
 
 	}
 	
-	public void darConvenciones()
+	public void cancelarReservasConvencion()
 	{
-		List<Object[]> con = hotel.darServiciosObjeto();
-		panelDatos.actualizarInterfaz(con.size() + "");
+		try
+		{
+			String n1 = JOptionPane.showInputDialog(this, "Por favor ingrese el id de la convención a la cual desea cancelar reservas,");
+			if(n1 != null)
+			{
+				long id = Long.parseLong(n1);
+				String nombre = hotel.darNombreConvencion(id);
+				if(nombre != null)
+				{
+					String rta = "";
+					rta += "Modificando reservas para la convención " + nombre + "\n";
+					List<Object[]> habitaciones = hotel.darHabitacionConvencionIdConvencion(id);
+					rta+= "Habitaciones reservadas para la convención: " + habitaciones.size() + "\n";
+					for(Object[] objeto: habitaciones)
+					{
+						rta+= "Habitacion número " + objeto[1] + "\n"; 
+					}
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar una o mas habitaciones para su convención. Por favor ingrese los números de las habitaciones separados por coma.");
+					String aEliminar = JOptionPane.showInputDialog(this, "Por favor ingrese los números de las habitaciones que desea dejar de reservar. ");
+					if(aEliminar != null)
+					{
+						String[] habs = aEliminar.split(",");
+						for(int i = 0; i< habs.length; i++)
+						{
+							String hab = habs[i].trim();
+							int num = Integer.parseInt(hab);
+							long eliminadas = hotel.eliminarHabitacionConvencion(id, num);
+							if(eliminadas > 0)
+							{
+								rta += "Se eliminó la habitación " + num + " de la reserva de la convención. \n";	
+							}
+							else
+							{
+								rta += "No se pudo eliminar la habitación " + num  + " de la reserva de la convención. \n";
+							}
+						}
+					}
+					else
+					{
+						rta += "Operación cancelada por el usuario. \n";
+					}
+					
+					panelDatos.actualizarInterfaz(rta);
+					List<Object[]> servicios = hotel.darServiciosConvencionIdConvencion(id);
+					rta+= "Servicios reservados para la convención: " + servicios.size() + "\n";
+					for(Object[] objeto:servicios)
+					{
+						rta+= "Servicio número " + objeto[1] + "\n"; 
+					}
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar uno o más servicios para su convención. Por favor ingrese los números de los servicios separados por coma.");
+					String aEliminar2 = JOptionPane.showInputDialog(this, "Por favor ingrese los números de los servicios que desea dejar de reservar. ");
+					if(aEliminar2 != null)
+					{
+						String[] servs = aEliminar2.split(",");
+						for(int i = 0; i<servs.length; i++)
+						{
+							String servicio = servs[i].trim();
+							int num = Integer.parseInt(servicio);
+							long elim = hotel.eliminarServiciosConvencion(id, num);
+							if(elim > 0)
+							{
+								rta += "Se eliminó el servicio " + num + " de la reserva de la convención. \n";	
+							}
+							else
+							{
+								rta += "No se pudo eliminar el servicio " + num  + " de la reserva de la convención. \n";
+							}
+						}
+					}
+					else
+					{
+						rta += "Operación cancelada por el usuario. \n";
+					}
+					panelDatos.actualizarInterfaz(rta);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("No existe convención con el id dado.");
+				}
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario.");
+			}
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	public void reservarConvencion()

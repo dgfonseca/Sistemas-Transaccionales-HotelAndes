@@ -262,5 +262,29 @@ public class HotelAndes {
 	{
 		return pp.darConvenciones();
 	}
+	
+	public List<Object[]> darHabitacionConvencionIdConvencion(long id)
+	{
+		log.info("Dando habitaciones de la convención");
+		return pp.darHabitacionConvencionIdConvencion(id);
+	}
+	
+	public List<Object[]> darServiciosConvencionIdConvencion(long id)
+	{
+		log.info("Dando servicios de la convencion");
+		return pp.darServiciosConvencionIdConvencion(id);
+	}
+	
+	public long eliminarHabitacionConvencion(long id, int numeroHabitacion)
+	{
+		log.info("Eliminando habitaciones de la convención ");
+		return pp.eliminarHabitacionConvencion(id, numeroHabitacion);
+	}
+	
+	public long eliminarServiciosConvencion(long id, int numeroServicio)
+	{
+		log.info("Eliminando servicios de la convención ");
+		return pp.eliminarServiciosConvencion(id, numeroServicio);
+	}
 
 }

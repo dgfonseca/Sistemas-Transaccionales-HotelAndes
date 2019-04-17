@@ -64,6 +64,14 @@ class SQLServiciosConvencion {
 		return resp;
 	}
 	
+	public List<Object[]> darServiciosConvencionIdConvencion(PersistenceManager pm, long id)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServiciosConvencion() + " WHERE ID_RESERVA = ?");
+		q.setParameters(id);
+		List<Object[]> resp = (List<Object[]>) q.executeList();
+		return resp;
+	}
+	
 
 
 }

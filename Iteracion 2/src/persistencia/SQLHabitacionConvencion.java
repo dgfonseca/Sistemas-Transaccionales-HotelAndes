@@ -15,7 +15,7 @@ public class SQLHabitacionConvencion {
 	 *****************************************************************/
 	/**
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
-	 * Se renombra acá para facilitar la escritura de las sentencias
+	 * Se renombra acï¿½ para facilitar la escritura de las sentencias
 	 */
 	private final static String SQL = PersistenciaHotelAndes.SQL;
 
@@ -23,16 +23,16 @@ public class SQLHabitacionConvencion {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLHabitacionConvencion (PersistenciaHotelAndes pp)
 	{
@@ -61,6 +61,14 @@ public class SQLHabitacionConvencion {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionConvencion ());
 		q.setResultClass(HabitacionConvencion.class);
 		List<HabitacionConvencion> resp = (List<HabitacionConvencion>) q.execute();
+		return resp;
+	}
+	
+	public List<Object[]> darHabitacionConvencionIdConvencion(PersistenceManager pm, long id)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionConvencion() + " WHERE ID_RESERVA = ?");
+		q.setParameters(id);
+		List<Object[]> resp = (List<Object[]>) q.executeList();
 		return resp;
 	}
 

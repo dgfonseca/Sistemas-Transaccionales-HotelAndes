@@ -58,7 +58,7 @@
                 },
                 {
                     "label": "Cancelar reservas convención",
-                    "event": "darConvenciones"
+                    "event": "cancelarReservasConvencion"
                 },
                 {
                     "label": "Registrar fin convención",
