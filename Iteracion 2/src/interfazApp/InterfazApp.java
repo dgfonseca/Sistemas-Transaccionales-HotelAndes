@@ -810,6 +810,77 @@ public class InterfazApp extends JFrame implements ActionListener
     	
     }
     	
+    
+    public void registrarLlegada()
+    {
+    	try
+    	{
+    		
+    		String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la llegada");
+    		
+    		long id=Long.parseLong(idR);
+        	if(idR != null)
+        	{
+        		long ti = hotel.registrarLlegada(id);
+        		if(ti == 0)
+        		{
+        			throw new Exception("No se pudo registrar la llegada " + idR);
+        		}
+        		
+        		String rta = "Registrar una llegada de un usuario a una reserva \n\n";
+        		rta += "Llegada " + ti  + " registrada exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
+    
+    }
+    
+    
+    public void registrarSalida()
+    {
+    	try
+    	{
+    		
+    		String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la salida");
+    		
+    		long id=Long.parseLong(idR);
+        	if(idR != null)
+        	{
+        		long ti = hotel.registrarSalida(id);
+        		if(ti == 0)
+        		{
+        			throw new Exception("No se pudo registrar la salida " + idR);
+        		}
+        		
+        		String rta = "Registrar una salida de un usuario a una reserva \n\n";
+        		rta += "Salida " + ti  + " registrada exitosamente \n";
+        		rta += "Operacion terminada";
+        		panelDatos.actualizarInterfaz(rta);
+        	}
+        	else
+        	{
+        		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+        	}
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    	
+    
+    }
     	
     
     

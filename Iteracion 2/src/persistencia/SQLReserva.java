@@ -51,6 +51,21 @@ class SQLReserva {
         return (long) q.executeUnique();
 	}
 	
+	public long registrarLlegada(PersistenceManager pm, long idReserva)
+	{
+		Query q =pm.newQuery(SQL, "UPDATE "+pp.darTablaReserva() + "set estaregistrado = 'T' WHERE ID = ?");
+		q.setParameters(idReserva);
+		return (long)q.executeUnique();
+	}
+	
+	
+	public long registrarSalida(PersistenceManager pm, long idReserva)
+	{
+		Query q =pm.newQuery(SQL, "UPDATE "+pp.darTablaReserva() + "set estaPago = 'T' WHERE ID = ?");
+		q.setParameters(idReserva);
+		return (long)q.executeUnique();
+	}
+	
 
 	
 

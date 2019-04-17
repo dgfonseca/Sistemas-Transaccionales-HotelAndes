@@ -101,6 +101,17 @@ public class HotelAndes {
 		return pp.darServicios();
 	}
 	
+	public long registrarSalida(long idReserva)
+	{
+        log.info ("Registrando salida: " + idReserva);
+		return pp.registrarSalida(idReserva);
+	}
+	public long registrarLlegada(long idReserva)
+	{
+        log.info ("Registrando llegada: " + idReserva);
+		return pp.registrarLlegada(idReserva);
+	}
+	
 	public Producto adicionarProducto (double costo,String nombre,int cantidad)
 	{
         log.info ("Adicionando Producto: " + nombre+" "+  cantidad);
