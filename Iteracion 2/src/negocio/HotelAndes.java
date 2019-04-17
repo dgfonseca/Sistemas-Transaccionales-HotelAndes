@@ -146,12 +146,15 @@ public class HotelAndes {
 		}
 	}
 	
-	public Sirven adicionarSirven (long idServicio,int numeroHabitacion)
+	public Sirven adicionarSirven (long idServicio,int numeroHabitacion, long fechaUso) throws Exception
 	{
+		if(fechaUso>20190000) {
         log.info ("Adicionando sirven: " + idServicio+" "+  numeroHabitacion);
-        Sirven tipoBebida = pp.adicionarSirven(idServicio, numeroHabitacion);		
+        Sirven tipoBebida = pp.adicionarSirven(idServicio, numeroHabitacion, fechaUso);		
         log.info ("Adicionando sirven: " + tipoBebida);
-        return tipoBebida;
+        return tipoBebida;}
+		else throw new Exception("Ese año es invalido, tiene que ser escrito año-mes-dia, sin las barras espaciadoras ej 20190211 donde año es 2019 mes es 02 y dia es 11");
+
 	}
 	
 	public Tipo adicionarTipo (String nombre, long idtipo)

@@ -776,13 +776,14 @@ public class InterfazApp extends JFrame implements ActionListener
     		panelDatos.actualizarInterfaz(text);
     		String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
     		String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
-    		
+    		String fecha=JOptionPane.showInputDialog(this,"Fecha de uso del servicio");
     		long ids=Long.parseLong(idServicio);
     		int numHabitacion=Integer.parseInt(numeroHabitacion);
+    		long uso=Long.parseLong(fecha);
 
         	if(idServicio != null)
         	{
-        		Sirven ti = hotel.adicionarSirven(ids, numHabitacion);
+        		Sirven ti = hotel.adicionarSirven(ids, numHabitacion,uso);
         		if(ti == null)
         		{
         			throw new Exception("No se pudo agregar el Servicio a la habitacion" + numHabitacion);

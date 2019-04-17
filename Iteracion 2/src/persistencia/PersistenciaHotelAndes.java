@@ -753,19 +753,19 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	public Sirven adicionarSirven(long idServicio, int numeroHabitacion) 
+	public Sirven adicionarSirven(long idServicio, int numeroHabitacion, long fechauso) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlSirven.adicionarSirven(pm, idServicio, numeroHabitacion);
+			long tuplasInsertadas = sqlSirven.adicionarSirven(pm, idServicio, numeroHabitacion, fechauso);
 			tx.commit();
 
 			log.trace ("Inserci�n de gustan: [" + numeroHabitacion + ", " + idServicio + "]. " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Sirven (idServicio, numeroHabitacion);
+			return new Sirven (idServicio, numeroHabitacion,fechauso);
 		}
 		catch (Exception e)
 		{
