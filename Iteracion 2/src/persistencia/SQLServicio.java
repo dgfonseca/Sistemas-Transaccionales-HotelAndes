@@ -71,12 +71,12 @@ class SQLServicio {
 	}
 
 
-	public Servicio darServicioPorNombre (PersistenceManager pm, String nombre) 
+	public List<Servicio> darServicioPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio () + " WHERE nombre = ?");
 		q.setResultClass(Servicio.class);
 		q.setParameters(nombre);
-		return (Servicio) q.executeUnique();
+		return  q.executeList();
 	}
 
 
@@ -91,20 +91,19 @@ class SQLServicio {
 		return (List<Servicio>) q.executeList();
 	}
 
-	public List<Servicio> dar20Servicios(PersistenceManager pm)
+	public List<Object[]> dar20Servicios(PersistenceManager pm)
 	{
 		String sql1= "SELECT id, count(*) ";
 		sql1+= "FROM "+ pp.darTablaSirven()+" sirv ";
-		sql1+="INNER JOIN "+ pp.darTablaServicio() +" serv";
+		sql1+="INNER JOIN "+ pp.darTablaServicio() +" serv ";
 		sql1+= "on serv.id=sirv.idServicio";
 		sql1+=" INNER JOIN "+ pp.darTablaServiciosConvencion()+" servco ";
-		sql1+=" on  ON SERV.ID=SERVCO.ID_SERVICIO ";
-        sql1+="WHERE ROWNUM<=20";
+		sql1+=" ON SERV.ID=SERVCO.ID_SERVICIO ";
+        sql1+="WHERE ROWNUM<=20 ";
         sql1+="GROUP BY id ";
         sql1+=" ORDER BY COUNT(ID) DESC";
 		Query q = pm.newQuery(SQL, sql1);
-		q.setResultClass(Servicio.class);
-		return (List<Servicio>) q.executeList();
+		return  q.executeList();
 	}
 
 

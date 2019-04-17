@@ -921,7 +921,24 @@ public class InterfazApp extends JFrame implements ActionListener
     	}
     	
     }
-    
+    public void darServiciosPopulares()
+    {
+    	try
+    	{
+    		String texto = "";
+    		List<long[]>rta = hotel.darServiciosPopulares();
+    		for(int i=0;i<rta.size();i++)
+    		{
+    			texto+=" Servicio con id: "+rta.get(i)[0]+" Cantidad Veces: "+rta.get(i)[1];
+    		}
+    		panelDatos.actualizarInterfaz(texto);
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    		panelDatos.actualizarInterfaz(generarMensajeError(e));
+    	}
+    }
     public void darHabitacionesYDinero()
     {
     	try
@@ -938,10 +955,6 @@ public class InterfazApp extends JFrame implements ActionListener
     			
     		}
     		panelDatos.actualizarInterfaz(text);
-    		
-        	
-        	
-        
     	}
     	catch (Exception e)
     	{

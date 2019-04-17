@@ -195,10 +195,14 @@ public class HotelAndes {
         log.info ("Listando Habitaciones");
 		return pp.darHabitacionesEIndiceOcupacion();
 	}
-	public List<Servicio> darServiciosPopulares()
+	public List<long[]> darServiciosPopulares()
 	{
 		log.info("Listando Servicios");
 		return pp.darServiciosPopulares();
+	}
+	public Servicio darServicioPorId(long pid)
+	{
+		return pp.darServicioPorId(pid);
 	}
 
 }

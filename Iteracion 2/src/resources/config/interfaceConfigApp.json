@@ -83,7 +83,7 @@
 				},
 				{
 					"label": "Mostrar los 20 servicios más populares",
-					"event": "nada"
+					"event": "darServiciosPopulares"
 				},
 				{
 					"label": "Mostrar el índice de ocupación",

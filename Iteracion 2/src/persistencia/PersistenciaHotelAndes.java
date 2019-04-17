@@ -325,6 +325,11 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlConvencion.darConvenciones(pmf.getPersistenceManager());
 	}
+	
+	public Servicio darServicioPorId(long pnombre)
+	{
+		return sqlServicio.darServicioPorId(pmf.getPersistenceManager(), pnombre);
+	}
 
 
 
@@ -467,9 +472,18 @@ public class PersistenciaHotelAndes {
 	 * Requerimiento Funcional 2
 	 * @return
 	 */
-	public List<Servicio> darServiciosPopulares(){
-		return sqlServicio.dar20Servicios(pmf.getPersistenceManager());
+	public List<long[]> darServiciosPopulares(){
+		List<long []> resp = new LinkedList<long []> ();
+		List<Object []> tuplas =  sqlServicio.dar20Servicios(pmf.getPersistenceManager());
+		for ( Object [] tupla : tuplas)
+		{
+			long [] datosResp = new long [2];
 
+			datosResp [0] = ((BigDecimal) tupla [0]).longValue ();
+			datosResp [1] = ((BigDecimal) tupla [1]).longValue ();
+			resp.add (datosResp);
+		}
+		return resp;
 	}
 	
 	
