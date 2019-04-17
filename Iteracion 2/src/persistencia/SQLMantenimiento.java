@@ -16,17 +16,17 @@ class SQLMantenimiento {
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El manejador de persistencia general de la aplicación
+	 * El manejador de persistencia general de la aplicaciï¿½n
 	 */
 	private PersistenciaHotelAndes pp;
 
 	/* ****************************************************************
-	 * 			Métodos
+	 * 			Mï¿½todos
 	 *****************************************************************/
 
 	/**
 	 * Constructor
-	 * @param pp - El Manejador de persistencia de la aplicación
+	 * @param pp - El Manejador de persistencia de la aplicaciï¿½n
 	 */
 	public SQLMantenimiento (PersistenciaHotelAndes pp)
 	{
@@ -49,6 +49,13 @@ class SQLMantenimiento {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMantenimientos ());
 		q.setResultClass(Mantenimiento.class);
 		return (List<Mantenimiento>) q.executeList();
+	}
+	
+	public long eliminarMantenimiento (PersistenceManager pm, long idMantenimiento)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMantenimientos() + " WHERE ID = ? ");
+		q.setParameters(idMantenimiento);
+		return (long) q.executeUnique();
 	}
 
 	

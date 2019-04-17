@@ -72,6 +72,13 @@ class SQLHabitacionMantenimiento {
 		List<Object[]> resp = (List<Object[]>) q.executeList();
 		return resp;
 	}
+	
+	public long eliminarHabitacionMantenimientoIdMantenimiento(PersistenceManager pm, long idMantenimiento)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionMantenimiento() + " WHERE ID_MANTENIMIENTO = ? ");
+		q.setParameters(idMantenimiento);
+		return (long) q.executeUnique();
+	}
 
 
 }

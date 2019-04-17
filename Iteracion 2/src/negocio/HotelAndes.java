@@ -353,5 +353,23 @@ public class HotelAndes {
 		log.info("Dando todos los mantenimientos");
 		return pp.darMantenimientos();
 	}
+	
+	public long eliminarMantenimiento(long id)
+	{
+		log.info("Eliminando mantenimiento");
+		return pp.eliminarMantenimiento(id);
+	}
+	
+	public long eliminarHabitacionMantenimientoIdMantenimiento(long id)
+	{
+		log.info("Eliminando habitacion mantenimiento");
+		return pp.eliminarHabitacionMantenimientoIdMantenimiento(id);
+	}
+	
+	public long eliminarServicioMantenimientoIdMantenimiento(long id)
+	{
+		log.info("Eliminando servicio mantenimiento");
+		return pp.eliminarServiciosMantenimientoIdMantenimiendo(id);
+	}
 
 }

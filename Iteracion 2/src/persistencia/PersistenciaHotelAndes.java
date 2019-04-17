@@ -473,6 +473,8 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlMantenimiento.darMantenimientos(pmf.getPersistenceManager());
 	}
+	
+	
 
 
 
@@ -1209,6 +1211,96 @@ public class PersistenciaHotelAndes {
 			e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public long eliminarMantenimiento(long id) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasEliminadas = sqlMantenimiento.eliminarMantenimiento(pm, id);
+			tx.commit();
+
+			log.trace ("Eliminacion mantenimiento: [" + id + "]. " + tuplasEliminadas + " tuplas eliminadas");
+
+			return tuplasEliminadas;
+		}
+		catch (Exception e)
+		{
+			       	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return 0;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public long eliminarServiciosMantenimientoIdMantenimiendo(long id) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasEliminadas = sqlServicioMantenimiento.eliminarServicioMantenimientoIdMantenimiento(pm, id);
+			tx.commit();
+
+			log.trace ("Eliminacion servicio mantenimiento: [" + id + "]. " + tuplasEliminadas + " tuplas eliminadas");
+
+			return tuplasEliminadas;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return 0;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public long eliminarHabitacionMantenimientoIdMantenimiento(long id) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasEliminadas = sqlHabitacionMantenimiento.eliminarHabitacionMantenimientoIdMantenimiento(pm, id);
+			tx.commit();
+
+			log.trace ("Eliminacion habitacion mantenimiento: [" + id + "]. " + tuplasEliminadas + " tuplas eliminadas");
+
+			return tuplasEliminadas;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return 0;
 		}
 		finally
 		{
