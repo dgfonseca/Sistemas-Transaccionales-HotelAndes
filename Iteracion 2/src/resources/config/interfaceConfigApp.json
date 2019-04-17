@@ -22,7 +22,7 @@
 				},
 				{
 					"label": "Registrar habitación",
-					"event": "adicionarHabitacion"
+					"event": "adicionarApartan"
 				},
                 {
                     "label": "Registrar un servicio del hotel",

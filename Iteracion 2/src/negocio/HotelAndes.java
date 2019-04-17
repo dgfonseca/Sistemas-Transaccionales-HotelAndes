@@ -207,5 +207,9 @@ public class HotelAndes {
 	{
 		return pp.darServicioPorId(pid);
 	}
+	public List<Habitacion> darHabitaciones()
+	{
+		return pp.darHabitaciones();
+	}
 
 }
