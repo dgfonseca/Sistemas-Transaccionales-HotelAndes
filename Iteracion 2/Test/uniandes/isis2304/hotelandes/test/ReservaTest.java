@@ -32,7 +32,7 @@ public class ReservaTest {
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
 	 */
-	private static final String CONFIG_TABLAS_A = "./src/main/resources/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS_A = "./src/resources/config/TablasBD_A.json"; 
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -190,6 +190,7 @@ public class ReservaTest {
 		try 
 		{
 			Gson gson = new Gson( );
+			//Aca esta el error//
 			FileReader file = new FileReader (archConfig);
 			JsonReader reader = new JsonReader ( file );
 			config = gson.fromJson(reader, JsonObject.class);

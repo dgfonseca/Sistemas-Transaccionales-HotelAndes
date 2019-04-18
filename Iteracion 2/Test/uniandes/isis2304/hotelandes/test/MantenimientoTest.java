@@ -32,7 +32,7 @@ public class MantenimientoTest {
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
 	 */
-	private static final String CONFIG_TABLAS_A = "./src/main/resources/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS_A = "./src/resources/config/TablasBD_A.json"; 
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -87,14 +87,14 @@ public class MantenimientoTest {
 			// Lectura de los Mantenimientos de bebida con un Mantenimiento de bebida adicionado
 			String nombreMantenimientoBebida1 = "Vino tinto";
 			long id=1000;
-			Mantenimiento MantenimientoBebida1 = parranderos.adicionarMantenimiento() ;
+			Mantenimiento MantenimientoBebida1 = parranderos.adicionarMantenimiento(1, 20190000, 20190101, "Hola");
 			lista = parranderos.darMantenimientos();
 			assertEquals ("Debe haber un Mantenimiento de bebida creado !!", 1, lista.size ());
 			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", MantenimientoBebida1, lista.get (0));
 
 			// Lectura de los Mantenimientos de bebida con dos Mantenimientos de bebida adicionados
 			String nombreMantenimientoBebida2 = "Cerveza";
-			Mantenimiento MantenimientoBebida2 = parranderos.adicionarMantenimiento (nombreMantenimientoBebida2,20202);
+			Mantenimiento MantenimientoBebida2 = parranderos.adicionarMantenimiento(1, 20190000, 20190101, "Hola");
 			lista = parranderos.darMantenimientos();
 			assertEquals ("Debe haber dos Mantenimientos de bebida creados !!", 2, lista.size ());
 			assertTrue ("El primer Mantenimiento de bebida adicionado debe estar en la tabla", MantenimientoBebida1.equals (lista.get (0)) || MantenimientoBebida1.equals (lista.get (1)));
@@ -151,11 +151,11 @@ public class MantenimientoTest {
 
 			// Lectura de los Mantenimientos de bebida con un Mantenimiento de bebida adicionado
 			String nombreMantenimientoBebida1 = "Vino tinto";
-			Mantenimiento MantenimientoBebida1 = parranderos.adicionarMantenimiento (nombreMantenimientoBebida1,99);
+			Mantenimiento MantenimientoBebida1 = parranderos.adicionarMantenimiento(1, 20190000, 20190101, "Hola");
 			lista = parranderos.darMantenimientos();
 			assertEquals ("Debe haber un Mantenimiento de bebida creado !!", 1, lista.size ());
 
-			Mantenimiento MantenimientoBebida2 = parranderos.adicionarMantenimiento (nombreMantenimientoBebida1,1021);
+			Mantenimiento MantenimientoBebida2 = parranderos.adicionarMantenimiento(1, 20190000, 20190101, "Hola");
 			assertNull ("No puede adicionar dos Mantenimientos de bebida con el mismo nombre !!", MantenimientoBebida2);
 		}
 		catch (Exception e)
@@ -192,6 +192,7 @@ public class MantenimientoTest {
 			Gson gson = new Gson( );
 			FileReader file = new FileReader (archConfig);
 			JsonReader reader = new JsonReader ( file );
+			System.out.println("Entro");
 			config = gson.fromJson(reader, JsonObject.class);
 			log.info ("Se encontró un archivo de configuración de tablas válido");
 		} 
