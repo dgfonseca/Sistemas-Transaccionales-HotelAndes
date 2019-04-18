@@ -1,0 +1,11 @@
+//Ingresa el id de la convención a la cual le retirará reservas de habitaciones y servicios
+//El sistema con consultas por el id de parámetro retorna aquellas que están reservadas por esa convención
+Select *
+From habitacion_convencion
+Where idReserva = idParam
+
+Select *
+From servicios_convencion
+Where id_reserva = idParam
+
+//El Usuario selecciona aquellas habitaciones y servicios que desea eliminar, y los elimina con el id de la convencion y el numero de la habitación o el id del servicio usando los métodos creados con anterioridad.

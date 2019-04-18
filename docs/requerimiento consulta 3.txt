@@ -1,0 +1,20 @@
+//Requerimiento de mostrar el indice de ocupación del hotel para una fecha dada.
+//Se le solicita al usuario que ingrese una fecha para realizar el calculo.
+
+//Se buscan todas las habitaciones del hotel, mediante la sentencia
+Select *
+From Habitacion
+
+//Se buscan todas las habitaciones ocupadas, mediante la sentencia 
+select r.fechaInicio, r.fechafin, h.numerohabitacion
+from reserva r, apartan a, habitacion h
+where r.id = a.idreserva and a.numerohabitacion = h.numerohabitacion
+
+union all
+
+select rc.fechainicio, rc.fechafin, h.numeroHabitacion
+from reserva_convenciones rc, habitacion_convencion hc, habitacion h
+where rc.id = hc.id_reserva and hc.numerohabitacion = h.numerohabitacion
+
+//Se revisa de acuerdo a la fecha ingresada, si en esa fecha se encuentran ocupadas habitaciones, y se añaden a una lista externa las que quedan "libres" en esa fecha.
+Se calcula usando lógica el resto.

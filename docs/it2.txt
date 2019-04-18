@@ -1,0 +1,58 @@
+//Requerimiento de reservar habitaciones y servicios
+
+//Aqui están las habitaciones ocupadas con su fecha de inicio y fin
+
+select r.fechaInicio, r.fechafin, h.numerohabitacion
+from reserva r, apartan a, habitacion h
+where r.id = a.idreserva and a.numerohabitacion = h.numerohabitacion
+
+union all
+
+select rc.fechainicio, rc.fechafin, h.numeroHabitacion
+from reserva_convenciones rc, habitacion_convencion hc, habitacion h
+where rc.id = hc.id_reserva and hc.numerohabitacion = h.numerohabitacion
+
+//Servicios ocupados con su fecha de inicio y fin
+Select s.id, sm.id_mantenimiento, m.fechaInicio, m.fechaFin
+From servicios s, servicio_mantenimiento sm, mantenimientos m
+Where s.id=sm.id_servicio and sm.id_mantenimiento = m.id  
+union all 
+Select s.id, sc.id_reserva, rc.fechainicio, rc.fechafin
+From servicios s, servicios_convencion sc, reserva_convenciones rc
+Where s.id = sc.id_servicio and sc.id_reserva = rc.id
+
+
+
+
+//Mantenimientos
+//Habitaciones en mantenimiento
+select *
+from mantenimientos m, habitacion_mantenimientos hm
+where m.id = hm.id_mantenimiento
+
+//Servicios en mantenimiento
+Select *
+From mantenimientos m, servicio_mantenimiento sm
+Where m.id = sm.id_mantenimiento
+
+
+
+
+//Habitaciones ocupadas con fecha inicio y fin
+select r.fechaInicio, r.fechafin, h.numerohabitacion
+from reserva r, apartan a, habitacion h
+where r.id = a.idreserva and a.numerohabitacion = h.numerohabitacion
+
+
+//Nota
+En muchos casos se reutilizaron sentencias. Es decir, las sentencias para consultar todos los servicios por ejemplo, eran las mismas para consultar todas las habitaciones.
+
+//Nota 2
+En algunos casos se prefirió utilizar lógica en java, a realizar sentencias más complejas al servidor.
+
+//Nota 3
+En algunos casos, se utilizaron como retorno listas de objetos (List<Object[]>) ya que se presentaron problemas haciendo su representación con .class.
+
+
+
+

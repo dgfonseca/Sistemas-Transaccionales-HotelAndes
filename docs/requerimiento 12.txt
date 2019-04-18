@@ -1,0 +1,31 @@
+//Ingresa el id de la convención a la cual le reservará
+//Ingresa el número de habitaciones a reservar
+//Ingresa la capacidad de cada Habitación a reservar
+
+//Encuentra las habitaciones que están ocupadas con 
+select r.fechaInicio, r.fechafin, h.numerohabitacion
+from reserva r, apartan a, habitacion h
+where r.id = a.idreserva and a.numerohabitacion = h.numerohabitacion
+
+union all
+
+select rc.fechainicio, rc.fechafin, h.numeroHabitacion
+from reserva_convenciones rc, habitacion_convencion hc, habitacion h
+where rc.id = hc.id_reserva and hc.numerohabitacion = h.numerohabitacion
+
+
+//Después utilizando lógica, encuentra las habitaciones que están disponibles para reservar
+
+//Si el total de habitaciones disponibles es suficiente, realiza la reserva de las habitaciones con los métodos de insertar creados con anterioridad.
+
+//Después realiza lo mismo con los servicios
+Select s.id, sm.id_mantenimiento, m.fechaInicio, m.fechaFin
+From servicios s, servicio_mantenimiento sm, mantenimientos m
+Where s.id=sm.id_servicio and sm.id_mantenimiento = m.id  
+union all 
+Select s.id, sc.id_reserva, rc.fechainicio, rc.fechafin
+From servicios s, servicios_convencion sc, reserva_convenciones rc
+Where s.id = sc.id_servicio and sc.id_reserva = rc.id
+
+//Del mismo modo, utilizando lógica encuentra los servicios disponibles y le da al usuario la lista para que él escoja cuales añadir.
+//Agrega con los métodos de insertar creados con anterioridad. 
