@@ -27,22 +27,22 @@ public class ConexionTest {
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
 	 */
-	private static final String CONFIG_TABLAS_A = "./src/main/resources/config/TablasBD_A.json"; 
+	private static final String CONFIG_TABLAS_A = "./src/resources/config/TablasBD_A.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe, pero el esquema de la BD no se ha creado
 	 */
-	private static final String CONFIG_TABLAS_B = "./src/main/resources/config/TablasBD_B.json"; 
+	private static final String CONFIG_TABLAS_B = "./src/resources/config/TablasBD_B.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia NO existe
 	 */
-	private static final String CONFIG_TABLAS_ERR_DS = "./src/main/resources/config/TablasBD_ErrorDataStore.json"; 
+	private static final String CONFIG_TABLAS_ERR_DS = "./src/resources/config/TablasBD_ErrorDataStore.json"; 
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia NO existe
 	 */
-	private static final String CONFIG_TABLAS_ERR_USER = "./src/main/resources/config/TablasBD_ErrorInvalidUser.json"; 
+	private static final String CONFIG_TABLAS_ERR_USER = "./src/resources/config/TablasBD_ErrorInvalidUser.json"; 
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -140,53 +140,7 @@ public class ConexionTest {
 		}
     }
 
-    /**
-     * Método que prueba el intento de acceso a una base de datos inaccesible, por causa:
-     * 1. El esquema no ha sido creado o es erróneo - Intentar acceder a una tabla inexistente
-     */
-    @Test
-    public void tablaInexistenteTest ()
-    {
-    	// Probar primero la conexión a la base de datos
-		try
-		{
-	    	log.info ("Probando el acceso a la base de datos con datos de usuario correctos, pero sin crear el esquema");
-			parranderos = new HotelAndes (openConfig (CONFIG_TABLAS_B));
-		}
-		catch (Exception e)
-		{
-//			e.printStackTrace();
-			log.info ("Prueba de tabla inexistente incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
-			log.info ("La causa es: " + e.getCause ().toString ());
-
-			String msg = "Prueba de tabla inexistente incompleta. No se pudo conectar a la base de datos !!.\n";
-			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
-			System.out.println (msg);
-			fail (msg);
-		}
-		
-		// Ahora si se puede probar si la tabla existe o no...
-		try
-		{
-			parranderos.darTipos ();
-			fail ("Debería fallar. La tabla consultada no existe en la BD");
-		}
-		catch (Exception e)
-		{
-//			e.printStackTrace();
-			log.info ("Prueba de tabla inexistente correcta. La excepción generada es: " + e.getClass ().getName ());
-			log.info ("La causa es: " + e.getCause ().toString ());
-
-			String msg = "Prueba de tabla inexistente correcta.\n";
-			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
-			System.out.println (msg);
-		}
-		finally
-		{
-			parranderos.limpiarParranderos ();
-    		parranderos.cerrarUnidadPersistencia ();    		
-		}
-    }
+   
 
 	/* ****************************************************************
 	 * 			Métodos de configuración
