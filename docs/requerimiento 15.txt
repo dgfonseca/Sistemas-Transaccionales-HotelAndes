@@ -1,0 +1,15 @@
+//El usuario ingresa una fecha inicial y una fecha final para general el mantenimiento.
+
+//El sistema busca las habitaciones que se ya se encuentran en mantenimiento (y no pueden entrar en mantenimiento en la misma fecha)
+select *
+from mantenimientos m, habitacion_mantenimientos hm
+where m.id = hm.id_mantenimiento
+
+//Del mismo modo, busca los servicios
+Select *
+From mantenimientos m, servicio_mantenimiento sm
+Where m.id = sm.id_mantenimiento
+
+El sistema genera una lista con la respuesta anterior, y el usuario selecciona aquellas habitaciones y servicios que desea entrar en mantenimiento.
+
+//El usuario ingresa entonces el nombre del mantenimiento, una descripción, y con los métodos de crearMantenimiento anteriores, se añade un nuevo mantenimiento a la base de datos, y se añaden las habitaciones y los servicios a mantenimiento.

@@ -1,0 +1,18 @@
+//El sistema muestra todos los mantenimientos actuales y el usuario selecciona aquel que desea dar por terminado.
+
+//Primero elimina aquellos servicios que están en dicho mantenimiento
+Delete 
+From Servicio_Mantenimiento
+Where id_Servicio = id
+
+//Despues elimina las habitaciones
+Delete
+From Habitacion_mantenimientos
+Where id_Mantenimiento = id
+
+//Y por ultimo elimina el mantenimiento
+Delete
+From Mantenimientos
+Where id = id
+
+//De esta forma no se generar problemas de huerfanos

@@ -1,0 +1,19 @@
+//Se le muestran al usuario una serie de características predeterminadas
+//Dependiendo de la eleccion del usuario, así mismo se realizan las consultas.
+
+//En el caso que escoja filtrar por rango de precio, recibe parámetros XX y YY
+Select *
+From Servicios
+Where Costo BETWEEN XX and YY
+
+//En el caso de que escoja filtrar por hora, recibe Parametro HHMM
+Select *
+From Servicios
+Where fechaApertura <= HHMM and fechaCiere>= HHMM
+
+//En el caso de que escoja filtrar por capacidad, recibe parámetro XX
+Select *
+From Servicios
+Where CantidadPersonas >= XX
+
+//En el caso que escoja filtrar por palabra clave, recibe como parámetro una palabra y realiza una consulta sobre todos los servicios, y utilizando lógica de Java encuentra los que tengan esa palabra en su descripción.
