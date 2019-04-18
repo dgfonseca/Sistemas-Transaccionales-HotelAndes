@@ -474,6 +474,21 @@ public class PersistenciaHotelAndes {
 		return sqlMantenimiento.darMantenimientos(pmf.getPersistenceManager());
 	}
 	
+	public List<Object[]> darServiciosEnPrecio(double costo1, double costo2)
+	{
+		return sqlServicio.darServiciosEnPrecio(pmf.getPersistenceManager(), costo1, costo2);
+	}
+	
+	public List<Object[]> darServiciosPosiblesEnHora(long hora)
+	{
+		return sqlServicio.darServiciosPosiblesEnHora(pmf.getPersistenceManager(), hora);
+	}
+	
+	public List<Object[]> darServicioParaCapacidad(int num)
+	{
+		return sqlServicio.darServiciosParaCapacidad(pmf.getPersistenceManager(), num);
+	}
+	
 	
 
 

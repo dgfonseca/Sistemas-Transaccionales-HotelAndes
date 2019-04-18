@@ -121,6 +121,30 @@ class SQLServicio {
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList();
 	}
+	
+	public List<Object[]> darServiciosEnPrecio(PersistenceManager pm, double costo1, double costo2)
+	{
+		String sql = "Select * From " + pp.darTablaServicio() + " Where COSTO BETWEEN ? and ? ";
+		Query q = pm.newQuery(SQL, sql);
+		q.setParameters(costo1, costo2);
+		return q.executeList();
+	}
+	
+	public List<Object[]> darServiciosPosiblesEnHora(PersistenceManager pm, long hora)
+	{
+		String sql = "Select * from " + pp.darTablaServicio() + " where fechaApertura <= ? and fechaCierre >= ? ";
+		Query q = pm.newQuery(SQL, sql);
+		q.setParameters(hora, hora);
+		return q.executeList();
+	}
+	
+	public List<Object[]> darServiciosParaCapacidad(PersistenceManager pm, int num)
+	{
+		String sql = "Select * from " + pp.darTablaServicio() + " Where cantidadPersonas >= ? ";
+		Query q = pm.newQuery(SQL, sql);
+		q.setParameters(num);
+		return q.executeList();
+	}
 
 
 

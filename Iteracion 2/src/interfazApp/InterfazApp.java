@@ -65,6 +65,7 @@ import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
 import negocio.Usuario;
+import oracle.sql.CLOB;
 
 
 /**
@@ -551,7 +552,7 @@ public class InterfazApp extends JFrame implements ActionListener
 						rta += "Servicios del hotel disponibles para la convencion \n";
 						for(Object[] ser:serviciosDisponibles)
 						{
-							rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[5] + " " + ser[6] + "\n";
+							rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[3] + " " + ser[4] + "\n";
 						}
 						panelDatos.actualizarInterfaz(rta);
 						
@@ -685,7 +686,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta+= "Servicios disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimientoServicios.size() + "\n";
 				for(Object[] objeto: disponiblesMantenimientoServicios)
 				{
-					rta += "Servicio número " + objeto[0] + " Nombre: " + objeto[5] + "\n";
+					rta += "Servicio número " + objeto[0] + " Nombre: " + objeto[3] + "\n";
 				}
 				panelDatos.actualizarInterfaz(rta);
 				JOptionPane.showMessageDialog(this, "Por favor, seleccione las habitaciones que desea poner en mantenimiento, separadas por coma.");
@@ -872,28 +873,64 @@ public class InterfazApp extends JFrame implements ActionListener
 			String rta = "Esta característica le permitirá buscar servicios dadas ciertas caracterísitcas. \n";
 			rta += "Por favor seleccione el número de la característica por la cual le gustaría filtrar los servicios. \n";
 			rta += "1. Filtrar por precio (entre un rango de la forma XX,YY) \n";
-			rta += "2. Posibilidad de recibir el servicio en una cierta hora (de la forma XXXX) \n";
+			rta += "2. Posibilidad de recibir el servicio en una cierta hora (de la forma HHMM) \n";
 			rta += "3. Aptos para un número de personas (de la forma XX) \n";
 			rta += "4. Palabra clave (buscar la palabra clave en la descripcion del servicio \n";
 			
 			panelDatos.actualizarInterfaz(rta);
 			
-			String cara = JOptionPane.showInputDialog("Seleccione el número de la caracteristica,");
+			String cara = JOptionPane.showInputDialog("Seleccione el número de la caracteristica de la lista mostrada,");
 			if(cara.equals("1"))
 			{
+				cara = JOptionPane.showInputDialog("Ingrese el rango de precio (XX,YY)");
+				String[] costos = cara.split(",");
+				String costo1 = costos[0].trim();
+				String costo2 = costos[1].trim();
 				
+				List<Object[]> servicios = hotel.darServiciosEnPrecio(Double.parseDouble(costo1), Double.parseDouble(costo2));
+				rta += "Hay un total de " + servicios.size() + " servicios en el rango de precios dado. \n";
+				for(Object[] objeto : servicios)
+				{
+					rta += "ID: " + objeto[0] + " Capacidad: " + objeto[1] + " Costo: " + objeto[2] + " Nombre: " + objeto[3] + " Descripcion: " + objeto[4] + "\n";
+				}
+				panelDatos.actualizarInterfaz(rta);
 			}
 			else if(cara.equals("2"))
 			{
-				
+				cara = JOptionPane.showInputDialog("Ingrese la hora en la que gustaría acceder al servicio. Formato HHMM");
+				List<Object[]> servicios = hotel.darServiciosPosiblesEnHora(Long.parseLong(cara));
+				rta += "Hay un total de " + servicios.size() + " servicios accesibles a la hora solicitada. \n";
+				for(Object[] objeto : servicios)
+				{
+					rta += "ID: " + objeto[0] + " Capacidad: " + objeto[1] + " Costo: " + objeto[2] + " Nombre: " + objeto[3] + " Descripcion: " + objeto[4] + "\n";
+				}
+				panelDatos.actualizarInterfaz(rta);
 			}
 			else if(cara.equals("3"))
 			{
-				
+				cara = JOptionPane.showInputDialog("Ingrese la capacidad deseada para buscar los servicios.");
+				List<Object[]> servicios = hotel.darServiciosParaCapacidad(Integer.parseInt(cara));
+				rta += "Hay un total de " + servicios.size() + " servicios accesibles con la capacidad buscada. \n";
+				for(Object[] objeto : servicios)
+				{
+					rta += "ID: " + objeto[0] + " Capacidad: " + objeto[1] + " Costo: " + objeto[2] + " Nombre: " + objeto[3] + " Descripcion: " + objeto[4] + "\n";
+				}
+				panelDatos.actualizarInterfaz(rta);
 			}
 			else if(cara.equals("4"))
 			{
-				
+				cara = JOptionPane.showInputDialog("Ingrese la palabra clave para realizar la búsqueda de servicios.");
+				List<Object[]> servicios = hotel.darServiciosObjeto();
+				for(Object[] objeto : servicios)
+				{
+					String algo = (String)objeto[4];
+					if(algo.contains(cara))
+					{
+						rta += "ID: " + objeto[0] + " Capacidad: " + objeto[1] + " Costo: " + objeto[2] + " Nombre: " + objeto[3] + " Descripcion: " + objeto[4] + "\n";
+					}
+					
+				}
+				panelDatos.actualizarInterfaz(rta);
 			}
 			else
 			{
