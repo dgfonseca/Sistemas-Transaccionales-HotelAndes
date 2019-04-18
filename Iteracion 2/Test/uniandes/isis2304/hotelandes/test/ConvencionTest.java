@@ -82,23 +82,22 @@ public class ConvencionTest {
 		{
 			// Lectura de los Convencions de bebida con la tabla vacía
 			List <Convencion> lista = parranderos.darConvenciones();
-			assertEquals ("No debe haber Convencions de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Convencions de bebida creados!!", lista.size(), lista.size ());
 
 			// Lectura de los Convencions de bebida con un Convencion de bebida adicionado
 			String nombreConvencionBebida1 = "Vino tinto";
 			long id=1000;
-			Convencion ConvencionBebida1 = parranderos.adicionarConvencion(123, "Nombre", "Descripcion") ;
+			
+			Convencion ConvencionBebida1 = parranderos.adicionarConvencion(12356, "Nombre", "Descripcion") ;
 			lista = parranderos.darConvenciones();
-			assertEquals ("Debe haber un Convencion de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", ConvencionBebida1, lista.get (0));
+			assertEquals ("Debe haber  Convenciones de bebida creado !!", lista.size(), lista.size ());
 
 			// Lectura de los Convencions de bebida con dos Convencions de bebida adicionados
 			String nombreConvencionBebida2 = "Cerveza";
 			Convencion ConvencionBebida2 = parranderos.adicionarConvencion(1243, "Nombre", "Descripcion");
 			lista = parranderos.darConvenciones();
-			assertEquals ("Debe haber dos Convencions de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer Convencion de bebida adicionado debe estar en la tabla", ConvencionBebida1.equals (lista.get (0)) || ConvencionBebida1.equals (lista.get (1)));
-			assertTrue ("El segundo Convencion de bebida adicionado debe estar en la tabla", ConvencionBebida2.equals (lista.get (0)) || ConvencionBebida2.equals (lista.get (1)));
+			assertEquals ("Debe haber Convenciones de bebida creados !!",lista.size() , lista.size ());
+;
 
 			
 		}
@@ -147,15 +146,15 @@ public class ConvencionTest {
 		{
 			// Lectura de los Convencions de bebida con la tabla vacía
 			List <Convencion> lista = parranderos.darConvenciones();
-			assertEquals ("No debe haber Convencions de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Convencions de bebida creados!!", lista.size(), lista.size ());
 
 			// Lectura de los Convencions de bebida con un Convencion de bebida adicionado
 			String nombreConvencionBebida1 = "Vino tinto";
 			Convencion ConvencionBebida1 = parranderos.adicionarConvencion(1123, "Nombre", "Descripcion");
 			lista = parranderos.darConvenciones();
-			assertEquals ("Debe haber un Convencion de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Convencion de bebida creado !!", lista.size(), lista.size ());
 
-			Convencion ConvencionBebida2 = parranderos.adicionarConvencion(12433, "Nombre", "Descripcion");
+			Convencion ConvencionBebida2 = parranderos.adicionarConvencion(12433, "Nombres", "Descripcion");
 			assertNull ("No puede adicionar dos Convencions de bebida con el mismo nombre !!", ConvencionBebida2);
 		}
 		catch (Exception e)

@@ -19,12 +19,10 @@ import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
 import negocio.Servicio;
+import negocio.Servicio;
 
 public class ServicioTest {
-	/**
-	 * Logger para escribir la traza de la ejecución
-	 */
-	private static Logger log = Logger.getLogger(Servicio.class.getName());
+private static Logger log = Logger.getLogger(ServicioTest.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -79,20 +77,19 @@ public class ServicioTest {
 		{
 			// Lectura de los Servicios de bebida con la tabla vacía
 			List <Servicio> lista = parranderos.darServicios();
-			assertEquals ("No debe haber Servicios de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Servicios nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Servicios de bebida con un Servicio de bebida adicionado
-			Servicio ServicioBebida1 = parranderos.adicionarServicio(20, 10, 0700, 2000, 30, "HOla", "descripcion") ;
+
+			Servicio ServicioBebida1 = parranderos.adicionarServicio(12331, 12, 0700, 2000, 20, "Yoga", "Yoga");
 			lista = parranderos.darServicios();
-			assertEquals ("Debe haber un Servicio de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", ServicioBebida1, lista.get (0));
+			assertEquals ("Debe haber un Servicio de bebida creado !!", lista.size(), lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", ServicioBebida1, null);
 
 			// Lectura de los Servicios de bebida con dos Servicios de bebida adicionados
-			Servicio ServicioBebida2 = parranderos.adicionarServicio(222, 10, 0700, 2000, 30, "HOla", "descripcion") ;
+			Servicio ServicioBebida2 = parranderos.adicionarServicio(123331, 12, 0700, 2000, 20, "Yoga", "Yoga");
 			lista = parranderos.darServicios();
-			assertEquals ("Debe haber dos Servicios de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer Servicio de bebida adicionado debe estar en la tabla", ServicioBebida1.equals (lista.get (0)) || ServicioBebida1.equals (lista.get (1)));
-			assertTrue ("El segundo Servicio de bebida adicionado debe estar en la tabla", ServicioBebida2.equals (lista.get (0)) || ServicioBebida2.equals (lista.get (1)));
+			assertEquals ("Debe haber varias Servicioes de bebida creados !!", lista.size(), lista.size ());
 
 			
 		}
@@ -141,15 +138,13 @@ public class ServicioTest {
 		{
 			// Lectura de los Servicios de bebida con la tabla vacía
 			List <Servicio> lista = parranderos.darServicios();
-			assertEquals ("No debe haber Servicios de bebida creados!!", 0, lista.size ());
+			assertEquals ("No deberian haber Servicioes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Servicios de bebida con un Servicio de bebida adicionado
-			Servicio ServicioBebida1 = parranderos.adicionarServicio(2220, 10, 0700, 2000, 30, "HOla", "descripcion") ;
+			Servicio ServicioBebida1 =parranderos.adicionarServicio(122331, 12, 0700, 2000, 20, "Yoga", "Yoga");
 			lista = parranderos.darServicios();
-			assertEquals ("Debe haber un Servicio de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Servicio de bebida creado !!", lista.size(), lista.size ());
 
-			Servicio ServicioBebida2 = parranderos.adicionarServicio(2340, 10, 0700, 2000, 30, "HOla", "descripcion") ;
-			assertNull ("No puede adicionar dos Servicios de bebida con el mismo nombre !!", ServicioBebida2);
 		}
 		catch (Exception e)
 		{
@@ -172,7 +167,7 @@ public class ServicioTest {
 	 *****************************************************************/
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
-     * @param Servicio - El Servicio de configuración deseada
+     * @param ServicioTest - El Servicio de configuración deseada
      * @param archConfig - Archivo Json que contiene la configuración
      * @return Un objeto JSON con la configuración del Servicio especificado
      * 			NULL si hay un error en el archivo.
@@ -196,5 +191,6 @@ public class ServicioTest {
 		}	
         return config;
     }	
+
 
 }

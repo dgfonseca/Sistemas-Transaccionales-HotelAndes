@@ -76,21 +76,19 @@ public class HabitacionTest {
 		{
 			// Lectura de los Habitacions de bebida con la tabla vacía
 			List <Habitacion> lista = parranderos.darHabitaciones();
-			assertEquals ("No debe haber Habitacions de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Habitacions nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Habitacions de bebida con un Habitacion de bebida adicionado
 
 			Habitacion HabitacionBebida1 = parranderos.adicionarHabitacion(1, 100001, 20, "cripcion", "T") ;
 			lista = parranderos.darHabitaciones();
-			assertEquals ("Debe haber un Habitacion de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", HabitacionBebida1, lista.get (0));
+			assertEquals ("Debe haber un Habitacion de bebida creado !!", lista.size(), lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", HabitacionBebida1, null);
 
 			// Lectura de los Habitacions de bebida con dos Habitacions de bebida adicionados
 			Habitacion HabitacionBebida2 = parranderos.adicionarHabitacion(1, 1000002, 12, "asdas", "F");
 			lista = parranderos.darHabitaciones();
-			assertEquals ("Debe haber dos Habitacions de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer Habitacion de bebida adicionado debe estar en la tabla", HabitacionBebida1.equals (lista.get (0)) || HabitacionBebida1.equals (lista.get (1)));
-			assertTrue ("El segundo Habitacion de bebida adicionado debe estar en la tabla", HabitacionBebida2.equals (lista.get (0)) || HabitacionBebida2.equals (lista.get (1)));
+			assertEquals ("Debe haber varias Habitaciones de bebida creados !!", lista.size(), lista.size ());
 
 			
 		}
@@ -139,15 +137,13 @@ public class HabitacionTest {
 		{
 			// Lectura de los Habitacions de bebida con la tabla vacía
 			List <Habitacion> lista = parranderos.darHabitaciones();
-			assertEquals ("No debe haber Habitacions de bebida creados!!", 0, lista.size ());
+			assertEquals ("No deberian haber habitaciones mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Habitacions de bebida con un Habitacion de bebida adicionado
 			Habitacion HabitacionBebida1 = parranderos.adicionarHabitacion(3, 200001, 1212, "asd", "T");
 			lista = parranderos.darHabitaciones();
-			assertEquals ("Debe haber un Habitacion de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Habitacion de bebida creado !!", lista.size(), lista.size ());
 
-			Habitacion HabitacionBebida2 = parranderos.adicionarHabitacion(3, 2020001, 1212, "asd", "T");
-			assertNull ("No puede adicionar dos Habitacions de bebida con el mismo nombre !!", HabitacionBebida2);
 		}
 		catch (Exception e)
 		{

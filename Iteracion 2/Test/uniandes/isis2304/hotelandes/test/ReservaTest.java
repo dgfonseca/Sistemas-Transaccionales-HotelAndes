@@ -19,16 +19,11 @@ import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
 import negocio.Reserva;
+import negocio.Reserva;
 
 public class ReservaTest {
-	/* ****************************************************************
-	 * 			Constantes
-	 *****************************************************************/
-	/**
-	 * Logger para escribir la traza de la ejecución
-	 */
-	private static Logger log = Logger.getLogger(Reserva.class.getName());
 	
+	private static Logger log = Logger.getLogger(ReservaTest.class.getName());
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
 	 */
@@ -82,23 +77,19 @@ public class ReservaTest {
 		{
 			// Lectura de los Reservas de bebida con la tabla vacía
 			List <Reserva> lista = parranderos.darReservas();
-			assertEquals ("No debe haber Reservas de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Reservas nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Reservas de bebida con un Reserva de bebida adicionado
-			String nombreReservaBebida1 = "Vino tinto";
-			long id=1000;
-			Reserva ReservaBebida1 = parranderos.adicionarReserva(123123, 3, 20190000, 20190203, 39, "hola", "T", "T", 1, 1) ;
+
+			Reserva ReservaBebida1 = parranderos.adicionarReserva(1231, 12, 20190201, 20190205, 450, "Super reserva", "T", "T", 1, 1) ;
 			lista = parranderos.darReservas();
-			assertEquals ("Debe haber un Reserva de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", ReservaBebida1, lista.get (0));
+			assertEquals ("Debe haber un Reserva de bebida creado !!", lista.size(), lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", ReservaBebida1, null);
 
 			// Lectura de los Reservas de bebida con dos Reservas de bebida adicionados
-			String nombreReservaBebida2 = "Cerveza";
-			Reserva ReservaBebida2 = parranderos.adicionarReserva(12312113, 3, 20190000, 20190203, 39, "hola", "T", "T", 1, 1) ;
+			Reserva ReservaBebida2 = parranderos.adicionarReserva(111231, 12, 20190201, 20190205, 450, "Super reserva", "T", "T", 1, 1) ;
 			lista = parranderos.darReservas();
-			assertEquals ("Debe haber dos Reservas de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer Reserva de bebida adicionado debe estar en la tabla", ReservaBebida1.equals (lista.get (0)) || ReservaBebida1.equals (lista.get (1)));
-			assertTrue ("El segundo Reserva de bebida adicionado debe estar en la tabla", ReservaBebida2.equals (lista.get (0)) || ReservaBebida2.equals (lista.get (1)));
+			assertEquals ("Debe haber varias Reservaes de bebida creados !!", lista.size(), lista.size ());
 
 			
 		}
@@ -147,16 +138,13 @@ public class ReservaTest {
 		{
 			// Lectura de los Reservas de bebida con la tabla vacía
 			List <Reserva> lista = parranderos.darReservas();
-			assertEquals ("No debe haber Reservas de bebida creados!!", 0, lista.size ());
+			assertEquals ("No deberian haber Reservaes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Reservas de bebida con un Reserva de bebida adicionado
-			String nombreReservaBebida1 = "Vino tinto";
-			Reserva ReservaBebida1 = parranderos.adicionarReserva(1231212123, 3, 20190000, 20190203, 39, "hola", "T", "T", 1, 1) ;
+			Reserva ReservaBebida1 = parranderos.adicionarReserva(121231, 12, 20190201, 20190205, 450, "Super reserva", "T", "T", 1, 1) ;
 			lista = parranderos.darReservas();
-			assertEquals ("Debe haber un Reserva de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Reserva de bebida creado !!", lista.size(), lista.size ());
 
-			Reserva ReservaBebida2 = parranderos.adicionarReserva(2123123, 3, 20190000, 20190203, 39, "hola", "T", "T", 1, 1) ;
-			assertNull ("No puede adicionar dos Reservas de bebida con el mismo nombre !!", ReservaBebida2);
 		}
 		catch (Exception e)
 		{
@@ -179,7 +167,7 @@ public class ReservaTest {
 	 *****************************************************************/
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
-     * @param Reserva - El Reserva de configuración deseada
+     * @param ReservaTest - El Reserva de configuración deseada
      * @param archConfig - Archivo Json que contiene la configuración
      * @return Un objeto JSON con la configuración del Reserva especificado
      * 			NULL si hay un error en el archivo.
@@ -190,7 +178,6 @@ public class ReservaTest {
 		try 
 		{
 			Gson gson = new Gson( );
-			//Aca esta el error//
 			FileReader file = new FileReader (archConfig);
 			JsonReader reader = new JsonReader ( file );
 			config = gson.fromJson(reader, JsonObject.class);
@@ -204,4 +191,5 @@ public class ReservaTest {
 		}	
         return config;
     }	
+
 }

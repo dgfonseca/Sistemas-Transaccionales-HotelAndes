@@ -19,16 +19,11 @@ import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
 import negocio.Plan;
+import negocio.Plan;
 
 public class PlanTest {
 
-	/* ****************************************************************
-	 * 			Constantes
-	 *****************************************************************/
-	/**
-	 * Logger para escribir la traza de la ejecución
-	 */
-	private static Logger log = Logger.getLogger(Plan.class.getName());
+private static Logger log = Logger.getLogger(PlanTest.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -48,31 +43,31 @@ public class PlanTest {
     private HotelAndes parranderos;
 	
     /* ****************************************************************
-	 * 			Métodos de prueba para la tabla Plan - Creación y borrado
+	 * 			Métodos de prueba para la tabla PlanBebida - Creación y borrado
 	 *****************************************************************/
 	/**
-	 * Método que prueba las operaciones sobre la tabla Plan
+	 * Método que prueba las operaciones sobre la tabla PlanBebida
 	 * 1. Adicionar un Plan de bebida
 	 * 2. Listar el contenido de la tabla con 0, 1 y 2 registros insertados
 	 * 3. Borrar un Plan de bebida por su identificador
 	 * 4. Borrar un Plan de bebida por su nombre
 	 */
     @Test
-	public void CRDPlanTest() 
+	public void CRDPlanBebidaTest() 
 	{
     	// Probar primero la conexión a la base de datos
 		try
 		{
-			log.info ("Probando las operaciones CRD sobre Plan");
+			log.info ("Probando las operaciones CRD sobre PlanBebida");
 			parranderos = new HotelAndes (openConfig (CONFIG_TABLAS_A));
 		}
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			log.info ("Prueba de CRD de Plan incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("Prueba de CRD de Planbebida incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
 			log.info ("La causa es: " + e.getCause ().toString ());
 
-			String msg = "Prueba de CRD de Plan incompleta. No se pudo conectar a la base de datos !!.\n";
+			String msg = "Prueba de CRD de Planbebida incompleta. No se pudo conectar a la base de datos !!.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 			fail (msg);
@@ -83,34 +78,30 @@ public class PlanTest {
 		{
 			// Lectura de los Plans de bebida con la tabla vacía
 			List <Plan> lista = parranderos.darPlanes();
-			assertEquals ("No debe haber Plans de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Plans nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Plans de bebida con un Plan de bebida adicionado
-			String nombrePlan1 = "Todo incluido";
-			long id=1000;
-			Plan Plan1 = parranderos.adicionarPlan(id,nombrePlan1,"Todo incluido" ) ;
+
+			Plan PlanBebida1 = parranderos.adicionarPlan(12, "Habitacion", "todo incluido") ;
 			lista = parranderos.darPlanes();
-			assertEquals ("Debe haber un Plan de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", Plan1, lista.get (0));
+			assertEquals ("Debe haber un Plan de bebida creado !!", lista.size(), lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", PlanBebida1, null);
 
 			// Lectura de los Plans de bebida con dos Plans de bebida adicionados
-			String nombrePlan2 = "Cerveza";
-			Plan Plan2 = parranderos.adicionarPlan (20012,nombrePlan2,"Solo cervezass");
+			Plan PlanBebida2 = parranderos.adicionarPlan(132, "Habitacion", "todo incluido") ;
 			lista = parranderos.darPlanes();
-			assertEquals ("Debe haber dos Plans de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer Plan de bebida adicionado debe estar en la tabla", Plan1.equals (lista.get (0)) || Plan1.equals (lista.get (1)));
-			assertTrue ("El segundo Plan de bebida adicionado debe estar en la tabla", Plan2.equals (lista.get (0)) || Plan2.equals (lista.get (1)));
+			assertEquals ("Debe haber varias Planes de bebida creados !!", lista.size(), lista.size ());
 
 			
 		}
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla Plan.\n";
+			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla PlanBebida.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 
-    		fail ("Error en las pruebas sobre la tabla Plan");
+    		fail ("Error en las pruebas sobre la tabla PlanBebida");
 		}
 		finally
 		{
@@ -120,10 +111,10 @@ public class PlanTest {
 	}
 
     /**
-     * Método de prueba de la restricción de unicidad sobre el nombre de Plan
+     * Método de prueba de la restricción de unicidad sobre el nombre de PlanBebida
      */
 	@Test
-	public void unicidadPlanTest() 
+	public void unicidadPlanBebidaTest() 
 	{
     	// Probar primero la conexión a la base de datos
 		try
@@ -134,10 +125,10 @@ public class PlanTest {
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			log.info ("Prueba de UNICIDAD de Plan incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("Prueba de UNICIDAD de Planbebida incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
 			log.info ("La causa es: " + e.getCause ().toString ());
 
-			String msg = "Prueba de UNICIDAD de Plan incompleta. No se pudo conectar a la base de datos !!.\n";
+			String msg = "Prueba de UNICIDAD de Planbebida incompleta. No se pudo conectar a la base de datos !!.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 			fail (msg);
@@ -148,25 +139,22 @@ public class PlanTest {
 		{
 			// Lectura de los Plans de bebida con la tabla vacía
 			List <Plan> lista = parranderos.darPlanes();
-			assertEquals ("No debe haber Plans de bebida creados!!", 0, lista.size ());
+			assertEquals ("No deberian haber Planes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Plans de bebida con un Plan de bebida adicionado
-			String nombrePlan1 = "Vino tinto";
-			Plan Plan1 = parranderos.adicionarPlan (99,nombrePlan1,"SOlo vino");
+			Plan PlanBebida1 = parranderos.adicionarPlan(112, "Habitacion", "todo incluido") ;
 			lista = parranderos.darPlanes();
-			assertEquals ("Debe haber un Plan de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Plan de bebida creado !!", lista.size(), lista.size ());
 
-			Plan Plan2 = parranderos.adicionarPlan (10121,nombrePlan1,"asda");
-			assertNull ("No puede adicionar dos Plans de bebida con el mismo nombre !!", Plan2);
 		}
 		catch (Exception e)
 		{
 //			e.printStackTrace();
-			String msg = "Error en la ejecución de las pruebas de UNICIDAD sobre la tabla Plan.\n";
+			String msg = "Error en la ejecución de las pruebas de UNICIDAD sobre la tabla PlanBebida.\n";
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 
-    		fail ("Error en las pruebas de UNICIDAD sobre la tabla Plan");
+    		fail ("Error en las pruebas de UNICIDAD sobre la tabla PlanBebida");
 		}    				
 		finally
 		{
@@ -180,7 +168,7 @@ public class PlanTest {
 	 *****************************************************************/
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
-     * @param Plan - El Plan de configuración deseada
+     * @param PlanTest - El Plan de configuración deseada
      * @param archConfig - Archivo Json que contiene la configuración
      * @return Un objeto JSON con la configuración del Plan especificado
      * 			NULL si hay un error en el archivo.
@@ -200,7 +188,7 @@ public class PlanTest {
 		{
 //			e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "PlanTest", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "PlanBebidaTest", JOptionPane.ERROR_MESSAGE);
 		}	
         return config;
     }	

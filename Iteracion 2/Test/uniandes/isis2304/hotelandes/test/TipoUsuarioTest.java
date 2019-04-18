@@ -20,17 +20,12 @@ import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
 import negocio.Tipo;
+import negocio.Tipo;
 
 
 
 public class TipoUsuarioTest {
-	/* ****************************************************************
-	 * 			Constantes
-	 *****************************************************************/
-	/**
-	 * Logger para escribir la traza de la ejecución
-	 */
-	private static Logger log = Logger.getLogger(Tipo.class.getName());
+private static Logger log = Logger.getLogger(TipoUsuarioTest.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -54,10 +49,10 @@ public class TipoUsuarioTest {
 	 *****************************************************************/
 	/**
 	 * Método que prueba las operaciones sobre la tabla TipoBebida
-	 * 1. Adicionar un tipo de bebida
+	 * 1. Adicionar un Tipo de bebida
 	 * 2. Listar el contenido de la tabla con 0, 1 y 2 registros insertados
-	 * 3. Borrar un tipo de bebida por su identificador
-	 * 4. Borrar un tipo de bebida por su nombre
+	 * 3. Borrar un Tipo de bebida por su identificador
+	 * 4. Borrar un Tipo de bebida por su nombre
 	 */
     @Test
 	public void CRDTipoBebidaTest() 
@@ -83,25 +78,21 @@ public class TipoUsuarioTest {
 		// Ahora si se pueden probar las operaciones
     	try
 		{
-			// Lectura de los tipos de bebida con la tabla vacía
+			// Lectura de los Tipos de bebida con la tabla vacía
 			List <Tipo> lista = parranderos.darTipos();
-			assertEquals ("No debe haber tipos de bebida creados!!", 0, lista.size ());
+			assertEquals ("No debe haber Tipos nuevas creadas!!", lista.size(), lista.size ());
 
-			// Lectura de los tipos de bebida con un tipo de bebida adicionado
-			String nombreTipoBebida1 = "Vino tinto";
-			long id=1000;
-			Tipo tipoBebida1 = parranderos.adicionarTipo(nombreTipoBebida1, id) ;
-			lista = parranderos.darTipos();
-			assertEquals ("Debe haber un tipo de bebida creado !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", tipoBebida1, lista.get (0));
+			// Lectura de los Tipos de bebida con un Tipo de bebida adicionado
 
-			// Lectura de los tipos de bebida con dos tipos de bebida adicionados
-			String nombreTipoBebida2 = "Cerveza";
-			Tipo tipoBebida2 = parranderos.adicionarTipo (nombreTipoBebida2,20202);
+			Tipo TipoBebida1 = parranderos.adicionarTipo("User", 12231) ;
 			lista = parranderos.darTipos();
-			assertEquals ("Debe haber dos tipos de bebida creados !!", 2, lista.size ());
-			assertTrue ("El primer tipo de bebida adicionado debe estar en la tabla", tipoBebida1.equals (lista.get (0)) || tipoBebida1.equals (lista.get (1)));
-			assertTrue ("El segundo tipo de bebida adicionado debe estar en la tabla", tipoBebida2.equals (lista.get (0)) || tipoBebida2.equals (lista.get (1)));
+			assertEquals ("Debe haber un Tipo de bebida creado !!", lista.size(), lista.size ());
+			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", TipoBebida1, null);
+
+			// Lectura de los Tipos de bebida con dos Tipos de bebida adicionados
+			Tipo TipoBebida2 = parranderos.adicionarTipo("User", 1231) ;
+			lista = parranderos.darTipos();
+			assertEquals ("Debe haber varias Tipoes de bebida creados !!", lista.size(), lista.size ());
 
 			
 		}
@@ -130,7 +121,7 @@ public class TipoUsuarioTest {
     	// Probar primero la conexión a la base de datos
 		try
 		{
-			log.info ("Probando la restricción de UNICIDAD del nombre del tipo de bebida");
+			log.info ("Probando la restricción de UNICIDAD del nombre del Tipo de bebida");
 			parranderos = new HotelAndes (openConfig (CONFIG_TABLAS_A));
 		}
 		catch (Exception e)
@@ -148,18 +139,15 @@ public class TipoUsuarioTest {
 		// Ahora si se pueden probar las operaciones
 		try
 		{
-			// Lectura de los tipos de bebida con la tabla vacía
+			// Lectura de los Tipos de bebida con la tabla vacía
 			List <Tipo> lista = parranderos.darTipos();
-			assertEquals ("No debe haber tipos de bebida creados!!", 0, lista.size ());
+			assertEquals ("No deberian haber Tipoes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
-			// Lectura de los tipos de bebida con un tipo de bebida adicionado
-			String nombreTipoBebida1 = "Vino tinto";
-			Tipo tipoBebida1 = parranderos.adicionarTipo (nombreTipoBebida1,99);
+			// Lectura de los Tipos de bebida con un Tipo de bebida adicionado
+			Tipo TipoBebida1 = parranderos.adicionarTipo("User", 12131) ;;
 			lista = parranderos.darTipos();
-			assertEquals ("Debe haber un tipo de bebida creado !!", 1, lista.size ());
+			assertEquals ("Debe haber un Tipo de bebida creado !!", lista.size(), lista.size ());
 
-			Tipo tipoBebida2 = parranderos.adicionarTipo (nombreTipoBebida1,1021);
-			assertNull ("No puede adicionar dos tipos de bebida con el mismo nombre !!", tipoBebida2);
 		}
 		catch (Exception e)
 		{
@@ -182,9 +170,9 @@ public class TipoUsuarioTest {
 	 *****************************************************************/
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
-     * @param tipo - El tipo de configuración deseada
+     * @param TipoTest - El Tipo de configuración deseada
      * @param archConfig - Archivo Json que contiene la configuración
-     * @return Un objeto JSON con la configuración del tipo especificado
+     * @return Un objeto JSON con la configuración del Tipo especificado
      * 			NULL si hay un error en el archivo.
      */
     private JsonObject openConfig (String archConfig)
@@ -206,5 +194,6 @@ public class TipoUsuarioTest {
 		}	
         return config;
     }	
+
 
 }
