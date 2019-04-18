@@ -371,5 +371,23 @@ public class HotelAndes {
 		log.info("Eliminando servicio mantenimiento");
 		return pp.eliminarServiciosMantenimientoIdMantenimiendo(id);
 	}
+	
+	public List<Object[]> darServiciosEnPrecio(double costo1, double costo2)
+	{
+		log.info("Dando servicios en rango de precio");
+		return pp.darServiciosEnPrecio(costo1, costo2);
+	}
+	
+	public List<Object[]> darServiciosPosiblesEnHora(long hora)
+	{
+		log.info("Dando servicios posibles en hora");
+		return pp.darServiciosPosiblesEnHora(hora);
+	}
+	
+	public List<Object[]> darServiciosParaCapacidad(int num)
+	{
+		log.info("Dando servicios para capacidad");
+		return pp.darServicioParaCapacidad(num);
+	}
 
 }
