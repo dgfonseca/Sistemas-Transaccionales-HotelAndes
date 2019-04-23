@@ -27,7 +27,6 @@ import negocio.Ofrecen;
 import negocio.Plan;
 import negocio.Producto;
 import negocio.Reserva;
-import negocio.ReservaConvencion;
 import negocio.Servicio;
 import negocio.ServicioMantenimiento;
 import negocio.ServiciosConvencion;
@@ -280,12 +279,7 @@ public class PersistenciaHotelAndes {
 	}
 
 
-	private long nextval ()
-	{
-		long resp = sqlUtil.nextval (pmf.getPersistenceManager());
-		log.trace ("Generando secuencia: " + resp);
-		return resp;
-	}
+
 
 	/**
 	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle espec�fico del problema encontrado

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Apartan;
 import negocio.ServicioMantenimiento;
 
 class SQLServicioMantenimiento {
@@ -40,6 +39,7 @@ class SQLServicioMantenimiento {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionaServicioMantenimiento(PersistenceManager pm, long idmantenimiento, int idservicio) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioMantenimiento () + "(id_mantenimiento, id_servicio) values (?, ?)");
@@ -48,6 +48,7 @@ class SQLServicioMantenimiento {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarServicioMantenimiento (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioMantenimiento () + " WHERE id_mantenimiento = ? AND id_servicio = ?");
@@ -56,6 +57,7 @@ class SQLServicioMantenimiento {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ServicioMantenimiento> darServicioMantenimiento (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicioMantenimiento ());
@@ -64,6 +66,7 @@ class SQLServicioMantenimiento {
 		return resp;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosEnMantenimientoFecha(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "select *\n" + 
@@ -73,6 +76,7 @@ class SQLServicioMantenimiento {
 		return resp;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarServicioMantenimientoIdMantenimiento(PersistenceManager pm, long idMantenimiento)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioMantenimiento() + " WHERE ID_MANTENIMIENTO = ? ");

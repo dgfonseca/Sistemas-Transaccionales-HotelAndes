@@ -37,6 +37,7 @@ class SQLUtil {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	public long nextval (PersistenceManager pm)
 	{
         Query q = pm.newQuery(SQL, "SELECT "+ pp.darSeqHotelandes () + ".nextval FROM DUAL");
@@ -46,6 +47,7 @@ class SQLUtil {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long [] limpiarHotelandes (PersistenceManager pm)
 	{
         Query qContienen = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsumen ());          

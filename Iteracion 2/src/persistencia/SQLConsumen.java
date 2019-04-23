@@ -41,6 +41,7 @@ class SQLConsumen {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarContienen(PersistenceManager pm, long idProducto, int numeroHabitacion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsumen () + "(id_Producto, numeroHabitacion) values (?, ?)");
@@ -49,6 +50,7 @@ class SQLConsumen {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarContienen (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsumen () + " WHERE idProducto = ? AND numeroHabitacion = ?");
@@ -57,6 +59,7 @@ class SQLConsumen {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Consumen> darContienen (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConsumen ());

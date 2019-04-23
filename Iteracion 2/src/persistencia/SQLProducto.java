@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Habitacion;
 import negocio.Producto;
 
 class SQLProducto {
@@ -35,6 +34,7 @@ class SQLProducto {
 	
 
 	
+	@SuppressWarnings("rawtypes")
 	public long adicionarProducto (PersistenceManager pm, long id, String nombre, double costo, int cantidad) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProducto () + "(id, nombre, costo, cantidad) values (?, ?, ?, ?)");
@@ -44,6 +44,7 @@ class SQLProducto {
 
 	
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarProductoPorId (PersistenceManager pm, long id)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProducto () + " WHERE id = ?");
@@ -51,6 +52,7 @@ class SQLProducto {
         return (long) q.executeUnique();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarProductoPorNombre (PersistenceManager pm, String nom)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProducto () + " WHERE nombre = ?");
@@ -61,6 +63,7 @@ class SQLProducto {
 	
 
 
+	@SuppressWarnings("rawtypes")
 	public Producto darProductoPorId (PersistenceManager pm, long id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto () + " WHERE id = ?");
@@ -69,6 +72,7 @@ class SQLProducto {
 		return (Producto) q.executeUnique();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Producto darProductoPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto () + " WHERE nombre = ?");
@@ -80,6 +84,7 @@ class SQLProducto {
 	
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Producto> darProductos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto ());

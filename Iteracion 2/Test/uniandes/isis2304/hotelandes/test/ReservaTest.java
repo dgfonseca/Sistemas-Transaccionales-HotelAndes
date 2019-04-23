@@ -1,8 +1,7 @@
 package uniandes.isis2304.hotelandes.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -18,7 +17,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
-import negocio.Reserva;
 import negocio.Reserva;
 
 public class ReservaTest {
@@ -44,6 +42,7 @@ public class ReservaTest {
     /* ****************************************************************
 	 * 			Métodos de prueba para la tabla ReservaBebida - Creación y borrado
 	 *****************************************************************/
+	@SuppressWarnings("unused")
 	/**
 	 * Método que prueba las operaciones sobre la tabla ReservaBebida
 	 * 1. Adicionar un Reserva de bebida
@@ -112,6 +111,7 @@ public class ReservaTest {
     /**
      * Método de prueba de la restricción de unicidad sobre el nombre de ReservaBebida
      */
+	@SuppressWarnings("unused")
 	@Test
 	public void unicidadReservaBebidaTest() 
 	{

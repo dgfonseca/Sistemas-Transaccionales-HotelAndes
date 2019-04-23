@@ -41,6 +41,7 @@ class SQLTipo {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	public long adicionarTipo (PersistenceManager pm, long idTipoBebida, String nombre) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTipo  () + "(id, nombre) values (?, ?)");
@@ -49,6 +50,7 @@ class SQLTipo {
 	}
 
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarTipoNombre (PersistenceManager pm, String nombreTipoBebida)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipo  () + " WHERE nombre = ?");
@@ -57,6 +59,7 @@ class SQLTipo {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarTipoPorId (PersistenceManager pm, long idTipoBebida)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipo  () + " WHERE id = ?");
@@ -65,6 +68,7 @@ class SQLTipo {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public Tipo darTipoPorId (PersistenceManager pm, long idTipoBebida) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipo  () + " WHERE id = ?");
@@ -74,6 +78,7 @@ class SQLTipo {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Tipo> darTiposPorNombre (PersistenceManager pm, String nombreTipoBebida) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipo  () + " WHERE nombre = ?");
@@ -83,6 +88,7 @@ class SQLTipo {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Tipo> darTipos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipo  ());

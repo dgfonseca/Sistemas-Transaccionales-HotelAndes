@@ -33,6 +33,7 @@ class SQLConvencionUsuario {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarContienen(PersistenceManager pm, long idConvencion, int idUsuario) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConvencionUsuario() + "(ID_CONVENCION, ID_USUARIO) values (?, ?)");
@@ -41,6 +42,7 @@ class SQLConvencionUsuario {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarContienen (PersistenceManager pm, long idConvencion, int idUsuario)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConvencionUsuario () + " WHERE ID_CONVENCION = ? AND ID_USUARIO = ?");
@@ -49,6 +51,7 @@ class SQLConvencionUsuario {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ConvencionUsuario> darContienen (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConvencionUsuario ());

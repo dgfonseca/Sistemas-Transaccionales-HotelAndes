@@ -1,8 +1,7 @@
 package uniandes.isis2304.hotelandes.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -18,7 +17,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.HotelAndes;
-import negocio.Plan;
 import negocio.Plan;
 
 public class PlanTest {
@@ -45,6 +43,7 @@ private static Logger log = Logger.getLogger(PlanTest.class.getName());
     /* ****************************************************************
 	 * 			Métodos de prueba para la tabla PlanBebida - Creación y borrado
 	 *****************************************************************/
+	@SuppressWarnings("unused")
 	/**
 	 * Método que prueba las operaciones sobre la tabla PlanBebida
 	 * 1. Adicionar un Plan de bebida
@@ -113,6 +112,7 @@ private static Logger log = Logger.getLogger(PlanTest.class.getName());
     /**
      * Método de prueba de la restricción de unicidad sobre el nombre de PlanBebida
      */
+	@SuppressWarnings("unused")
 	@Test
 	public void unicidadPlanBebidaTest() 
 	{

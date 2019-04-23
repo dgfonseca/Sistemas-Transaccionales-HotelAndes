@@ -39,6 +39,7 @@ import negocio.Ofrecen;
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarOfrecen(PersistenceManager pm, long idServicio, Long idProducto) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfrecen () + "(idServicio, idProducto) values (?, ?)");
@@ -47,6 +48,7 @@ import negocio.Ofrecen;
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarOfrecen (PersistenceManager pm, long idServicio, long idProducto)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOfrecen () + " WHERE idServicio = ? AND idProducto = ?");
@@ -55,6 +57,7 @@ import negocio.Ofrecen;
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Ofrecen> darOfrecen (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOfrecen ());

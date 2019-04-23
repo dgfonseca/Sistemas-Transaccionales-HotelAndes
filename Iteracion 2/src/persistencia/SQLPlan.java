@@ -30,6 +30,7 @@ class SQLPlan {
 		this.ph=pph;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarPlan(PersistenceManager pm, long id,String nombre, String descripcion)
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + ph.darTablaPlan () + "(id,nombre, descripcion) values (?,?,?)");
@@ -37,6 +38,7 @@ class SQLPlan {
 		return (long) q.executeUnique();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarPlanPorNombre (PersistenceManager pm, String nombre)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + ph.darTablaPlan()+ " WHERE nombre = ?");
@@ -44,6 +46,7 @@ class SQLPlan {
 		return (long) q.executeUnique();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Plan> darPlanesPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + ph.darTablaPlan () + " WHERE nombre = ?");
@@ -52,6 +55,7 @@ class SQLPlan {
 		return (List<Plan>) q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Plan> darPlanesPorId (PersistenceManager pm, long id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + ph.darTablaPlan () + " WHERE id = ?");
@@ -61,6 +65,7 @@ class SQLPlan {
 	}
 
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public List<Plan> darPlanes (PersistenceManager pm)
 {
 	Query q = pm.newQuery(SQL, "SELECT * FROM " + ph.darTablaPlan ());

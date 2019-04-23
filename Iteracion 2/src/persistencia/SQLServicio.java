@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Reserva;
 import negocio.Servicio;
 
 class SQLServicio {
@@ -35,15 +34,17 @@ class SQLServicio {
 
 
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarServicio (PersistenceManager pm, long id, long inicio, long fin, int personas,double costo, String nombre, String descripcion) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id,  cantidadPersonas,costo,nombre,descripcion,fechaApertura, fechaCierre) values (?, ?, ?, ?,?,?,?)");
-		q.setParameters(id, inicio, fin, personas,costo,nombre,descripcion);
+		q.setParameters(id,personas,costo,nombre,descripcion,inicio,fin);
 		return (long) q.executeUnique();
 	}
 
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarServicioPorId (PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio () + " WHERE id = ?");
@@ -51,6 +52,7 @@ class SQLServicio {
 		return (long) q.executeUnique();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarServicioPorNombre (PersistenceManager pm, String nombre)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio () + " WHERE nombre = ?");
@@ -62,6 +64,7 @@ class SQLServicio {
 
 
 
+	@SuppressWarnings("rawtypes")
 	public Servicio darServicioPorId (PersistenceManager pm, long id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio () + " WHERE id = ?");
@@ -71,6 +74,7 @@ class SQLServicio {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Servicio> darServicioPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio () + " WHERE nombre = ?");
@@ -79,6 +83,7 @@ class SQLServicio {
 		return  q.executeList();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Servicio> darServicios (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio ());
@@ -87,6 +92,7 @@ class SQLServicio {
 		return  servicios;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosObjeto (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio ());
@@ -94,6 +100,7 @@ class SQLServicio {
 		return  servicios;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> dar20Servicios(PersistenceManager pm)
 	{
 		String sql1= "SELECT id, count(*) ";
@@ -107,8 +114,10 @@ class SQLServicio {
         sql1+=" ORDER BY COUNT(ID) DESC";
 		Query q = pm.newQuery(SQL, sql1);
 		return  q.executeList();
+		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosOcupados(PersistenceManager pm)
 	{
 		String sql = "Select s.id, sm.id_mantenimiento, m.fechaInicio, m.fechaFin\r\n" + 
@@ -122,6 +131,7 @@ class SQLServicio {
 		return q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosEnPrecio(PersistenceManager pm, double costo1, double costo2)
 	{
 		String sql = "Select * From " + pp.darTablaServicio() + " Where COSTO BETWEEN ? and ? ";
@@ -130,6 +140,7 @@ class SQLServicio {
 		return q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosPosiblesEnHora(PersistenceManager pm, long hora)
 	{
 		String sql = "Select * from " + pp.darTablaServicio() + " where fechaApertura <= ? and fechaCierre >= ? ";
@@ -138,6 +149,7 @@ class SQLServicio {
 		return q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosParaCapacidad(PersistenceManager pm, int num)
 	{
 		String sql = "Select * from " + pp.darTablaServicio() + " Where cantidadPersonas >= ? ";

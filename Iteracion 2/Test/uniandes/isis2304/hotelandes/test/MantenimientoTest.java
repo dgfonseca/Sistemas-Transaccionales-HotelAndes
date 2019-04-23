@@ -1,8 +1,7 @@
 package uniandes.isis2304.hotelandes.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -19,7 +18,6 @@ import com.google.gson.stream.JsonReader;
 
 import negocio.Mantenimiento;
 import negocio.HotelAndes;
-import negocio.Mantenimiento;
 
 public class MantenimientoTest {
 	private static Logger log = Logger.getLogger(MantenimientoTest.class.getName());
@@ -44,6 +42,7 @@ public class MantenimientoTest {
     /* ****************************************************************
 	 * 			Métodos de prueba para la tabla MantenimientoBebida - Creación y borrado
 	 *****************************************************************/
+	@SuppressWarnings("unused")
 	/**
 	 * Método que prueba las operaciones sobre la tabla MantenimientoBebida
 	 * 1. Adicionar un Mantenimiento de bebida
@@ -112,6 +111,7 @@ public class MantenimientoTest {
     /**
      * Método de prueba de la restricción de unicidad sobre el nombre de MantenimientoBebida
      */
+	@SuppressWarnings("unused")
 	@Test
 	public void unicidadMantenimientoBebidaTest() 
 	{

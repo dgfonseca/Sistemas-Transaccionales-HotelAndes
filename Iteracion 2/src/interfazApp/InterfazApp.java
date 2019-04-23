@@ -27,7 +27,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import negocio.Apartan;
-import negocio.Convencion;
 import negocio.Habitacion;
 import negocio.HabitacionConvencion;
 import negocio.HabitacionMantenimiento;
@@ -58,14 +56,12 @@ import negocio.HotelAndes;
 import negocio.Mantenimiento;
 import negocio.Plan;
 import negocio.Reserva;
-import negocio.ReservaConvencion;
 import negocio.Servicio;
 import negocio.ServicioMantenimiento;
 import negocio.ServiciosConvencion;
 import negocio.Sirven;
 import negocio.Tipo;
 import negocio.Usuario;
-import oracle.sql.CLOB;
 
 
 /**
@@ -311,6 +307,16 @@ public class InterfazApp extends JFrame implements ActionListener
 				String tipoId = JOptionPane.showInputDialog(this, "Tipo de identificacion");
 				String nombre = JOptionPane.showInputDialog(this, "Nombre del usuario");
 				String correo = JOptionPane.showInputDialog(this, "Correo de usuario");
+				
+				List<Tipo> tip=hotel.darTipos();
+				String rtas="";
+				for(int i=0;i<tip.size();i++)
+				{
+					rtas+=" Tipo con nombre e id : "+tip.get(i).getNombre()+", "+tip.get(i).getId();
+					
+				}
+				panelDatos.actualizarInterfaz(rtas);
+				
 				String tipoUsuario = JOptionPane.showInputDialog(this, "Tipo de usuario");
 				int identificacion = Integer.parseInt(idUsuario);
 				int idTipo = Integer.parseInt(tipoUsuario);
@@ -338,7 +344,7 @@ public class InterfazApp extends JFrame implements ActionListener
 
 
 	}
-	
+
 	public void cancelarReservasConvencion()
 	{
 		try
@@ -383,7 +389,7 @@ public class InterfazApp extends JFrame implements ActionListener
 					{
 						rta += "Operación cancelada por el usuario. \n";
 					}
-					
+
 					panelDatos.actualizarInterfaz(rta);
 					List<Object[]> servicios = hotel.darServiciosConvencionIdConvencion(id);
 					rta+= "Servicios reservados para la convención: " + servicios.size() + "\n";
@@ -427,7 +433,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario.");
 			}
-			
+
 		}
 		catch (Exception e)
 		{
@@ -460,11 +466,11 @@ public class InterfazApp extends JFrame implements ActionListener
 
 					BigDecimal f3 = (BigDecimal) rc[0];
 					BigDecimal f4 = (BigDecimal) rc[1];
-					
+
 					List<Habitacion> habs = hotel.darHabitacionesCapacidad(tamanioHabitaciones);
 					rta += "Habitaciones disponibles: \n";
 
-					List<Habitacion> habs2 = new ArrayList();
+					List<Habitacion> habs2 = new ArrayList<Habitacion>();
 					for (Habitacion habitacion : habs) 
 					{
 						//rta += habitacion.getNumeroHabitacion() + "\n";
@@ -477,7 +483,7 @@ public class InterfazApp extends JFrame implements ActionListener
 						BigDecimal f1 = (BigDecimal) objeto[0];
 						BigDecimal f2 = (BigDecimal) objeto[1];
 
-						
+
 						if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
 						{
 							BigDecimal num = (BigDecimal) objeto[2];
@@ -519,11 +525,11 @@ public class InterfazApp extends JFrame implements ActionListener
 
 						rta += "Reservadas  "+ cont2  + " habitaciones para " + tamanioHabitaciones + " personas cada una. \n";
 						panelDatos.actualizarInterfaz(rta);
-						
+
 						List<Object[]> servicios = hotel.darServiciosObjeto();
-						List<Object[]> serviciosDisponibles = new ArrayList();
+						List<Object[]> serviciosDisponibles = new ArrayList<Object[]>();
 						List<Object[]> serviciosOcupados = hotel.darServiciosOcupados();
-						
+
 						rta += "Servicios del hotel \n" + servicios.size() + "\n";
 						for(Object[] ser:servicios)
 						{
@@ -548,17 +554,17 @@ public class InterfazApp extends JFrame implements ActionListener
 								}
 							}
 						}
-						
+
 						rta += "Servicios del hotel disponibles para la convencion \n";
 						for(Object[] ser:serviciosDisponibles)
 						{
 							rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[3] + " " + ser[4] + "\n";
 						}
 						panelDatos.actualizarInterfaz(rta);
-						
+
 						JOptionPane.showMessageDialog(this, "Por favor añada los id de los servicios que desea adicionar. Revise la lista generada. (Separados por coma");
 						String algo = JOptionPane.showInputDialog(this, "Id, separados por coma");
-						
+
 						if(algo != null)
 						{
 							String[] ids = algo.split(",");
@@ -577,7 +583,7 @@ public class InterfazApp extends JFrame implements ActionListener
 						{
 							rta += "No ha añadido ningún servicio a la convención. \n";
 						}
-						
+
 					}
 					else
 					{
@@ -608,7 +614,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+
 	public void iniciarMantenimiento()
 	{
 		try
@@ -616,14 +622,14 @@ public class InterfazApp extends JFrame implements ActionListener
 			String rta = "";
 			String n1 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha inicial del mantenimiento. Formato AAAAMMDD");
 			String n2 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha final del manenimiento. Formato AAAAMMDD");
-		
+
 			rta+= "Fecha inicio mantenimiento: " + n1 + "\n";
 			rta += "Fecha fin mantenimiento: " + n2  +"\n";
 			panelDatos.actualizarInterfaz(rta);
-			
+
 			BigDecimal f2 = new BigDecimal(n2);
 			BigDecimal f1 = new BigDecimal(n1);
-			
+
 			List<Habitacion> habitaciones = hotel.darHabitaciones();
 			List<Habitacion> disponiblesMantenimiento = new ArrayList<Habitacion>();
 			List<Object[]> servicios = hotel.darServiciosObjeto();
@@ -636,7 +642,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				disponiblesMantenimientoServicios.add(servi);
 			}
-			
+
 			if(n1 != null && n2 != null)
 			{
 				List<Object[]> habs = hotel.darHabitacionesMantenimientoFecha();
@@ -691,17 +697,17 @@ public class InterfazApp extends JFrame implements ActionListener
 				panelDatos.actualizarInterfaz(rta);
 				JOptionPane.showMessageDialog(this, "Por favor, seleccione las habitaciones que desea poner en mantenimiento, separadas por coma.");
 				String respuesta = JOptionPane.showInputDialog("Habitaciones para el mantenimiento.");
-				
+
 				JOptionPane.showMessageDialog(this, "Por favor, seleccione los servicios que desea poner en mantenimiento, separados por coma.");
 				String respuesta2 = JOptionPane.showInputDialog("Servicios para el mantenimiento.");
-				
+
 				String descripcionMantenimiento = JOptionPane.showInputDialog(this, "Descripción del mantenimiento a realizar");
-				
+
 				String idMantenimiento = JOptionPane.showInputDialog(this, "Id del mantenimiento a realizar");
-				
+
 				long fI = Long.parseLong(n1);
 				long fF = Long.parseLong(n2);
-				
+
 				Mantenimiento mantenimiento = hotel.adicionarMantenimiento(Long.parseLong(idMantenimiento), fI, fF, descripcionMantenimiento);
 				if(mantenimiento != null)
 				{
@@ -720,7 +726,7 @@ public class InterfazApp extends JFrame implements ActionListener
 							rta += "No se pudo añadir la habitación " + habitacionParaMantenimiento + " al mantenimiento. \n";
 						}
 					}
-					
+
 					String[] servRespuesta = respuesta2.split(",");
 					for(int i = 0; i<servRespuesta.length; i++)
 					{
@@ -740,10 +746,10 @@ public class InterfazApp extends JFrame implements ActionListener
 				{
 					rta+="No se pudo crear el mantenimiento. \n";
 				}
-				
+
 				panelDatos.actualizarInterfaz(rta);
-				
-				
+
+
 			}
 			else
 			{
@@ -757,7 +763,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+
 	public void finalizarMantenimiento()
 	{
 		try
@@ -769,12 +775,12 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "Id del mantenimiento: " + man.getId() + " Descripcion del mantenimiento: " + man.getDescripcion() + " Desde-hasta: " + man.getFechaInicio() + "-" + man.getFechaFin() + "\n";
 			}
 			panelDatos.actualizarInterfaz(rta);
-			
+
 			String idM = JOptionPane.showInputDialog("Favor ingrese el número del mantenimiento que desea dar por terminado");
 			if(idM != null)
 			{
 				Long id = Long.parseLong(idM.trim());
-				
+
 				long serviciosEliminados = hotel.eliminarServicioMantenimientoIdMantenimiento(id);
 				if(serviciosEliminados > 0)
 				{
@@ -810,7 +816,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				rta += "Operación cancelada por el usuario. \n";
 			}
-			
+
 		}
 		catch (Exception e)
 		{
@@ -819,8 +825,8 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
-	
+
+
 	public void indiceOcupacion()
 	{
 		try
@@ -852,11 +858,11 @@ public class InterfazApp extends JFrame implements ActionListener
 			rta+= "En la fecha solicitada, hay un total de " + habitacionesOcupadasEnDia.size() + " habitaciones ocupadas. \n";
 			double ocupacion = ((double)habitacionesOcupadasEnDia.size()/(double)todasHabitaciones.size())*100;
 			rta += "El índice de ocupación del hotel en este día es de " + ocupacion + "%. \n";
-			
+
 			panelDatos.actualizarInterfaz(rta);
-			
-			
-			
+
+
+
 		}
 		catch (Exception e)
 		{
@@ -876,9 +882,9 @@ public class InterfazApp extends JFrame implements ActionListener
 			rta += "2. Posibilidad de recibir el servicio en una cierta hora (de la forma HHMM) \n";
 			rta += "3. Aptos para un número de personas (de la forma XX) \n";
 			rta += "4. Palabra clave (buscar la palabra clave en la descripcion del servicio \n";
-			
+
 			panelDatos.actualizarInterfaz(rta);
-			
+
 			String cara = JOptionPane.showInputDialog("Seleccione el número de la caracteristica de la lista mostrada,");
 			if(cara.equals("1"))
 			{
@@ -886,7 +892,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				String[] costos = cara.split(",");
 				String costo1 = costos[0].trim();
 				String costo2 = costos[1].trim();
-				
+
 				List<Object[]> servicios = hotel.darServiciosEnPrecio(Double.parseDouble(costo1), Double.parseDouble(costo2));
 				rta += "Hay un total de " + servicios.size() + " servicios en el rango de precios dado. \n";
 				for(Object[] objeto : servicios)
@@ -928,7 +934,7 @@ public class InterfazApp extends JFrame implements ActionListener
 					{
 						rta += "ID: " + objeto[0] + " Capacidad: " + objeto[1] + " Costo: " + objeto[2] + " Nombre: " + objeto[3] + " Descripcion: " + objeto[4] + "\n";
 					}
-					
+
 				}
 				panelDatos.actualizarInterfaz(rta);
 			}
@@ -1110,16 +1116,7 @@ public class InterfazApp extends JFrame implements ActionListener
 	 * @param lista - La lista con los tipos de bebida
 	 * @return La cadena con una líea para cada tipo de bebida recibido
 	 */
-	private String listarTiposBebida(List lista) 
-	{
-		String resp = "Los tipos de bebida existentes son:\n";
-		int i = 1;
-		//        for (VOTipoBebida tb : lista)
-		//        {
-		//        	resp += i++ + ". " + tb.toString() + "\n";
-		//        }
-		return resp;
-	}
+
 
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
@@ -1251,13 +1248,29 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				String capacidad = JOptionPane.showInputDialog(this, "Cantidad Personas");
 				String costo = JOptionPane.showInputDialog(this, "Costo de la reserva");
-				String ano=JOptionPane.showInputDialog(this,"a�o de la reserva");
-				String mes=JOptionPane.showInputDialog(this,"Mes de la reserva  ej 05");
+				String ano=JOptionPane.showInputDialog(this,"ano de la reserva ej: 2019");
+				String mes=JOptionPane.showInputDialog(this,"Mes de la reserva  ej: 05");
 				String dia=JOptionPane.showInputDialog(this,"Dia de la reserva ej: 05");
+				int fe1=Integer.parseInt(ano);
+				int fe2=Integer.parseInt(mes);
+				int fe3=Integer.parseInt(dia);
+
+				if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+				{
+					throw new Exception("Fecha invalida introduzca bien los datos");
+				}
 				String ini=ano+mes+dia;				
-				String ano2=JOptionPane.showInputDialog(this,"a�o de fin de la reserva");
-				String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej 05");
+				String ano2=JOptionPane.showInputDialog(this,"anoo de fin de la reserva ej: 2019");
+				String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej: 05");
 				String dia2=JOptionPane.showInputDialog(this,"Dia de fin de la reserva ej: 05");
+				int fe11=Integer.parseInt(ano2);
+				int fe22=Integer.parseInt(mes2);
+				int fe33=Integer.parseInt(dia2);
+
+				if(fe11<2019 && (fe22<0 && fe22>12)&&(fe33>31&&fe33<1))
+				{
+					throw new Exception("Fecha invalida introduzca bien los datos");
+				}
 				String fini=ano2+mes2+dia2;				
 				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
 				String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
@@ -1300,7 +1313,14 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio");
+			String print="No usar los siguientes id's los cuales ya estan en uso :";
+			List<Object[]> serv=hotel.darServiciosObjeto();
+			for(int i=0;i<serv.size();i++)
+			{
+				print+=" Servicio con id: "+serv.get(i)[0] +" ---";
+			}
+			panelDatos.actualizarInterfaz(print);
+			String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio, no usar las identificaciones anteriormente desplegadas");
 
 
 			if(id != null)
@@ -1309,9 +1329,24 @@ public class InterfazApp extends JFrame implements ActionListener
 				String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
 				String ano=JOptionPane.showInputDialog(this,"hora de apertura servicio ej 22");
 				String mes=JOptionPane.showInputDialog(this,"Minuto de aprtura del servicio ej 05");
-				String fechaInicio=ano+mes;        		
+				int fe1=Integer.parseInt(ano);
+				int fe2=Integer.parseInt(mes);
+
+				if(fe1<0 && fe1>23 && fe2<0 && fe2>60)
+				{
+					throw new Exception("Fecha invalida introduzca bien los datos");
+				}
+				String fechaInicio=ano+mes; 
+				System.out.println(fechaInicio);
 				String ano2=JOptionPane.showInputDialog(this,"hora de cierre servicio ej 22");
 				String mes2=JOptionPane.showInputDialog(this,"Minuto de cierre del servicio ej 05");
+				int fe11=Integer.parseInt(ano);
+				int fe22=Integer.parseInt(mes);
+
+				if(fe11<0 && fe11>23 && fe22<0 && fe22>60)
+				{
+					throw new Exception("Fecha invalida introduzca bien los datos");
+				}
 				String fini=ano2+mes2;        		        		
 				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
 				String nombre=JOptionPane.showInputDialog(this,"Nombre del servicio");
@@ -1362,7 +1397,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
 				if(disponible.length()>1)
 				{
-					throw new Exception("Tama�o Incorrecto en disponibilidad, solo se puede Usar T o F");
+					throw new Exception("Tamano Incorrecto en disponibilidad, solo se puede Usar T o F");
 				}
 				int num = Integer.parseInt(numeroHabitacion);
 				int capa = Integer.parseInt(capacidad);
@@ -1444,6 +1479,14 @@ public class InterfazApp extends JFrame implements ActionListener
 			String ano=JOptionPane.showInputDialog(this,"a�o de uso del servicio");
 			String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej 05");
 			String dia=JOptionPane.showInputDialog(this,"Dia de uso del servicio ej: 05");
+			int fe1=Integer.parseInt(ano);
+			int fe2=Integer.parseInt(mes);
+			int fe3=Integer.parseInt(dia);
+
+			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			{
+				throw new Exception("Fecha invalida introduzca bien los datos");
+			}
 			String fecha=ano+mes+dia;
 			long ids=Long.parseLong(idServicio);
 			int numHabitacion=Integer.parseInt(numeroHabitacion);
@@ -1608,17 +1651,39 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(generarMensajeError(e));
 		}
 	}
-	
+
 	public void darConsumoUsuarioDado()
 	{
 		try
 		{
 			String texto = "";
 			String ide =JOptionPane.showInputDialog(this,"Id de usuario a buscar");
-			String inic=JOptionPane.showInputDialog(this,"Fecha inicial a buscar");
-			String finc=JOptionPane.showInputDialog(this,"Fecha final a buscar");
 			long id=Long.parseLong(ide);
-			long ini=Long.parseLong(inic);
+			String ano=JOptionPane.showInputDialog(this,"Ano de inicio para determinar consumo");
+			String mes=JOptionPane.showInputDialog(this,"Mes de inicio para determinar consumo");
+			String dia=JOptionPane.showInputDialog(this,"Dia de inicio para determinar consumo");
+			int fe1=Integer.parseInt(ano);
+			int fe2=Integer.parseInt(mes);
+			int fe3=Integer.parseInt(dia);
+
+			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			{
+				throw new Exception("Fecha invalida introduzca bien los datos");
+			}
+			String fecha=ano+mes+dia;
+			long ini=Long.parseLong(fecha);
+			String ano2=JOptionPane.showInputDialog(this,"Ano de inicio para determinar consumo");
+			String mes2=JOptionPane.showInputDialog(this,"Mes de inicio para determinar consumo");
+			String dia2=JOptionPane.showInputDialog(this,"Dia de inicio para determinar consumo");
+			int fe12=Integer.parseInt(ano);
+			int fe22=Integer.parseInt(mes);
+			int fe32=Integer.parseInt(dia);
+
+			if(fe12<2019 && (fe22<0 && fe22>12)&&(fe32>31&&fe32<1))
+			{
+				throw new Exception("Fecha invalida introduzca bien los datos");
+			}
+			String finc=ano2+mes2+dia2;
 			long fin=Long.parseLong(finc);
 			List<Object[]> rta = hotel.darConsumoUsuarioDado(id, ini, fin);
 			for(int i=0;i<rta.size();i++)
@@ -1655,11 +1720,33 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 			String text="";
-			String ini=JOptionPane.showInputDialog(this,"Hora Apertura");
-			String fini=JOptionPane.showInputDialog(this,"Hora cierre");
-			long inicio=Long.parseLong(ini);
-			long fin=Long.parseLong(fini);
-			List<long[]> rtas = hotel.darHabitacionesYDinero(inicio, fin);
+			String ano=JOptionPane.showInputDialog(this,"Ano de inicio para determinar consumo");
+			String mes=JOptionPane.showInputDialog(this,"Mes de inicio para determinar consumo");
+			String dia=JOptionPane.showInputDialog(this,"Dia de inicio para determinar consumo");
+			int fe1=Integer.parseInt(ano);
+			int fe2=Integer.parseInt(mes);
+			int fe3=Integer.parseInt(dia);
+
+			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			{
+				throw new Exception("Fecha invalida introduzca bien los datos");
+			}
+			String fecha=ano+mes+dia;
+			long ini=Long.parseLong(fecha);
+			String ano2=JOptionPane.showInputDialog(this,"Ano de finalizacion para determinar consumo");
+			String mes2=JOptionPane.showInputDialog(this,"Mes de finalizacion para determinar consumo");
+			String dia2=JOptionPane.showInputDialog(this,"Dia de finalizacion para determinar consumo");
+			int fe12=Integer.parseInt(ano);
+			int fe22=Integer.parseInt(mes);
+			int fe32=Integer.parseInt(dia);
+
+			if(fe12<2019 && (fe22<0 && fe22>12)&&(fe32>31&&fe32<1))
+			{
+				throw new Exception("Fecha invalida introduzca bien los datos");
+			}
+			String finc=ano2+mes2+dia2;
+			long fin=Long.parseLong(finc);
+			List<long[]> rtas = hotel.darHabitacionesYDinero(ini, fin);
 			for(int i=0;i<rtas.size();i++)
 			{
 				text+="Habitacion: "+ rtas.get(i)[0] +" Dinero: "+ rtas.get(i)[1]+" ---";

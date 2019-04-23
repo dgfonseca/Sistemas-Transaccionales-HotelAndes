@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Apartan;
 import negocio.HabitacionConvencion;
 
 public class SQLHabitacionConvencion {
@@ -40,6 +39,7 @@ public class SQLHabitacionConvencion {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionaHabitacionConvencion(PersistenceManager pm, long idReserva, int numeroHabitacion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacionConvencion() + "(id_Reserva, numeroHabitacion) values (?, ?)");
@@ -48,6 +48,7 @@ public class SQLHabitacionConvencion {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarHabitacionConvencion (PersistenceManager pm, long idreserva, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionConvencion() + " WHERE id_Reserva = ? AND numeroHabitacion = ?");
@@ -56,6 +57,7 @@ public class SQLHabitacionConvencion {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<HabitacionConvencion> darHabitacionConvencion	 (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionConvencion ());
@@ -64,9 +66,11 @@ public class SQLHabitacionConvencion {
 		return resp;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darHabitacionConvencionIdConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionConvencion() + " WHERE ID_RESERVA = ?");
+		
 		q.setParameters(id);
 		List<Object[]> resp = (List<Object[]>) q.executeList();
 		return resp;

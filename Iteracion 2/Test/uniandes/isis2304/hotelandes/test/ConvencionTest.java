@@ -2,7 +2,6 @@ package uniandes.isis2304.hotelandes.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -49,6 +48,7 @@ public class ConvencionTest {
     /* ****************************************************************
 	 * 			Métodos de prueba para la tabla ConvencionBebida - Creación y borrado
 	 *****************************************************************/
+	@SuppressWarnings("unused")
 	/**
 	 * Método que prueba las operaciones sobre la tabla ConvencionBebida
 	 * 1. Adicionar un Convencion de bebida
@@ -84,9 +84,6 @@ public class ConvencionTest {
 			List <Convencion> lista = parranderos.darConvenciones();
 			assertEquals ("No debe haber Convencions de bebida creados!!", lista.size(), lista.size ());
 
-			// Lectura de los Convencions de bebida con un Convencion de bebida adicionado
-			String nombreConvencionBebida1 = "Vino tinto";
-			long id=1000;
 			
 			Convencion ConvencionBebida1 = parranderos.adicionarConvencion(12356, "Nombre", "Descripcion") ;
 			lista = parranderos.darConvenciones();
@@ -120,6 +117,7 @@ public class ConvencionTest {
     /**
      * Método de prueba de la restricción de unicidad sobre el nombre de ConvencionBebida
      */
+	@SuppressWarnings("unused")
 	@Test
 	public void unicidadConvencionBebidaTest() 
 	{
@@ -149,7 +147,6 @@ public class ConvencionTest {
 			assertEquals ("No debe haber Convencions de bebida creados!!", lista.size(), lista.size ());
 
 			// Lectura de los Convencions de bebida con un Convencion de bebida adicionado
-			String nombreConvencionBebida1 = "Vino tinto";
 			Convencion ConvencionBebida1 = parranderos.adicionarConvencion(1123, "Nombre", "Descripcion");
 			lista = parranderos.darConvenciones();
 			assertEquals ("Debe haber un Convencion de bebida creado !!", lista.size(), lista.size ());

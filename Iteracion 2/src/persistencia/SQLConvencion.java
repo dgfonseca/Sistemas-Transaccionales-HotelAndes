@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Consumen;
 import negocio.Convencion;
 
 class SQLConvencion {
@@ -18,12 +17,14 @@ class SQLConvencion {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long adicionarConvencion(PersistenceManager pm, long id, String nombre, String descripcion)
 	{
 		Query q = pm.newQuery(SQL,"INSERT INTO " + pp.darTablaConvenciones() + " (id,nombre,descripcion) values(?,?,?)");
 		q.setParameters(id,nombre,descripcion);
 		return (long) q.executeUnique();
 	}
+	@SuppressWarnings("rawtypes")
 	public long eliminarConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConvenciones() + " WHERE id = ?");
@@ -31,6 +32,7 @@ class SQLConvencion {
 		return (long) q.executeUnique();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Convencion> darConvenciones(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL,"SELECT * FROM "+ pp.darTablaConvenciones());
@@ -39,6 +41,7 @@ class SQLConvencion {
 		return rta;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public String darNombreConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "SELECT NOMBRE FROM " + pp.darTablaConvenciones() + " WHERE ID = ?");

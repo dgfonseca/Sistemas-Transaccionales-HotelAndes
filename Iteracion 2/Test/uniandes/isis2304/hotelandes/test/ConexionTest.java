@@ -30,11 +30,6 @@ public class ConexionTest {
 	private static final String CONFIG_TABLAS_A = "./src/resources/config/TablasBD_A.json"; 
 	
 	/**
-	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe, pero el esquema de la BD no se ha creado
-	 */
-	private static final String CONFIG_TABLAS_B = "./src/resources/config/TablasBD_B.json"; 
-	
-	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia NO existe
 	 */
 	private static final String CONFIG_TABLAS_ERR_DS = "./src/resources/config/TablasBD_ErrorDataStore.json"; 
@@ -44,14 +39,6 @@ public class ConexionTest {
 	 */
 	private static final String CONFIG_TABLAS_ERR_USER = "./src/resources/config/TablasBD_ErrorInvalidUser.json"; 
 	
-	/* ****************************************************************
-	 * 			Atributos
-	 *****************************************************************/
-    /**
-     * Objeto JSON con los nombres de las tablas de la base de datos que se quieren utilizar
-     */
-    private JsonObject tableConfig;
-    
 	/**
 	 * La clase que se quiere probar
 	 */

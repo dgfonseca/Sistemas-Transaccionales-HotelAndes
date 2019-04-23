@@ -6,8 +6,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Mantenimiento;
-import negocio.Servicio;
-
 class SQLMantenimiento {
 
 	private final static String SQL = PersistenciaHotelAndes.SQL;
@@ -35,6 +33,7 @@ class SQLMantenimiento {
 
 
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarMantenimiento (PersistenceManager pm, long id, long inicio, long fin, String descripcion) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMantenimientos() + "(id, fechainicio, fechafin,descripcion) values (?, ?, ?, ?)");
@@ -44,6 +43,7 @@ class SQLMantenimiento {
 
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Mantenimiento> darMantenimientos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMantenimientos ());
@@ -51,6 +51,7 @@ class SQLMantenimiento {
 		return (List<Mantenimiento>) q.executeList();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarMantenimiento (PersistenceManager pm, long idMantenimiento)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMantenimientos() + " WHERE ID = ? ");

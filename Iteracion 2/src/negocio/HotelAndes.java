@@ -1,6 +1,5 @@
 package negocio;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;

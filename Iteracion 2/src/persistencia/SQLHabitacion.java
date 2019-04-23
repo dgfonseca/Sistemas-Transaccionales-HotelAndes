@@ -1,13 +1,11 @@
 package persistencia;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Habitacion;
-import oracle.security.o5logon.d;
 
 
 
@@ -38,6 +36,7 @@ class SQLHabitacion {
 	
 
 	
+	@SuppressWarnings("rawtypes")
 	public long adicionarHabitacion (PersistenceManager pm, int capacidad, int numeroHabitacion, int costo, String descripcion, String disponible) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion() + " (CAPACIDAD, NUMEROHABITACION , COSTO , DESCRIPCION, DISPONIBLE) values ( ?,?,?,?,?)");
@@ -47,6 +46,7 @@ class SQLHabitacion {
 
 	
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarHabitacionPorNumero (PersistenceManager pm, int numHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacion () + " WHERE numeroHabitacion = ?");
@@ -57,6 +57,7 @@ class SQLHabitacion {
 	
 
 	
+	@SuppressWarnings("rawtypes")
 	public Habitacion darHabitacionPorNumero (PersistenceManager pm, int numHabitacion) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacion () + " WHERE numeroHabitacion = ?");
@@ -68,6 +69,7 @@ class SQLHabitacion {
 	
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Habitacion> darHabitaciones (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacion ());
@@ -77,6 +79,7 @@ class SQLHabitacion {
 	
 	
 	//RF1
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darHabitacionesYDineroRecolectado (PersistenceManager pm, long inicio, long fin)
 	{		
 		String sql1 = "SELECT hab.numeroHabitacion, sum (serv.costo)";
@@ -97,6 +100,7 @@ class SQLHabitacion {
 		return q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darIndiceOcupacionHabitacion (PersistenceManager pm )
 	{
         String sql1 = "SELECT numeroHabitacion";
@@ -107,6 +111,7 @@ class SQLHabitacion {
         return q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Habitacion> darHabitacionesCapacidad (PersistenceManager pm, int cap)
 	{
 		String sql1 = "SELECT *";
@@ -118,6 +123,7 @@ class SQLHabitacion {
 		return (List<Habitacion>) q.executeList();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darHabitacionesOcupadas(PersistenceManager pm)
 	{
 		String sql = "select r.fechaInicio, r.fechafin, h.numerohabitacion\r\n" + 

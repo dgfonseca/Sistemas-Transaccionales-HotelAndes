@@ -40,6 +40,7 @@ class SQLServiciosConvencion {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionaServiciosConvencion(PersistenceManager pm, long idreserva, int idServicio) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServiciosConvencion () + "(id_Reserva, id_servicio) values (?, ?)");
@@ -48,6 +49,7 @@ class SQLServiciosConvencion {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarServiciosConvencion (PersistenceManager pm, long idReserva, int idServicio)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServiciosConvencion () + " WHERE id_Reserva = ? AND id_servicio = ?");
@@ -56,6 +58,7 @@ class SQLServiciosConvencion {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ServiciosConvencion> darServiciosConvencion (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServiciosConvencion ());
@@ -64,6 +67,7 @@ class SQLServiciosConvencion {
 		return resp;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darServiciosConvencionIdConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServiciosConvencion() + " WHERE ID_RESERVA = ?");

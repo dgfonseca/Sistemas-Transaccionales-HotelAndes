@@ -1,8 +1,7 @@
 package uniandes.isis2304.hotelandes.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
@@ -43,6 +42,7 @@ public class HabitacionTest {
     /* ****************************************************************
 	 * 			Métodos de prueba para la tabla HabitacionBebida - Creación y borrado
 	 *****************************************************************/
+	@SuppressWarnings("unused")
 	/**
 	 * Método que prueba las operaciones sobre la tabla HabitacionBebida
 	 * 1. Adicionar un Habitacion de bebida
@@ -111,6 +111,7 @@ public class HabitacionTest {
     /**
      * Método de prueba de la restricción de unicidad sobre el nombre de HabitacionBebida
      */
+	@SuppressWarnings("unused")
 	@Test
 	public void unicidadHabitacionBebidaTest() 
 	{

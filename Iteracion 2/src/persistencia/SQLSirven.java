@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
-import negocio.Consumen;
 import negocio.Sirven;
 
 class SQLSirven {
@@ -40,6 +38,7 @@ class SQLSirven {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionarSirven(PersistenceManager pm, long idServicio, int numeroHabitacion, long fechauso) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaSirven () + "(idServicio, numeroHabitacion, fechauso) values (?, ?,?)");
@@ -48,6 +47,7 @@ class SQLSirven {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarSirven (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven () + " WHERE idServicio = ? AND numeroHabitacion = ?");
@@ -56,6 +56,7 @@ class SQLSirven {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Sirven> darSirven (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaSirven ());

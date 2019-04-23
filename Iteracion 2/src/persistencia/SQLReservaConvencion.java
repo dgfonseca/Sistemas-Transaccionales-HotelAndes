@@ -1,13 +1,11 @@
 package persistencia;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Consumen;
-import negocio.Convencion;
 import negocio.ReservaConvencion;
 
 class SQLReservaConvencion {
@@ -20,12 +18,14 @@ class SQLReservaConvencion {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long adicionarReservaConvencion(PersistenceManager pm, long id, long fechaInicio, long fechaFin, double costo, long idplan, long idconvencion)
 	{
 		Query q = pm.newQuery(SQL,"INSERT INTO " + pp.darTablaReservaConvenciones() + " (id,fechainicio,fechafin,costo,id_plan,id_convencion) values(?,?,?,?,?,?)");
 		q.setParameters(id,fechaInicio,fechaFin,costo,idplan,idconvencion);
 		return (long) q.executeUnique();
 	}
+	@SuppressWarnings("rawtypes")
 	public long eliminarReservaConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaConvenciones() + " WHERE id = ?");
@@ -33,6 +33,7 @@ class SQLReservaConvencion {
 		return (long) q.executeUnique();
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ReservaConvencion> darReservaConvenciones(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL,"SELECT * FROM "+ pp.darTablaReservaConvenciones());
@@ -41,6 +42,7 @@ class SQLReservaConvencion {
 		return rta;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Object[] darFechaConvencion(PersistenceManager pm, long id)
 	{
 		Query q = pm.newQuery(SQL, "SELECT FECHAINICIO, FECHAFIN FROM " + pp.darTablaReservaConvenciones() + " WHERE ID_CONVENCION = ?");

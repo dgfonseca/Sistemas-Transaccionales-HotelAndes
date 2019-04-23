@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import negocio.Apartan;
 import negocio.HabitacionMantenimiento;
 
 class SQLHabitacionMantenimiento {
@@ -40,6 +39,7 @@ class SQLHabitacionMantenimiento {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionaHabitacionMantenimiento(PersistenceManager pm, long idProducto, int numeroHabitacion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacionMantenimiento () + "(id_mantenimiento, numeroHabitacion) values (?, ?)");
@@ -48,6 +48,7 @@ class SQLHabitacionMantenimiento {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarApartan (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionMantenimiento() + " WHERE id_mantenimiento = ? AND numeroHabitacion = ?");
@@ -56,6 +57,7 @@ class SQLHabitacionMantenimiento {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<HabitacionMantenimiento> darHabitacionMantenimiento (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacionMantenimiento ());
@@ -64,6 +66,7 @@ class SQLHabitacionMantenimiento {
 		return resp;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darHabitacionesEnMantenimientoFecha(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "select *\n" + 
@@ -73,6 +76,7 @@ class SQLHabitacionMantenimiento {
 		return resp;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public long eliminarHabitacionMantenimientoIdMantenimiento(PersistenceManager pm, long idMantenimiento)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacionMantenimiento() + " WHERE ID_MANTENIMIENTO = ? ");

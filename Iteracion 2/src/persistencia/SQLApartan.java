@@ -6,7 +6,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Apartan;
-import negocio.Consumen;
 
 class SQLApartan extends Object {
 
@@ -40,6 +39,7 @@ class SQLApartan extends Object {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public long adicionaApartan(PersistenceManager pm, long idProducto, int numeroHabitacion) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaApartan () + "(idReserva, numeroHabitacion) values (?, ?)");
@@ -48,6 +48,7 @@ class SQLApartan extends Object {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	public long eliminarApartan (PersistenceManager pm, long idProducto, int numeroHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaApartan () + " WHERE idReserva = ? AND numeroHabitacion = ?");
@@ -56,6 +57,7 @@ class SQLApartan extends Object {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Apartan> darContienen (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaApartan ());
