@@ -413,7 +413,7 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlProducto.darProductos (pmf.getPersistenceManager());
 	}
-	public List<Reserva> darReservas ()
+	public List<Object[]> darReservas ()
 	{
 		return sqlReserva.darReservas (pmf.getPersistenceManager());
 	}

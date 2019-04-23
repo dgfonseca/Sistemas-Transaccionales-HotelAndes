@@ -88,11 +88,11 @@ class SQLReserva {
 
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<Reserva> darReservas (PersistenceManager pm)
+	public List<Object[]> darReservas (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReserva ());
 		q.setResultClass(Reserva.class);
-		return (List<Reserva>) q.executeList();
+		return  q.executeList();
 	}
 
 }
