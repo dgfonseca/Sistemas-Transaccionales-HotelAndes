@@ -66,7 +66,7 @@ import negocio.Usuario;
 
 /**
  * Clase principal de la interfaz
- * @author Germán Bravo
+ * @author
  */
 @SuppressWarnings("serial")
 
@@ -257,10 +257,10 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String text="Id de tipo en uso, no usar los id's siguientes";
+			String text="";
 			for(int i=0; i<hotel.darTipos().size();i++)
 			{
-				text+=","+hotel.darTipos().get(i).getId();
+				text+="Id del tipo: "+hotel.darTipos().get(i).getId()+" Nombre del tipo: "+hotel.darTipos().get(i).getNombre()+"\n";
 			}
 			panelDatos.actualizarInterfaz(text);
 			String tipo = JOptionPane.showInputDialog(this, "Tipo de usuario");
@@ -299,6 +299,14 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
+			
+			List<Usuario> user=hotel.darUsuarios();
+			String holi ="";
+			for(int i=0;i<user.size();i++)
+			{
+				holi+="Usuario con id: "+ user.get(i).getIdentificacion()+" Usuario con nombre: "+user.get(i).getNombre()+"\n";
+			}
+			panelDatos.actualizarInterfaz(holi);
 			String idUsuario = JOptionPane.showInputDialog(this, "Identificacion del usuario");
 
 
@@ -312,7 +320,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				String rtas="";
 				for(int i=0;i<tip.size();i++)
 				{
-					rtas+=" Tipo con nombre e id : "+tip.get(i).getNombre()+", "+tip.get(i).getId();
+					rtas+=" Tipo con nombre e id : "+tip.get(i).getNombre()+", "+tip.get(i).getId()+"\n";
 					
 				}
 				panelDatos.actualizarInterfaz(rtas);
@@ -1241,7 +1249,14 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 
-			String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva");
+			List<Reserva> reser=hotel.darReservas();
+			String text="";
+			for(int i=0;i<reser.size();i++)
+			{
+				text+="Reserva con id: "+reser.get(i).getId()+"\n";
+			}
+			panelDatos.actualizarInterfaz(text);
+			String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva, no usar las identificaciones anteriormente desplegadas");
 
 
 			if(id != null)
@@ -1432,7 +1447,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			String text="habitaciones : ";
 			for(int i=0; i<hotel.darHabitaciones().size();i++)
 			{
-				text+="identificacion: "+hotel.darHabitaciones().get(i).getNumeroHabitacion()+" Disponibilidad: "+hotel.darHabitaciones().get(i).isDisponible();
+				text+="identificacion: "+hotel.darHabitaciones().get(i).getNumeroHabitacion()+" Disponibilidad: "+hotel.darHabitaciones().get(i).isDisponible()+"\n";
 			}
 			panelDatos.actualizarInterfaz(text);
 			String idServicio = JOptionPane.showInputDialog(this, "Id de la reserva a cargar");
@@ -1476,8 +1491,8 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(text);
 			String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
 			String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
-			String ano=JOptionPane.showInputDialog(this,"a�o de uso del servicio");
-			String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej 05");
+			String ano=JOptionPane.showInputDialog(this,"Ano de uso del servicio ej: 2019");
+			String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej: 05");
 			String dia=JOptionPane.showInputDialog(this,"Dia de uso del servicio ej: 05");
 			int fe1=Integer.parseInt(ano);
 			int fe2=Integer.parseInt(mes);
