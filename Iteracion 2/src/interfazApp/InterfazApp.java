@@ -279,6 +279,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "Tipo de usuario " + tipo  + " agregado exitosamente \n";
 				rta += "Operacion terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -337,6 +339,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "Usuario "+ identificacion  + " añadido exitosamente. \n";
 				rta += "Operación terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -608,6 +612,8 @@ public class InterfazApp extends JFrame implements ActionListener
 
 
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -756,6 +762,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				}
 
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 
 
 			}
@@ -1249,12 +1257,13 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 
-			List<Reserva> reser=hotel.darReservas();
+			List<Object[]> reser=hotel.darReservas();
 			String text="";
 			for(int i=0;i<reser.size();i++)
 			{
-				text+="Reserva con id: "+reser.get(i).getId()+"\n";
+				text+="Reserva con id: "+reser.get(i)[0]+"\n";
 			}
+			System.out.println(reser.size());
 			panelDatos.actualizarInterfaz(text);
 			String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva, no usar las identificaciones anteriormente desplegadas");
 
@@ -1270,19 +1279,19 @@ public class InterfazApp extends JFrame implements ActionListener
 				int fe2=Integer.parseInt(mes);
 				int fe3=Integer.parseInt(dia);
 
-				if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+				if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>3||fe3<1))
 				{
 					throw new Exception("Fecha invalida introduzca bien los datos");
 				}
 				String ini=ano+mes+dia;				
-				String ano2=JOptionPane.showInputDialog(this,"anoo de fin de la reserva ej: 2019");
+				String ano2=JOptionPane.showInputDialog(this,"ano de fin de la reserva ej: 2019");
 				String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej: 05");
 				String dia2=JOptionPane.showInputDialog(this,"Dia de fin de la reserva ej: 05");
 				int fe11=Integer.parseInt(ano2);
 				int fe22=Integer.parseInt(mes2);
 				int fe33=Integer.parseInt(dia2);
 
-				if(fe11<2019 && (fe22<0 && fe22>12)&&(fe33>31&&fe33<1))
+				if(fe11<2019 || (fe22<0 || fe22>12)||(fe33>31||fe33<1))
 				{
 					throw new Exception("Fecha invalida introduzca bien los datos");
 				}
@@ -1308,6 +1317,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "servicio "+ id  + " añadido exitosamente. \n";
 				rta += "Operación terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -1332,7 +1343,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			List<Object[]> serv=hotel.darServiciosObjeto();
 			for(int i=0;i<serv.size();i++)
 			{
-				print+=" Servicio con id: "+serv.get(i)[0] +" ---";
+				print+=" Servicio con id: "+serv.get(i)[0] +" --- Servicio con nombre: "+ serv.get(i)[3]+"\n";
 			}
 			panelDatos.actualizarInterfaz(print);
 			String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio, no usar las identificaciones anteriormente desplegadas");
@@ -1342,12 +1353,12 @@ public class InterfazApp extends JFrame implements ActionListener
 			{
 				String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
 				String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
-				String ano=JOptionPane.showInputDialog(this,"hora de apertura servicio ej 22");
+				String ano=JOptionPane.showInputDialog(this,"Hora de apertura servicio ej 22");
 				String mes=JOptionPane.showInputDialog(this,"Minuto de aprtura del servicio ej 05");
 				int fe1=Integer.parseInt(ano);
 				int fe2=Integer.parseInt(mes);
 
-				if(fe1<0 && fe1>23 && fe2<0 && fe2>60)
+				if(fe1<0 || fe1>23 || fe2<0 || fe2>60)
 				{
 					throw new Exception("Fecha invalida introduzca bien los datos");
 				}
@@ -1358,7 +1369,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				int fe11=Integer.parseInt(ano);
 				int fe22=Integer.parseInt(mes);
 
-				if(fe11<0 && fe11>23 && fe22<0 && fe22>60)
+				if(fe11<0 || fe11>23 || fe22<0 || fe22>60)
 				{
 					throw new Exception("Fecha invalida introduzca bien los datos");
 				}
@@ -1379,6 +1390,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "servicio "+ id  + " añadido exitosamente. \n";
 				rta += "Operación terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -1426,6 +1439,8 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "habitacion "+ numeroHabitacion  + " añadido exitosamente. \n";
 				rta += "Operación terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 			}
 			else
 			{
@@ -1467,6 +1482,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "reserva a habitacion " + ti  + " agregado exitosamente \n";
 				rta += "Operacion terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 			}
 			else
 			{
@@ -1498,7 +1514,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			int fe2=Integer.parseInt(mes);
 			int fe3=Integer.parseInt(dia);
 
-			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>31||fe3<1))
 			{
 				throw new Exception("Fecha invalida introduzca bien los datos");
 			}
@@ -1519,6 +1535,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "servicio a habitacion " + ti  + " agregado exitosamente \n";
 				rta += "Operacion terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 			}
 			else
 			{
@@ -1635,6 +1652,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				rta += "Plan " + ti  + " agregado exitosamente \n";
 				rta += "Operacion terminada";
 				panelDatos.actualizarInterfaz(rta);
+				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 			}
 			else
 			{
@@ -1681,7 +1699,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			int fe2=Integer.parseInt(mes);
 			int fe3=Integer.parseInt(dia);
 
-			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>31||fe3<1))
 			{
 				throw new Exception("Fecha invalida introduzca bien los datos");
 			}
@@ -1694,7 +1712,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			int fe22=Integer.parseInt(mes);
 			int fe32=Integer.parseInt(dia);
 
-			if(fe12<2019 && (fe22<0 && fe22>12)&&(fe32>31&&fe32<1))
+			if(fe12<2019 || (fe22<0 || fe22>12)||(fe32>31&&fe32<1))
 			{
 				throw new Exception("Fecha invalida introduzca bien los datos");
 			}
@@ -1706,6 +1724,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				texto+="Usuario : "+rta.get(i)[0]+" Consumo: "+rta.get(i)[1];
 			}
 			panelDatos.actualizarInterfaz(texto);
+			JOptionPane.showMessageDialog(null, texto);
 		}
 		catch (Exception e)
 		{
@@ -1720,9 +1739,10 @@ public class InterfazApp extends JFrame implements ActionListener
 			String texto="";
 			for(int i=0;i<rta.size();i++)
 			{
-				texto+="| CLIENTE----> Nombre : "+rta.get(i).getNombre()+"Identificacion : "+rta.get(i).getTipoIdentificacion()+":"+ rta.get(i).getIdentificacion()+ " Correo : "+rta.get(i).getCorreoElectronico();
+				texto+="| CLIENTE----> Nombre : "+rta.get(i).getNombre()+" Identificacion : "+rta.get(i).getTipoIdentificacion()+":"+ rta.get(i).getIdentificacion()+ " Correo : "+rta.get(i).getCorreoElectronico();
 			}
 			panelDatos.actualizarInterfaz(texto);
+			JOptionPane.showMessageDialog(null, texto);
 		}
 		catch (Exception e)
 		{
@@ -1742,7 +1762,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			int fe2=Integer.parseInt(mes);
 			int fe3=Integer.parseInt(dia);
 
-			if(fe1<2019 && (fe2<0 && fe2>12)&&(fe3>31&&fe3<1))
+			if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>31||fe3<1))
 			{
 				throw new Exception("Fecha invalida introduzca bien los datos");
 			}
@@ -1755,7 +1775,7 @@ public class InterfazApp extends JFrame implements ActionListener
 			int fe22=Integer.parseInt(mes);
 			int fe32=Integer.parseInt(dia);
 
-			if(fe12<2019 && (fe22<0 && fe22>12)&&(fe32>31&&fe32<1))
+			if(fe12<2019 || (fe22<0 || fe22>12)||(fe32>31||fe32<1))
 			{
 				throw new Exception("Fecha invalida introduzca bien los datos");
 			}
@@ -1768,12 +1788,14 @@ public class InterfazApp extends JFrame implements ActionListener
 
 			}
 			panelDatos.actualizarInterfaz(text);
+			JOptionPane.showMessageDialog(null, text);
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 			panelDatos.actualizarInterfaz(generarMensajeError(e));
 		}
+		
 
 
 

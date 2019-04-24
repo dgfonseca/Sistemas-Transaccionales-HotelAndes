@@ -75,7 +75,7 @@ public class ReservaTest {
     	try
 		{
 			// Lectura de los Reservas de bebida con la tabla vacía
-			List <Reserva> lista = parranderos.darReservas();
+			List <Object[]> lista = parranderos.darReservas();
 			assertEquals ("No debe haber Reservas nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Reservas de bebida con un Reserva de bebida adicionado
@@ -137,7 +137,7 @@ public class ReservaTest {
 		try
 		{
 			// Lectura de los Reservas de bebida con la tabla vacía
-			List <Reserva> lista = parranderos.darReservas();
+			List <Object[]> lista = parranderos.darReservas();
 			assertEquals ("No deberian haber Reservaes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Reservas de bebida con un Reserva de bebida adicionado

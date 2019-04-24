@@ -338,7 +338,7 @@ public class HotelAndes {
 	{
 		return pp.darUsuarios();
 	}
-	public List<Reserva> darReservas()
+	public List<Object[]> darReservas()
 	{
 		return pp.darReservas();
 	}
