@@ -388,5 +388,13 @@ public class HotelAndes {
 		log.info("Dando servicios para capacidad");
 		return pp.darServicioParaCapacidad(num);
 	}
+	public List<Usuario> darUsuarioId(long cc)
+	{
+		return pp.darUsuarioPorId(cc);
+	}
+	public Tipo darTipoId(long id)
+	{
+		return pp.darTipoId(id);
+	}
 
 }

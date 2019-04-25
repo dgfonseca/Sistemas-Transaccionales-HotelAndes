@@ -342,6 +342,11 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlServicio.darServicioPorId(pmf.getPersistenceManager(), pnombre);
 	}
+	
+	public List<Usuario> darUsuarioPorId(long cc)
+	{
+		return sqlUsuario.darUsuarioPorIdentificacion(pmf.getPersistenceManager(), cc);
+	}
 
 
 
@@ -734,7 +739,7 @@ public class PersistenciaHotelAndes {
 
 
 			log.trace ("Inserci�n Habitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Usuario(identificacion, tipoid, idTipo, correo, nombre);
+			return new Usuario(identificacion, nombre,  tipoid, correo, idTipo);
 		}
 		catch (Exception e)
 		{
@@ -751,6 +756,8 @@ public class PersistenciaHotelAndes {
 			pm.close();
 		}
 	}
+	
+
 
 
 	public Ofrecen adicionarOfrecen(long idServicio, long idProducto) 
@@ -1319,6 +1326,11 @@ public class PersistenciaHotelAndes {
 			}
 			pm.close();
 		}
+	}
+	
+	public Tipo darTipoId(long id)
+	{
+		return sqlTipo.darTipoPorId(pmf.getPersistenceManager(), id);
 	}
 	
 	

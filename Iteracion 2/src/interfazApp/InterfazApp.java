@@ -90,6 +90,9 @@ public class InterfazApp extends JFrame implements ActionListener
 	 */
 	private static final String CONFIG_TABLAS = "./src/resources/config/TablasBD_A.json"; 
 
+
+	private static final String CONTRASE�A ="HOTELANDES";
+
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
@@ -121,6 +124,9 @@ public class InterfazApp extends JFrame implements ActionListener
 	 */
 	private JMenuBar menuBar;
 
+
+	private Usuario user;
+
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
@@ -132,6 +138,7 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		// Carga la configuración de la interfaz desde un archivo JSON
 		guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
+		user=null;
 
 		// Configura la apariencia del frame que contiene la interfaz gráfica
 		configurarFrame ( );
@@ -257,34 +264,49 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String text="";
-			for(int i=0; i<hotel.darTipos().size();i++)
-			{
-				text+="Id del tipo: "+hotel.darTipos().get(i).getId()+" Nombre del tipo: "+hotel.darTipos().get(i).getNombre()+"\n";
-			}
-			panelDatos.actualizarInterfaz(text);
-			String tipo = JOptionPane.showInputDialog(this, "Tipo de usuario");
-			String idTipo=JOptionPane.showInputDialog(this, "Id Tipo");
 
-			long id=Long.parseLong(idTipo);
-			if(tipo != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("ADMIN")||tip.toUpperCase().equals("ADMINISTRADOR"))
 			{
-				Tipo ti = hotel.adicionarTipo(tipo,id);
-				if(ti == null)
+
+
+
+
+				String text="";
+				for(int i=0; i<hotel.darTipos().size();i++)
 				{
-					throw new Exception("No se pudo agregar el tipo de usuario " + tipo);
+					text+="Id del tipo: "+hotel.darTipos().get(i).getId()+" Nombre del tipo: "+hotel.darTipos().get(i).getNombre()+"\n";
 				}
+				panelDatos.actualizarInterfaz(text);
+				String tipo = JOptionPane.showInputDialog(this, "Tipo de usuario");
+				String idTipo=JOptionPane.showInputDialog(this, "Id Tipo");
 
-				String rta = "Agregar nuevo tipo de usuario \n\n";
-				rta += "Tipo de usuario " + tipo  + " agregado exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				long id=Long.parseLong(idTipo);
+				if(tipo != null)
+				{
+					Tipo ti = hotel.adicionarTipo(tipo,id);
+					if(ti == null)
+					{
+						throw new Exception("No se pudo agregar el tipo de usuario " + tipo);
+					}
 
+					String rta = "Agregar nuevo tipo de usuario \n\n";
+					rta += "Tipo de usuario " + tipo  + " agregado exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				}
 			}
-			else
+			else 
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo puede ser realizada por un administrador");
+				panelDatos.actualizarInterfaz("Esta operacion solo puede ser realizada por un administrador");
 			}
 		}
 		catch (Exception e)
@@ -301,50 +323,60 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			
-			List<Usuario> user=hotel.darUsuarios();
-			String holi ="";
-			for(int i=0;i<user.size();i++)
-			{
-				holi+="Usuario con id: "+ user.get(i).getIdentificacion()+" Usuario con nombre: "+user.get(i).getNombre()+"\n";
-			}
-			panelDatos.actualizarInterfaz(holi);
-			String idUsuario = JOptionPane.showInputDialog(this, "Identificacion del usuario");
 
-
-			if(idUsuario != null)
+			String tipO=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tipO);
+			if(tipO.toUpperCase().equals("ADMIN")||tipO.toUpperCase().equals("ADMINISTRADOR"))
 			{
-				String tipoId = JOptionPane.showInputDialog(this, "Tipo de identificacion");
-				String nombre = JOptionPane.showInputDialog(this, "Nombre del usuario");
-				String correo = JOptionPane.showInputDialog(this, "Correo de usuario");
-				
-				List<Tipo> tip=hotel.darTipos();
-				String rtas="";
-				for(int i=0;i<tip.size();i++)
+				List<Usuario> user=hotel.darUsuarios();
+				String holi ="";
+				for(int i=0;i<user.size();i++)
 				{
-					rtas+=" Tipo con nombre e id : "+tip.get(i).getNombre()+", "+tip.get(i).getId()+"\n";
-					
+					holi+="Usuario con id: "+ user.get(i).getIdentificacion()+" Usuario con nombre: "+user.get(i).getNombre()+"\n";
 				}
-				panelDatos.actualizarInterfaz(rtas);
-				
-				String tipoUsuario = JOptionPane.showInputDialog(this, "Tipo de usuario");
-				int identificacion = Integer.parseInt(idUsuario);
-				int idTipo = Integer.parseInt(tipoUsuario);
-				Usuario u = hotel.adicionarUsuario(nombre, identificacion, tipoId, correo, idTipo);
-				if (u == null)
-				{
-					throw new Exception ("No se pudo crear el usuario con id " + identificacion);
-				}
-				String rta = "Adicionar nuevo usuario \n\n";
-				rta += "Usuario "+ identificacion  + " añadido exitosamente. \n";
-				rta += "Operación terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				panelDatos.actualizarInterfaz(holi);
+				String idUsuario = JOptionPane.showInputDialog(this, "Identificacion del usuario");
 
+
+				if(idUsuario != null)
+				{
+					String tipoId = JOptionPane.showInputDialog(this, "Tipo de identificacion");
+					String nombre = JOptionPane.showInputDialog(this, "Nombre del usuario");
+					String correo = JOptionPane.showInputDialog(this, "Correo de usuario");
+
+					List<Tipo> tip=hotel.darTipos();
+					String rtas="";
+					for(int i=0;i<tip.size();i++)
+					{
+						rtas+=" Tipo con nombre e id : "+tip.get(i).getNombre()+", "+tip.get(i).getId()+"\n";
+
+					}
+					panelDatos.actualizarInterfaz(rtas);
+
+					String tipoUsuario = JOptionPane.showInputDialog(this, "Tipo de usuario");
+					int identificacion = Integer.parseInt(idUsuario);
+					int idTipo = Integer.parseInt(tipoUsuario);
+					Usuario u = hotel.adicionarUsuario(nombre, identificacion, tipoId, correo, idTipo);
+					if (u == null)
+					{
+						throw new Exception ("No se pudo crear el usuario con id " + identificacion);
+					}
+					String rta = "Adicionar nuevo usuario \n\n";
+					rta += "Usuario "+ identificacion  + " añadido exitosamente. \n";
+					rta += "Operación terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
 			}
-			else
+			else 
 			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo puede ser realizada por un administrador");
+				panelDatos.actualizarInterfaz("Esta operacion solo puede ser realizada por un administrador");
 			}
 		}
 		catch (Exception e) 
@@ -361,89 +393,102 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String n1 = JOptionPane.showInputDialog(this, "Por favor ingrese el id de la convención a la cual desea cancelar reservas,");
-			if(n1 != null)
-			{
-				long id = Long.parseLong(n1);
-				String nombre = hotel.darNombreConvencion(id);
-				if(nombre != null)
-				{
-					String rta = "";
-					rta += "Modificando reservas para la convención " + nombre + "\n";
-					List<Object[]> habitaciones = hotel.darHabitacionConvencionIdConvencion(id);
-					rta+= "Habitaciones reservadas para la convención: " + habitaciones.size() + "\n";
-					for(Object[] objeto: habitaciones)
-					{
-						rta+= "Habitacion número " + objeto[1] + "\n"; 
-					}
-					panelDatos.actualizarInterfaz(rta);
-					JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar una o mas habitaciones para su convención. Por favor ingrese los números de las habitaciones separados por coma.");
-					String aEliminar = JOptionPane.showInputDialog(this, "Por favor ingrese los números de las habitaciones que desea dejar de reservar. ");
-					if(aEliminar != null)
-					{
-						String[] habs = aEliminar.split(",");
-						for(int i = 0; i< habs.length; i++)
-						{
-							String hab = habs[i].trim();
-							int num = Integer.parseInt(hab);
-							long eliminadas = hotel.eliminarHabitacionConvencion(id, num);
-							if(eliminadas > 0)
-							{
-								rta += "Se eliminó la habitación " + num + " de la reserva de la convención. \n";	
-							}
-							else
-							{
-								rta += "No se pudo eliminar la habitación " + num  + " de la reserva de la convención. \n";
-							}
-						}
-					}
-					else
-					{
-						rta += "Operación cancelada por el usuario. \n";
-					}
 
-					panelDatos.actualizarInterfaz(rta);
-					List<Object[]> servicios = hotel.darServiciosConvencionIdConvencion(id);
-					rta+= "Servicios reservados para la convención: " + servicios.size() + "\n";
-					for(Object[] objeto:servicios)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("USER")||tip.toUpperCase().equals("USUARIO"))
+			{
+				String n1 = JOptionPane.showInputDialog(this, "Por favor ingrese el id de la convención a la cual desea cancelar reservas,");
+				if(n1 != null)
+				{
+					long id = Long.parseLong(n1);
+					String nombre = hotel.darNombreConvencion(id);
+					if(nombre != null)
 					{
-						rta+= "Servicio número " + objeto[1] + "\n"; 
-					}
-					panelDatos.actualizarInterfaz(rta);
-					JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar uno o más servicios para su convención. Por favor ingrese los números de los servicios separados por coma.");
-					String aEliminar2 = JOptionPane.showInputDialog(this, "Por favor ingrese los números de los servicios que desea dejar de reservar. ");
-					if(aEliminar2 != null)
-					{
-						String[] servs = aEliminar2.split(",");
-						for(int i = 0; i<servs.length; i++)
+						String rta = "";
+						rta += "Modificando reservas para la convención " + nombre + "\n";
+						List<Object[]> habitaciones = hotel.darHabitacionConvencionIdConvencion(id);
+						rta+= "Habitaciones reservadas para la convención: " + habitaciones.size() + "\n";
+						for(Object[] objeto: habitaciones)
 						{
-							String servicio = servs[i].trim();
-							int num = Integer.parseInt(servicio);
-							long elim = hotel.eliminarServiciosConvencion(id, num);
-							if(elim > 0)
+							rta+= "Habitacion número " + objeto[1] + "\n"; 
+						}
+						panelDatos.actualizarInterfaz(rta);
+						JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar una o mas habitaciones para su convención. Por favor ingrese los números de las habitaciones separados por coma.");
+						String aEliminar = JOptionPane.showInputDialog(this, "Por favor ingrese los números de las habitaciones que desea dejar de reservar. ");
+						if(aEliminar != null)
+						{
+							String[] habs = aEliminar.split(",");
+							for(int i = 0; i< habs.length; i++)
 							{
-								rta += "Se eliminó el servicio " + num + " de la reserva de la convención. \n";	
-							}
-							else
-							{
-								rta += "No se pudo eliminar el servicio " + num  + " de la reserva de la convención. \n";
+								String hab = habs[i].trim();
+								int num = Integer.parseInt(hab);
+								long eliminadas = hotel.eliminarHabitacionConvencion(id, num);
+								if(eliminadas > 0)
+								{
+									rta += "Se eliminó la habitación " + num + " de la reserva de la convención. \n";	
+								}
+								else
+								{
+									rta += "No se pudo eliminar la habitación " + num  + " de la reserva de la convención. \n";
+								}
 							}
 						}
+						else
+						{
+							rta += "Operación cancelada por el usuario. \n";
+						}
+
+						panelDatos.actualizarInterfaz(rta);
+						List<Object[]> servicios = hotel.darServiciosConvencionIdConvencion(id);
+						rta+= "Servicios reservados para la convención: " + servicios.size() + "\n";
+						for(Object[] objeto:servicios)
+						{
+							rta+= "Servicio número " + objeto[1] + "\n"; 
+						}
+						panelDatos.actualizarInterfaz(rta);
+						JOptionPane.showMessageDialog(this, "A continuación podrá dejar de reservar uno o más servicios para su convención. Por favor ingrese los números de los servicios separados por coma.");
+						String aEliminar2 = JOptionPane.showInputDialog(this, "Por favor ingrese los números de los servicios que desea dejar de reservar. ");
+						if(aEliminar2 != null)
+						{
+							String[] servs = aEliminar2.split(",");
+							for(int i = 0; i<servs.length; i++)
+							{
+								String servicio = servs[i].trim();
+								int num = Integer.parseInt(servicio);
+								long elim = hotel.eliminarServiciosConvencion(id, num);
+								if(elim > 0)
+								{
+									rta += "Se eliminó el servicio " + num + " de la reserva de la convención. \n";	
+								}
+								else
+								{
+									rta += "No se pudo eliminar el servicio " + num  + " de la reserva de la convención. \n";
+								}
+							}
+						}
+						else
+						{
+							rta += "Operación cancelada por el usuario. \n";
+						}
+						panelDatos.actualizarInterfaz(rta);
 					}
 					else
 					{
-						rta += "Operación cancelada por el usuario. \n";
+						panelDatos.actualizarInterfaz("No existe convención con el id dado.");
 					}
-					panelDatos.actualizarInterfaz(rta);
 				}
 				else
 				{
-					panelDatos.actualizarInterfaz("No existe convención con el id dado.");
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario.");
 				}
+
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario.");
+				JOptionPane.showMessageDialog(null, "Solo los usuarios tienen acceso a estas funciones");
+				panelDatos.actualizarInterfaz("Solo los usuarios tienen acceso a estas funciones");
+
 			}
 
 		}
@@ -459,165 +504,177 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String n3 = JOptionPane.showInputDialog(this, "Ingrese el id de la convención");
-			String n1 = JOptionPane.showInputDialog(this, "Ingrese el número de habitaciones a reservar");
-			String n2 = JOptionPane.showInputDialog(this, "Ingrese el número de personas por habitacion");
-			if(n1 != null && n2 != null && n3 != null)
+
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("USER")||tip.toUpperCase().equals("USUARIO"))
 			{
-				long id = Long.parseLong(n3);
-				int numHabitaciones = Integer.parseInt(n1);
-				int tamanioHabitaciones = Integer.parseInt(n2);
-				String rta ="";
-				String nombre = hotel.darNombreConvencion(id);
-				if(nombre != null)
+				String n3 = JOptionPane.showInputDialog(this, "Ingrese el id de la convención");
+				String n1 = JOptionPane.showInputDialog(this, "Ingrese el número de habitaciones a reservar");
+				String n2 = JOptionPane.showInputDialog(this, "Ingrese el número de personas por habitacion");
+				if(n1 != null && n2 != null && n3 != null)
 				{
-					rta = "Reservando habitaciones para la convención "  + nombre + "\n\n";
-					Object[] rc = hotel.darFechaConvencion(id);
-
-					rta += "Fechas de la convencion: desde " + rc[0] + " hasta " + rc[1] +  "\n";
-
-					BigDecimal f3 = (BigDecimal) rc[0];
-					BigDecimal f4 = (BigDecimal) rc[1];
-
-					List<Habitacion> habs = hotel.darHabitacionesCapacidad(tamanioHabitaciones);
-					rta += "Habitaciones disponibles: \n";
-
-					List<Habitacion> habs2 = new ArrayList<Habitacion>();
-					for (Habitacion habitacion : habs) 
+					long id = Long.parseLong(n3);
+					int numHabitaciones = Integer.parseInt(n1);
+					int tamanioHabitaciones = Integer.parseInt(n2);
+					String rta ="";
+					String nombre = hotel.darNombreConvencion(id);
+					if(nombre != null)
 					{
-						//rta += habitacion.getNumeroHabitacion() + "\n";
-						habs2.add(habitacion);
-					}
+						rta = "Reservando habitaciones para la convención "  + nombre + "\n\n";
+						Object[] rc = hotel.darFechaConvencion(id);
 
-					List<Object[]> habitacionesOcupadas = hotel.darHabitacionesOcupadas();
-					for(Object[] objeto : habitacionesOcupadas)
-					{
-						BigDecimal f1 = (BigDecimal) objeto[0];
-						BigDecimal f2 = (BigDecimal) objeto[1];
+						rta += "Fechas de la convencion: desde " + rc[0] + " hasta " + rc[1] +  "\n";
 
+						BigDecimal f3 = (BigDecimal) rc[0];
+						BigDecimal f4 = (BigDecimal) rc[1];
 
-						if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
+						List<Habitacion> habs = hotel.darHabitacionesCapacidad(tamanioHabitaciones);
+						rta += "Habitaciones disponibles: \n";
+
+						List<Habitacion> habs2 = new ArrayList<Habitacion>();
+						for (Habitacion habitacion : habs) 
 						{
-							BigDecimal num = (BigDecimal) objeto[2];
-							//rta += "Habitacion ocupada: " + objeto[2] + " desde: " + objeto[0] + " hasta: " + objeto[1] + "\n";
-							for (int i = 0; i<habs.size(); i++)
-							{
-								Habitacion hab = habs.get(i);
-								BigDecimal num2 = new BigDecimal(hab.getNumeroHabitacion());
-								if(num.equals(num2))
-								{
-									habs2.remove(hab);
-								}
-							}
+							//rta += habitacion.getNumeroHabitacion() + "\n";
+							habs2.add(habitacion);
 						}
 
-					}
-
-					rta += "Habitaciones disponibles después de validar fechas: \n";
-					int cont = 0;
-					for(Habitacion habitacion : habs2)
-					{
-						rta += habitacion.getNumeroHabitacion() + "\n";
-						cont ++;
-					}
-
-					if(cont >= numHabitaciones)
-					{
-						int cont2=0;
-						rta += "Reservar habitaciones y servicios convención \n\n";
-						for(int i = 0; i<numHabitaciones; i++)
+						List<Object[]> habitacionesOcupadas = hotel.darHabitacionesOcupadas();
+						for(Object[] objeto : habitacionesOcupadas)
 						{
-							HabitacionConvencion habitacion = hotel.adicionarHabitacionConvencion(id, habs2.get(i).getNumeroHabitacion());
-							if(habitacion != null)
-							{
-								rta += "Reservada la habitación " + habitacion.getNumeroHabitacion() + "\n";
-								cont2++;
-							}
-						}
+							BigDecimal f1 = (BigDecimal) objeto[0];
+							BigDecimal f2 = (BigDecimal) objeto[1];
 
-						rta += "Reservadas  "+ cont2  + " habitaciones para " + tamanioHabitaciones + " personas cada una. \n";
-						panelDatos.actualizarInterfaz(rta);
 
-						List<Object[]> servicios = hotel.darServiciosObjeto();
-						List<Object[]> serviciosDisponibles = new ArrayList<Object[]>();
-						List<Object[]> serviciosOcupados = hotel.darServiciosOcupados();
-
-						rta += "Servicios del hotel \n" + servicios.size() + "\n";
-						for(Object[] ser:servicios)
-						{
-							//rta += "Servicio: " + ser[5] + " " + ser[6] + "\n";
-							serviciosDisponibles.add(ser);
-						}
-						for(Object[] objeto: serviciosOcupados)
-						{
-							BigDecimal f1 = (BigDecimal) objeto[2];
-							BigDecimal f2 = (BigDecimal) objeto[3];
-							BigDecimal num = (BigDecimal) objeto[0];
 							if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
 							{
-								for(int i = 0; i<serviciosDisponibles.size(); i++)
+								BigDecimal num = (BigDecimal) objeto[2];
+								//rta += "Habitacion ocupada: " + objeto[2] + " desde: " + objeto[0] + " hasta: " + objeto[1] + "\n";
+								for (int i = 0; i<habs.size(); i++)
 								{
-									Object[] s = serviciosDisponibles.get(i);
-									BigDecimal num2 = (BigDecimal) s[0];
+									Habitacion hab = habs.get(i);
+									BigDecimal num2 = new BigDecimal(hab.getNumeroHabitacion());
 									if(num.equals(num2))
 									{
-										serviciosDisponibles.remove(i);
+										habs2.remove(hab);
 									}
 								}
 							}
+
 						}
 
-						rta += "Servicios del hotel disponibles para la convencion \n";
-						for(Object[] ser:serviciosDisponibles)
+						rta += "Habitaciones disponibles después de validar fechas: \n";
+						int cont = 0;
+						for(Habitacion habitacion : habs2)
 						{
-							rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[3] + " " + ser[4] + "\n";
+							rta += habitacion.getNumeroHabitacion() + "\n";
+							cont ++;
 						}
-						panelDatos.actualizarInterfaz(rta);
 
-						JOptionPane.showMessageDialog(this, "Por favor añada los id de los servicios que desea adicionar. Revise la lista generada. (Separados por coma");
-						String algo = JOptionPane.showInputDialog(this, "Id, separados por coma");
-
-						if(algo != null)
+						if(cont >= numHabitaciones)
 						{
-							String[] ids = algo.split(",");
-							for(int i = 0; i<ids.length; i++)
+							int cont2=0;
+							rta += "Reservar habitaciones y servicios convención \n\n";
+							for(int i = 0; i<numHabitaciones; i++)
 							{
-								String idAnadir = ids[i];
-								int idA = Integer.parseInt(idAnadir);
-								ServiciosConvencion anadido = hotel.adicionarServicioConvencion(id, idA);
-								if(anadido != null)
+								HabitacionConvencion habitacion = hotel.adicionarHabitacionConvencion(id, habs2.get(i).getNumeroHabitacion());
+								if(habitacion != null)
 								{
-									rta += "Anadido el servicio con id " + idA + " \n";
+									rta += "Reservada la habitación " + habitacion.getNumeroHabitacion() + "\n";
+									cont2++;
 								}
 							}
+
+							rta += "Reservadas  "+ cont2  + " habitaciones para " + tamanioHabitaciones + " personas cada una. \n";
+							panelDatos.actualizarInterfaz(rta);
+
+							List<Object[]> servicios = hotel.darServiciosObjeto();
+							List<Object[]> serviciosDisponibles = new ArrayList<Object[]>();
+							List<Object[]> serviciosOcupados = hotel.darServiciosOcupados();
+
+							rta += "Servicios del hotel \n" + servicios.size() + "\n";
+							for(Object[] ser:servicios)
+							{
+								//rta += "Servicio: " + ser[5] + " " + ser[6] + "\n";
+								serviciosDisponibles.add(ser);
+							}
+							for(Object[] objeto: serviciosOcupados)
+							{
+								BigDecimal f1 = (BigDecimal) objeto[2];
+								BigDecimal f2 = (BigDecimal) objeto[3];
+								BigDecimal num = (BigDecimal) objeto[0];
+								if((f3.compareTo(f1)>0 || f3.compareTo(f2)<0) || (f4.compareTo(f1)>0 || f4.compareTo(f2)<0))
+								{
+									for(int i = 0; i<serviciosDisponibles.size(); i++)
+									{
+										Object[] s = serviciosDisponibles.get(i);
+										BigDecimal num2 = (BigDecimal) s[0];
+										if(num.equals(num2))
+										{
+											serviciosDisponibles.remove(i);
+										}
+									}
+								}
+							}
+
+							rta += "Servicios del hotel disponibles para la convencion \n";
+							for(Object[] ser:serviciosDisponibles)
+							{
+								rta += "Servicio id: " + ser[0]+ " Nombre Servicio:" + ser[3] + " " + ser[4] + "\n";
+							}
+							panelDatos.actualizarInterfaz(rta);
+
+							JOptionPane.showMessageDialog(this, "Por favor añada los id de los servicios que desea adicionar. Revise la lista generada. (Separados por coma");
+							String algo = JOptionPane.showInputDialog(this, "Id, separados por coma");
+
+							if(algo != null)
+							{
+								String[] ids = algo.split(",");
+								for(int i = 0; i<ids.length; i++)
+								{
+									String idAnadir = ids[i];
+									int idA = Integer.parseInt(idAnadir);
+									ServiciosConvencion anadido = hotel.adicionarServicioConvencion(id, idA);
+									if(anadido != null)
+									{
+										rta += "Anadido el servicio con id " + idA + " \n";
+									}
+								}
+							}
+							else
+							{
+								rta += "No ha añadido ningún servicio a la convención. \n";
+							}
+
 						}
 						else
 						{
-							rta += "No ha añadido ningún servicio a la convención. \n";
+							rta += "No hay sufucientes habitaciones disponibles para realizar la reserva. \n";
 						}
+
 
 					}
 					else
 					{
-						rta += "No hay sufucientes habitaciones disponibles para realizar la reserva. \n";
+						rta = "La convención no existe \n\n"; 
 					}
 
+
+
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 
 				}
 				else
 				{
-					rta = "La convención no existe \n\n"; 
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 				}
-
-
-
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
-
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Solo los usuarios tienen acceso a estas funciones");
+				panelDatos.actualizarInterfaz("Solo los usuarios tienen acceso a estas funciones");
+
 			}
 
 		}
@@ -633,143 +690,153 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String rta = "";
-			String n1 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha inicial del mantenimiento. Formato AAAAMMDD");
-			String n2 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha final del manenimiento. Formato AAAAMMDD");
-
-			rta+= "Fecha inicio mantenimiento: " + n1 + "\n";
-			rta += "Fecha fin mantenimiento: " + n2  +"\n";
-			panelDatos.actualizarInterfaz(rta);
-
-			BigDecimal f2 = new BigDecimal(n2);
-			BigDecimal f1 = new BigDecimal(n1);
-
-			List<Habitacion> habitaciones = hotel.darHabitaciones();
-			List<Habitacion> disponiblesMantenimiento = new ArrayList<Habitacion>();
-			List<Object[]> servicios = hotel.darServiciosObjeto();
-			List<Object[]> disponiblesMantenimientoServicios = new ArrayList<Object[]>();
-			for(Habitacion hab: habitaciones)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				disponiblesMantenimiento.add(hab);
-			}
-			for(Object[] servi: servicios)
-			{
-				disponiblesMantenimientoServicios.add(servi);
-			}
+				String rta = "";
+				String n1 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha inicial del mantenimiento. Formato AAAAMMDD");
+				String n2 = JOptionPane.showInputDialog(this, "Por favor, ingrese la fecha final del manenimiento. Formato AAAAMMDD");
 
-			if(n1 != null && n2 != null)
-			{
-				List<Object[]> habs = hotel.darHabitacionesMantenimientoFecha();
-				for(Object[] objeto:habs)
-				{
-					BigDecimal f3 = (BigDecimal) objeto[1];
-					BigDecimal f4 = (BigDecimal) objeto[2];
-					if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
-					{
-						for(int i = 0; i<disponiblesMantenimiento.size(); i++)
-						{
-							Habitacion habitacion = disponiblesMantenimiento.get(i);
-							BigDecimal numero = (BigDecimal) objeto[5];
-							String num = numero + "";
-							Integer numInt = new Integer(num);
-							if(habitacion.getNumeroHabitacion() == numInt)
-							{
-								disponiblesMantenimiento.remove(i);
-							}
-						}
-					}
-				}
-				List<Object[]> servs = hotel.darServiciosMantenimientoEnFecha();
-				for(Object[] serv:servs)
-				{
-					BigDecimal f3 = (BigDecimal) serv[1];
-					BigDecimal f4 = (BigDecimal) serv[2];
-					if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
-					{
-						for(int i = 0; i<disponiblesMantenimientoServicios.size(); i++)
-						{
-							Object[] objeto = disponiblesMantenimientoServicios.get(i);
-							BigDecimal numero = (BigDecimal) serv[5];
-							if(objeto[0] == numero)
-							{
-								disponiblesMantenimientoServicios.remove(i);
-							}
-						}
-					}
-				}
-				rta += "Habitaciones disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimiento.size() + "\n";
-				for(Habitacion hab: disponiblesMantenimiento)
-				{
-					rta += "Habitación número " + hab.getNumeroHabitacion() + " Descripcion: " + hab.getDescripcion() + "\n";
-				}
-				rta += "\n\n";
-				rta+= "Servicios disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimientoServicios.size() + "\n";
-				for(Object[] objeto: disponiblesMantenimientoServicios)
-				{
-					rta += "Servicio número " + objeto[0] + " Nombre: " + objeto[3] + "\n";
-				}
+				rta+= "Fecha inicio mantenimiento: " + n1 + "\n";
+				rta += "Fecha fin mantenimiento: " + n2  +"\n";
 				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(this, "Por favor, seleccione las habitaciones que desea poner en mantenimiento, separadas por coma.");
-				String respuesta = JOptionPane.showInputDialog("Habitaciones para el mantenimiento.");
 
-				JOptionPane.showMessageDialog(this, "Por favor, seleccione los servicios que desea poner en mantenimiento, separados por coma.");
-				String respuesta2 = JOptionPane.showInputDialog("Servicios para el mantenimiento.");
+				BigDecimal f2 = new BigDecimal(n2);
+				BigDecimal f1 = new BigDecimal(n1);
 
-				String descripcionMantenimiento = JOptionPane.showInputDialog(this, "Descripción del mantenimiento a realizar");
-
-				String idMantenimiento = JOptionPane.showInputDialog(this, "Id del mantenimiento a realizar");
-
-				long fI = Long.parseLong(n1);
-				long fF = Long.parseLong(n2);
-
-				Mantenimiento mantenimiento = hotel.adicionarMantenimiento(Long.parseLong(idMantenimiento), fI, fF, descripcionMantenimiento);
-				if(mantenimiento != null)
+				List<Habitacion> habitaciones = hotel.darHabitaciones();
+				List<Habitacion> disponiblesMantenimiento = new ArrayList<Habitacion>();
+				List<Object[]> servicios = hotel.darServiciosObjeto();
+				List<Object[]> disponiblesMantenimientoServicios = new ArrayList<Object[]>();
+				for(Habitacion hab: habitaciones)
 				{
-					rta +="Mantenimiento creado satisfactoriamente. \n";
-					String[] habsRespuesta = respuesta.split(",");
-					for(int i = 0; i<habsRespuesta.length; i++)
+					disponiblesMantenimiento.add(hab);
+				}
+				for(Object[] servi: servicios)
+				{
+					disponiblesMantenimientoServicios.add(servi);
+				}
+
+				if(n1 != null && n2 != null)
+				{
+					List<Object[]> habs = hotel.darHabitacionesMantenimientoFecha();
+					for(Object[] objeto:habs)
 					{
-						String habitacionParaMantenimiento = habsRespuesta[i].trim();
-						HabitacionMantenimiento creada = hotel.adicionarHabitacionMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(habitacionParaMantenimiento));
-						if(creada != null)
+						BigDecimal f3 = (BigDecimal) objeto[1];
+						BigDecimal f4 = (BigDecimal) objeto[2];
+						if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
 						{
-							rta += creada.getNumeroHabitacion() + " añadida exitosamente al mantenimiento. \n";
+							for(int i = 0; i<disponiblesMantenimiento.size(); i++)
+							{
+								Habitacion habitacion = disponiblesMantenimiento.get(i);
+								BigDecimal numero = (BigDecimal) objeto[5];
+								String num = numero + "";
+								Integer numInt = new Integer(num);
+								if(habitacion.getNumeroHabitacion() == numInt)
+								{
+									disponiblesMantenimiento.remove(i);
+								}
+							}
 						}
-						else
+					}
+					List<Object[]> servs = hotel.darServiciosMantenimientoEnFecha();
+					for(Object[] serv:servs)
+					{
+						BigDecimal f3 = (BigDecimal) serv[1];
+						BigDecimal f4 = (BigDecimal) serv[2];
+						if((f1.compareTo(f3)>0 && f1.compareTo(f4)<0) || (f2.compareTo(f3)>0 && f2.compareTo(f4)<0))
 						{
-							rta += "No se pudo añadir la habitación " + habitacionParaMantenimiento + " al mantenimiento. \n";
+							for(int i = 0; i<disponiblesMantenimientoServicios.size(); i++)
+							{
+								Object[] objeto = disponiblesMantenimientoServicios.get(i);
+								BigDecimal numero = (BigDecimal) serv[5];
+								if(objeto[0] == numero)
+								{
+									disponiblesMantenimientoServicios.remove(i);
+								}
+							}
 						}
+					}
+					rta += "Habitaciones disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimiento.size() + "\n";
+					for(Habitacion hab: disponiblesMantenimiento)
+					{
+						rta += "Habitación número " + hab.getNumeroHabitacion() + " Descripcion: " + hab.getDescripcion() + "\n";
+					}
+					rta += "\n\n";
+					rta+= "Servicios disponibles para realizar mantenimiento en las fechas dadas: " + disponiblesMantenimientoServicios.size() + "\n";
+					for(Object[] objeto: disponiblesMantenimientoServicios)
+					{
+						rta += "Servicio número " + objeto[0] + " Nombre: " + objeto[3] + "\n";
+					}
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(this, "Por favor, seleccione las habitaciones que desea poner en mantenimiento, separadas por coma.");
+					String respuesta = JOptionPane.showInputDialog("Habitaciones para el mantenimiento.");
+
+					JOptionPane.showMessageDialog(this, "Por favor, seleccione los servicios que desea poner en mantenimiento, separados por coma.");
+					String respuesta2 = JOptionPane.showInputDialog("Servicios para el mantenimiento.");
+
+					String descripcionMantenimiento = JOptionPane.showInputDialog(this, "Descripción del mantenimiento a realizar");
+
+					String idMantenimiento = JOptionPane.showInputDialog(this, "Id del mantenimiento a realizar");
+
+					long fI = Long.parseLong(n1);
+					long fF = Long.parseLong(n2);
+
+					Mantenimiento mantenimiento = hotel.adicionarMantenimiento(Long.parseLong(idMantenimiento), fI, fF, descripcionMantenimiento);
+					if(mantenimiento != null)
+					{
+						rta +="Mantenimiento creado satisfactoriamente. \n";
+						String[] habsRespuesta = respuesta.split(",");
+						for(int i = 0; i<habsRespuesta.length; i++)
+						{
+							String habitacionParaMantenimiento = habsRespuesta[i].trim();
+							HabitacionMantenimiento creada = hotel.adicionarHabitacionMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(habitacionParaMantenimiento));
+							if(creada != null)
+							{
+								rta += creada.getNumeroHabitacion() + " añadida exitosamente al mantenimiento. \n";
+							}
+							else
+							{
+								rta += "No se pudo añadir la habitación " + habitacionParaMantenimiento + " al mantenimiento. \n";
+							}
+						}
+
+						String[] servRespuesta = respuesta2.split(",");
+						for(int i = 0; i<servRespuesta.length; i++)
+						{
+							String servicioParaMantenimiento = servRespuesta[i].trim();
+							ServicioMantenimiento creada = hotel.adicionarServicioMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(servicioParaMantenimiento));
+							if(creada != null)
+							{
+								rta+= creada.getIdServicio() + " añadida exitosamente al mantenimiento. \n";
+							}
+							else
+							{
+								rta += "No se pudo añadir el servicio " + servicioParaMantenimiento + " al mantenimiento. \n";
+							}
+						}
+					}
+					else
+					{
+						rta+="No se pudo crear el mantenimiento. \n";
 					}
 
-					String[] servRespuesta = respuesta2.split(",");
-					for(int i = 0; i<servRespuesta.length; i++)
-					{
-						String servicioParaMantenimiento = servRespuesta[i].trim();
-						ServicioMantenimiento creada = hotel.adicionarServicioMantenimiento(Long.parseLong(idMantenimiento), Integer.parseInt(servicioParaMantenimiento));
-						if(creada != null)
-						{
-							rta+= creada.getIdServicio() + " añadida exitosamente al mantenimiento. \n";
-						}
-						else
-						{
-							rta += "No se pudo añadir el servicio " + servicioParaMantenimiento + " al mantenimiento. \n";
-						}
-					}
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
+
+
 				}
 				else
 				{
-					rta+="No se pudo crear el mantenimiento. \n";
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario.");
 				}
-
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
-
-
-
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario.");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo esta permitida para los empleados");
+				panelDatos.actualizarInterfaz("Esta operacion solo esta permitida para los empleados");
 			}
 		}
 		catch (Exception e)
@@ -784,55 +851,66 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String rta ="";
-			List<Mantenimiento> mantenimientos = hotel.darMantenimientos();
-			for(Mantenimiento man: mantenimientos)
-			{
-				rta += "Id del mantenimiento: " + man.getId() + " Descripcion del mantenimiento: " + man.getDescripcion() + " Desde-hasta: " + man.getFechaInicio() + "-" + man.getFechaFin() + "\n";
-			}
-			panelDatos.actualizarInterfaz(rta);
 
-			String idM = JOptionPane.showInputDialog("Favor ingrese el número del mantenimiento que desea dar por terminado");
-			if(idM != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				Long id = Long.parseLong(idM.trim());
-
-				long serviciosEliminados = hotel.eliminarServicioMantenimientoIdMantenimiento(id);
-				if(serviciosEliminados > 0)
+				String rta ="";
+				List<Mantenimiento> mantenimientos = hotel.darMantenimientos();
+				for(Mantenimiento man: mantenimientos)
 				{
-					rta += serviciosEliminados + " servicios terminaron el mantenimiento. \n";
-					long habitacionesEliminadas = hotel.eliminarHabitacionMantenimientoIdMantenimiento(id);
-					if(habitacionesEliminadas >0)
+					rta += "Id del mantenimiento: " + man.getId() + " Descripcion del mantenimiento: " + man.getDescripcion() + " Desde-hasta: " + man.getFechaInicio() + "-" + man.getFechaFin() + "\n";
+				}
+				panelDatos.actualizarInterfaz(rta);
+
+				String idM = JOptionPane.showInputDialog("Favor ingrese el número del mantenimiento que desea dar por terminado");
+				if(idM != null)
+				{
+					Long id = Long.parseLong(idM.trim());
+
+					long serviciosEliminados = hotel.eliminarServicioMantenimientoIdMantenimiento(id);
+					if(serviciosEliminados > 0)
 					{
-						rta += habitacionesEliminadas + " habitaciones terminaron el mantenimiento. \n";
-						long mantenimientoEliminado = hotel.eliminarMantenimiento(id);
-						if(mantenimientoEliminado > 0)
+						rta += serviciosEliminados + " servicios terminaron el mantenimiento. \n";
+						long habitacionesEliminadas = hotel.eliminarHabitacionMantenimientoIdMantenimiento(id);
+						if(habitacionesEliminadas >0)
 						{
-							rta += "El mantenimiento con id " + id + " fue eliminado correctamente. \n";
+							rta += habitacionesEliminadas + " habitaciones terminaron el mantenimiento. \n";
+							long mantenimientoEliminado = hotel.eliminarMantenimiento(id);
+							if(mantenimientoEliminado > 0)
+							{
+								rta += "El mantenimiento con id " + id + " fue eliminado correctamente. \n";
+							}
+							else
+							{
+								rta += "No se pudo terminar el mantenimiento en los servicios \n";
+							}
+							panelDatos.actualizarInterfaz(rta);
 						}
 						else
 						{
-							rta += "No se pudo terminar el mantenimiento en los servicios \n";
+							rta += "No se pudo terminar el mantenimiento en las habitaciones \n";
 						}
 						panelDatos.actualizarInterfaz(rta);
 					}
 					else
 					{
-						rta += "No se pudo terminar el mantenimiento en las habitaciones \n";
+						rta += "No se pudo terminar el mantenimiento en los servicios \n";
 					}
 					panelDatos.actualizarInterfaz(rta);
 				}
 				else
 				{
-					rta += "No se pudo terminar el mantenimiento en los servicios \n";
+					rta += "Operación cancelada por el usuario. \n";
 				}
-				panelDatos.actualizarInterfaz(rta);
+
 			}
 			else
 			{
-				rta += "Operación cancelada por el usuario. \n";
+				JOptionPane.showMessageDialog(null, "Esta operacion solo esta permitida para los empleados");
+				panelDatos.actualizarInterfaz("Esta operacion solo esta permitida para los empleados");
 			}
-
 		}
 		catch (Exception e)
 		{
@@ -1257,74 +1335,87 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 
-			List<Object[]> reser=hotel.darReservas();
-			String text="";
-			for(int i=0;i<reser.size();i++)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("USER")||tip.toUpperCase().equals("USUARIO"))
 			{
-				text+="Reserva con id: "+reser.get(i)[0]+"\n";
-			}
-			System.out.println(reser.size());
-			panelDatos.actualizarInterfaz(text);
-			String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva, no usar las identificaciones anteriormente desplegadas");
-
-
-			if(id != null)
-			{
-				String capacidad = JOptionPane.showInputDialog(this, "Cantidad Personas");
-				String costo = JOptionPane.showInputDialog(this, "Costo de la reserva");
-				String ano=JOptionPane.showInputDialog(this,"ano de la reserva ej: 2019");
-				String mes=JOptionPane.showInputDialog(this,"Mes de la reserva  ej: 05");
-				String dia=JOptionPane.showInputDialog(this,"Dia de la reserva ej: 05");
-				int fe1=Integer.parseInt(ano);
-				int fe2=Integer.parseInt(mes);
-				int fe3=Integer.parseInt(dia);
-
-				if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>3||fe3<1))
+				List<Object[]> reser=hotel.darReservas();
+				String text="";
+				for(int i=0;i<reser.size();i++)
 				{
-					throw new Exception("Fecha invalida introduzca bien los datos");
+					text+="Reserva con id: "+reser.get(i)[0]+"\n";
 				}
-				String ini=ano+mes+dia;				
-				String ano2=JOptionPane.showInputDialog(this,"ano de fin de la reserva ej: 2019");
-				String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej: 05");
-				String dia2=JOptionPane.showInputDialog(this,"Dia de fin de la reserva ej: 05");
-				int fe11=Integer.parseInt(ano2);
-				int fe22=Integer.parseInt(mes2);
-				int fe33=Integer.parseInt(dia2);
+				System.out.println(reser.size());
+				panelDatos.actualizarInterfaz(text);
+				String id = JOptionPane.showInputDialog(this, "Identificacion de la Reserva, no usar las identificaciones anteriormente desplegadas");
 
-				if(fe11<2019 || (fe22<0 || fe22>12)||(fe33>31||fe33<1))
-				{
-					throw new Exception("Fecha invalida introduzca bien los datos");
-				}
-				String fini=ano2+mes2+dia2;				
-				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
-				String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
-				String pagoo=JOptionPane.showInputDialog(this,"Esta pago T o F");
-				String plan=JOptionPane.showInputDialog(this,"Id del plan");
-				String identificacion=JOptionPane.showInputDialog(this,"Identificacion del usuario de la reserva");
-				long idplan=Long.parseLong(plan);
-				long idusuario=Long.parseLong(identificacion);
-				long iden=Long.parseLong(id);
-				long inicio=Long.parseLong(ini);
-				long fin=Long.parseLong(fini);
-				int capa = Integer.parseInt(capacidad);
-				double cos=Double.parseDouble(costo);
-				Reserva u = hotel.adicionarReserva(iden, capa, inicio, fin, cos, descripcion, nombre, pagoo, idplan, idusuario);
-				if (u == null)
-				{
-					throw new Exception ("No se pudo crear el servicio con id " + id);
-				}
-				String rta = "Adicionar nuevo servicio \n\n";
-				rta += "servicio "+ id  + " añadido exitosamente. \n";
-				rta += "Operación terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 
+				if(id != null)
+				{
+					String capacidad = JOptionPane.showInputDialog(this, "Cantidad Personas");
+					String costo = JOptionPane.showInputDialog(this, "Costo de la reserva");
+					String ano=JOptionPane.showInputDialog(this,"ano de la reserva ej: 2019");
+					String mes=JOptionPane.showInputDialog(this,"Mes de la reserva  ej: 05");
+					String dia=JOptionPane.showInputDialog(this,"Dia de la reserva ej: 05");
+					int fe1=Integer.parseInt(ano);
+					int fe2=Integer.parseInt(mes);
+					int fe3=Integer.parseInt(dia);
+
+					if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>3||fe3<1))
+					{
+						throw new Exception("Fecha invalida introduzca bien los datos");
+					}
+					String ini=ano+mes+dia;				
+					String ano2=JOptionPane.showInputDialog(this,"ano de fin de la reserva ej: 2019");
+					String mes2=JOptionPane.showInputDialog(this,"Mes de fin de la reserva ej: 05");
+					String dia2=JOptionPane.showInputDialog(this,"Dia de fin de la reserva ej: 05");
+					int fe11=Integer.parseInt(ano2);
+					int fe22=Integer.parseInt(mes2);
+					int fe33=Integer.parseInt(dia2);
+
+					if(fe11<2019 || (fe22<0 || fe22>12)||(fe33>31||fe33<1))
+					{
+						throw new Exception("Fecha invalida introduzca bien los datos");
+					}
+					String fini=ano2+mes2+dia2;				
+					String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
+					String nombre=JOptionPane.showInputDialog(this,"Esta registrado true T false F");
+					String pagoo=JOptionPane.showInputDialog(this,"Esta pago T o F");
+					String plan=JOptionPane.showInputDialog(this,"Id del plan");
+					String identificacion=JOptionPane.showInputDialog(this,"Identificacion del usuario de la reserva");
+					long idplan=Long.parseLong(plan);
+					long idusuario=Long.parseLong(identificacion);
+					long iden=Long.parseLong(id);
+					long inicio=Long.parseLong(ini);
+					long fin=Long.parseLong(fini);
+					int capa = Integer.parseInt(capacidad);
+					double cos=Double.parseDouble(costo);
+					Reserva u = hotel.adicionarReserva(iden, capa, inicio, fin, cos, descripcion, nombre, pagoo, idplan, idusuario);
+					if (u == null)
+					{
+						throw new Exception ("No se pudo crear el servicio con id " + id);
+					}
+					String rta = "Adicionar nuevo servicio \n\n";
+					rta += "servicio "+ id  + " añadido exitosamente. \n";
+					rta += "Operación terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Solo los usuarios tienen acceso a estas funciones");
+				panelDatos.actualizarInterfaz("Solo los usuarios tienen acceso a estas funciones");
+
 			}
+
 		}
+
 		catch (Exception e) 
 		{
 			e.printStackTrace();
@@ -1339,63 +1430,74 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String print="No usar los siguientes id's los cuales ya estan en uso :";
-			List<Object[]> serv=hotel.darServiciosObjeto();
-			for(int i=0;i<serv.size();i++)
+
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("ADMIN")||tip.toUpperCase().equals("ADMINISTRADOR"))
 			{
-				print+=" Servicio con id: "+serv.get(i)[0] +" --- Servicio con nombre: "+ serv.get(i)[3]+"\n";
+				String print="No usar los siguientes id's los cuales ya estan en uso :";
+				List<Object[]> serv=hotel.darServiciosObjeto();
+				for(int i=0;i<serv.size();i++)
+				{
+					print+=" Servicio con id: "+serv.get(i)[0] +" --- Servicio con nombre: "+ serv.get(i)[3]+"\n";
+				}
+				panelDatos.actualizarInterfaz(print);
+				String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio, no usar las identificaciones anteriormente desplegadas");
+
+
+				if(id != null)
+				{
+					String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
+					String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
+					String ano=JOptionPane.showInputDialog(this,"Hora de apertura servicio ej 22");
+					String mes=JOptionPane.showInputDialog(this,"Minuto de aprtura del servicio ej 05");
+					int fe1=Integer.parseInt(ano);
+					int fe2=Integer.parseInt(mes);
+
+					if(fe1<0 || fe1>23 || fe2<0 || fe2>60)
+					{
+						throw new Exception("Fecha invalida introduzca bien los datos");
+					}
+					String fechaInicio=ano+mes; 
+					System.out.println(fechaInicio);
+					String ano2=JOptionPane.showInputDialog(this,"hora de cierre servicio ej 22");
+					String mes2=JOptionPane.showInputDialog(this,"Minuto de cierre del servicio ej 05");
+					int fe11=Integer.parseInt(ano);
+					int fe22=Integer.parseInt(mes);
+
+					if(fe11<0 || fe11>23 || fe22<0 || fe22>60)
+					{
+						throw new Exception("Fecha invalida introduzca bien los datos");
+					}
+					String fini=ano2+mes2;        		        		
+					String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
+					String nombre=JOptionPane.showInputDialog(this,"Nombre del servicio");
+					long iden=Long.parseLong(id);
+					long inicio=Long.parseLong(fechaInicio);
+					long fin=Long.parseLong(fini);
+					int capa = Integer.parseInt(capacidad);
+					double cos=Double.parseDouble(costo);
+					Servicio u = hotel.adicionarServicio(iden,capa, inicio, fin, cos, nombre, descripcion);
+					if (u == null)
+					{
+						throw new Exception ("No se pudo crear el servicio con id " + id);
+					}
+					String rta = "Adicionar nuevo servicio \n\n";
+					rta += "servicio "+ id  + " añadido exitosamente. \n";
+					rta += "Operación terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
 			}
-			panelDatos.actualizarInterfaz(print);
-			String id = JOptionPane.showInputDialog(this, "Identificacion del Servicio, no usar las identificaciones anteriormente desplegadas");
-
-
-			if(id != null)
+			else 
 			{
-				String capacidad = JOptionPane.showInputDialog(this, "Capacidad del Servicio");
-				String costo = JOptionPane.showInputDialog(this, "Costo del Servicio");
-				String ano=JOptionPane.showInputDialog(this,"Hora de apertura servicio ej 22");
-				String mes=JOptionPane.showInputDialog(this,"Minuto de aprtura del servicio ej 05");
-				int fe1=Integer.parseInt(ano);
-				int fe2=Integer.parseInt(mes);
-
-				if(fe1<0 || fe1>23 || fe2<0 || fe2>60)
-				{
-					throw new Exception("Fecha invalida introduzca bien los datos");
-				}
-				String fechaInicio=ano+mes; 
-				System.out.println(fechaInicio);
-				String ano2=JOptionPane.showInputDialog(this,"hora de cierre servicio ej 22");
-				String mes2=JOptionPane.showInputDialog(this,"Minuto de cierre del servicio ej 05");
-				int fe11=Integer.parseInt(ano);
-				int fe22=Integer.parseInt(mes);
-
-				if(fe11<0 || fe11>23 || fe22<0 || fe22>60)
-				{
-					throw new Exception("Fecha invalida introduzca bien los datos");
-				}
-				String fini=ano2+mes2;        		        		
-				String descripcion = JOptionPane.showInputDialog(this, "Descripcion");
-				String nombre=JOptionPane.showInputDialog(this,"Nombre del servicio");
-				long iden=Long.parseLong(id);
-				long inicio=Long.parseLong(fechaInicio);
-				long fin=Long.parseLong(fini);
-				int capa = Integer.parseInt(capacidad);
-				double cos=Double.parseDouble(costo);
-				Servicio u = hotel.adicionarServicio(iden,capa, inicio, fin, cos, nombre, descripcion);
-				if (u == null)
-				{
-					throw new Exception ("No se pudo crear el servicio con id " + id);
-				}
-				String rta = "Adicionar nuevo servicio \n\n";
-				rta += "servicio "+ id  + " añadido exitosamente. \n";
-				rta += "Operación terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
-
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo puede ser realizada por un administrador");
+				panelDatos.actualizarInterfaz("Esta operacion solo puede ser realizada por un administrador");
 			}
 		}
 		catch (Exception e) 
@@ -1414,37 +1516,50 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String numeroHabitacion = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
 
 
-			if(numeroHabitacion != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("ADMIN")||tip.toUpperCase().equals("ADMINISTRADOR"))
 			{
-				String capacidad = JOptionPane.showInputDialog(this, "Capacidad de habitacion");
-				String costo = JOptionPane.showInputDialog(this, "Costo de habitacion");
-				String descripcion = JOptionPane.showInputDialog(this, "Descripcion de habitacion");
-				String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
-				if(disponible.length()>1)
+				String numeroHabitacion = JOptionPane.showInputDialog(this, "Identificacion de la habitacion");
+
+
+				if(numeroHabitacion != null)
 				{
-					throw new Exception("Tamano Incorrecto en disponibilidad, solo se puede Usar T o F");
+					String capacidad = JOptionPane.showInputDialog(this, "Capacidad de habitacion");
+					String costo = JOptionPane.showInputDialog(this, "Costo de habitacion");
+					String descripcion = JOptionPane.showInputDialog(this, "Descripcion de habitacion");
+					String disponible=JOptionPane.showInputDialog(this,"Disponibilidad T si esta diponible o F si no lo esta");
+					if(disponible.length()>1)
+					{
+						throw new Exception("Tamano Incorrecto en disponibilidad, solo se puede Usar T o F");
+					}
+					int num = Integer.parseInt(numeroHabitacion);
+					int capa = Integer.parseInt(capacidad);
+					int cos=Integer.parseInt(costo);
+					Habitacion u = hotel.adicionarHabitacion(capa, num, cos, descripcion, disponible);
+					if (u == null)
+					{
+						throw new Exception ("No se pudo crear la habitacion con id " + numeroHabitacion);
+					}
+					String rta = "Adicionar nueva habitacion \n\n";
+					rta += "habitacion "+ numeroHabitacion  + " añadido exitosamente. \n";
+					rta += "Operación terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+
 				}
-				int num = Integer.parseInt(numeroHabitacion);
-				int capa = Integer.parseInt(capacidad);
-				int cos=Integer.parseInt(costo);
-				Habitacion u = hotel.adicionarHabitacion(capa, num, cos, descripcion, disponible);
-				if (u == null)
+				else
 				{
-					throw new Exception ("No se pudo crear la habitacion con id " + numeroHabitacion);
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 				}
-				String rta = "Adicionar nueva habitacion \n\n";
-				rta += "habitacion "+ numeroHabitacion  + " añadido exitosamente. \n";
-				rta += "Operación terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 
 			}
-			else
+			else 
 			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo puede ser realizada por un administrador");
+				panelDatos.actualizarInterfaz("Esta operacion solo puede ser realizada por un administrador");
 			}
 		}
 		catch (Exception e) 
@@ -1459,34 +1574,45 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String text="habitaciones : ";
-			for(int i=0; i<hotel.darHabitaciones().size();i++)
-			{
-				text+="identificacion: "+hotel.darHabitaciones().get(i).getNumeroHabitacion()+" Disponibilidad: "+hotel.darHabitaciones().get(i).isDisponible()+"\n";
-			}
-			panelDatos.actualizarInterfaz(text);
-			String idServicio = JOptionPane.showInputDialog(this, "Id de la reserva a cargar");
-			String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar a la reserva");
-			long ids=Long.parseLong(idServicio);
-			int numHabitacion=Integer.parseInt(numeroHabitacion);
 
-			if(idServicio != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				Apartan ti = hotel.adicionarApartan(ids, numHabitacion);
-				if(ti == null)
+				String text="habitaciones : ";
+				for(int i=0; i<hotel.darHabitaciones().size();i++)
 				{
-					throw new Exception("No se pudo agregar la reserva a la habitacion" + numHabitacion);
+					text+="identificacion: "+hotel.darHabitaciones().get(i).getNumeroHabitacion()+" Disponibilidad: "+hotel.darHabitaciones().get(i).isDisponible()+"\n";
 				}
+				panelDatos.actualizarInterfaz(text);
+				String idServicio = JOptionPane.showInputDialog(this, "Id de la reserva a cargar");
+				String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar a la reserva");
+				long ids=Long.parseLong(idServicio);
+				int numHabitacion=Integer.parseInt(numeroHabitacion);
 
-				String rta = "Agregar nuevo reserva a habitacion \n\n";
-				rta += "reserva a habitacion " + ti  + " agregado exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				if(idServicio != null)
+				{
+					Apartan ti = hotel.adicionarApartan(ids, numHabitacion);
+					if(ti == null)
+					{
+						throw new Exception("No se pudo agregar la reserva a la habitacion" + numHabitacion);
+					}
+
+					String rta = "Agregar nuevo reserva a habitacion \n\n";
+					rta += "reserva a habitacion " + ti  + " agregado exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				}
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo esta permitida para los empleados");
+				panelDatos.actualizarInterfaz("Esta operacion solo esta permitida para los empleados");
 			}
 		}
 		catch (Exception e)
@@ -1499,48 +1625,62 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String text="Servicios : ";
-			for(int i=0; i<hotel.darServicios().size();i++)
-			{
-				text+="identificacion: "+hotel.darServicios().get(i).getid()+" Nombre: "+hotel.darServicios().get(i).getNombre();
-			}
-			panelDatos.actualizarInterfaz(text);
-			String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
-			String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
-			String ano=JOptionPane.showInputDialog(this,"Ano de uso del servicio ej: 2019");
-			String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej: 05");
-			String dia=JOptionPane.showInputDialog(this,"Dia de uso del servicio ej: 05");
-			int fe1=Integer.parseInt(ano);
-			int fe2=Integer.parseInt(mes);
-			int fe3=Integer.parseInt(dia);
 
-			if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>31||fe3<1))
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				throw new Exception("Fecha invalida introduzca bien los datos");
-			}
-			String fecha=ano+mes+dia;
-			long ids=Long.parseLong(idServicio);
-			int numHabitacion=Integer.parseInt(numeroHabitacion);
-			long uso=Long.parseLong(fecha);
-
-			if(idServicio != null)
-			{
-				Sirven ti = hotel.adicionarSirven(ids, numHabitacion,uso);
-				if(ti == null)
+				String text="Servicios : ";
+				for(int i=0; i<hotel.darServicios().size();i++)
 				{
-					throw new Exception("No se pudo agregar el Servicio a la habitacion" + numHabitacion);
+					text+="identificacion: "+hotel.darServicios().get(i).getid()+" Nombre: "+hotel.darServicios().get(i).getNombre();
+				}
+				panelDatos.actualizarInterfaz(text);
+				String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
+				String numeroHabitacion=JOptionPane.showInputDialog(this, "Numero de habitacion para cargar servicio");
+				String ano=JOptionPane.showInputDialog(this,"Ano de uso del servicio ej: 2019");
+				String mes=JOptionPane.showInputDialog(this,"Mes de uso del servicio ej: 05");
+				String dia=JOptionPane.showInputDialog(this,"Dia de uso del servicio ej: 05");
+				int fe1=Integer.parseInt(ano);
+				int fe2=Integer.parseInt(mes);
+				int fe3=Integer.parseInt(dia);
+
+				if(fe1<2019 || (fe2<0 || fe2>12)||(fe3>31||fe3<1))
+				{
+					throw new Exception("Fecha invalida introduzca bien los datos");
+				}
+				String fecha=ano+mes+dia;
+				long ids=Long.parseLong(idServicio);
+				int numHabitacion=Integer.parseInt(numeroHabitacion);
+				long uso=Long.parseLong(fecha);
+
+				if(idServicio != null)
+				{
+					Sirven ti = hotel.adicionarSirven(ids, numHabitacion,uso);
+					if(ti == null)
+					{
+						throw new Exception("No se pudo agregar el Servicio a la habitacion" + numHabitacion);
+					}
+
+					String rta = "Agregar nuevo servicio a habitacion \n\n";
+					rta += "servicio a habitacion " + ti  + " agregado exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 				}
 
-				String rta = "Agregar nuevo servicio a habitacion \n\n";
-				rta += "servicio a habitacion " + ti  + " agregado exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Solo los empleados tienen acceso a estas funciones");
+				panelDatos.actualizarInterfaz("Solo los empleados tienen acceso a estas funciones");
+
 			}
+
 		}
 		catch (Exception e)
 		{
@@ -1556,25 +1696,35 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 
-			String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la llegada");
-
-			long id=Long.parseLong(idR);
-			if(idR != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				long ti = hotel.registrarLlegada(id);
-				if(ti == 0)
-				{
-					throw new Exception("No se pudo registrar la llegada " + idR);
-				}
+				String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la llegada");
 
-				String rta = "Registrar una llegada de un usuario a una reserva \n\n";
-				rta += "Llegada " + ti  + " registrada exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
+				long id=Long.parseLong(idR);
+				if(idR != null)
+				{
+					long ti = hotel.registrarLlegada(id);
+					if(ti == 0)
+					{
+						throw new Exception("No se pudo registrar la llegada " + idR);
+					}
+
+					String rta = "Registrar una llegada de un usuario a una reserva \n\n";
+					rta += "Llegada " + ti  + " registrada exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				}
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo esta permitida para los empleados");
+				panelDatos.actualizarInterfaz("Esta operacion solo esta permitida para los empleados");
 			}
 		}
 		catch (Exception e)
@@ -1592,25 +1742,35 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 
-			String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la salida");
-
-			long id=Long.parseLong(idR);
-			if(idR != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("EMPLEADO")||tip.toUpperCase().equals("RECEPCIONISTA"))
 			{
-				long ti = hotel.registrarSalida(id);
-				if(ti == 0)
-				{
-					throw new Exception("No se pudo registrar la salida " + idR);
-				}
+				String idR = JOptionPane.showInputDialog(this, "Id de reserva a registrar la salida");
 
-				String rta = "Registrar una salida de un usuario a una reserva \n\n";
-				rta += "Salida " + ti  + " registrada exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
+				long id=Long.parseLong(idR);
+				if(idR != null)
+				{
+					long ti = hotel.registrarSalida(id);
+					if(ti == 0)
+					{
+						throw new Exception("No se pudo registrar la salida " + idR);
+					}
+
+					String rta = "Registrar una salida de un usuario a una reserva \n\n";
+					rta += "Salida " + ti  + " registrada exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				}
 			}
 			else
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo esta permitida para los empleados");
+				panelDatos.actualizarInterfaz("Esta operacion solo esta permitida para los empleados");
 			}
 		}
 		catch (Exception e)
@@ -1629,34 +1789,45 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			String text="Id de plan en uso, no usar los id's siguientes";
-			for(int i=0; i<hotel.darPlanes().size();i++)
-			{
-				text+=","+hotel.darPlanes().get(i).geId();
-			}
-			panelDatos.actualizarInterfaz(text);
-			String nombre = JOptionPane.showInputDialog(this, "Nombre de plan");
-			String descripcion=JOptionPane.showInputDialog(this, "descripcion de plan");
-			String idTipo=JOptionPane.showInputDialog(this,"id del plan");
 
-			long id=Long.parseLong(idTipo);
-			if(idTipo != null)
+			String tip=hotel.darTipoId(user.getIdTipo()).getNombre();
+			System.out.println(tip);
+			if(tip.toUpperCase().equals("ADMIN")||tip.toUpperCase().equals("ADMINISTRADOR"))
 			{
-				Plan ti = hotel.adicionarPlan(id, nombre, descripcion);
-				if(ti == null)
+				String text="Id de plan en uso, no usar los id's siguientes";
+				for(int i=0; i<hotel.darPlanes().size();i++)
 				{
-					throw new Exception("No se pudo agregar el tipo de usuario " + nombre);
+					text+=","+hotel.darPlanes().get(i).geId();
 				}
+				panelDatos.actualizarInterfaz(text);
+				String nombre = JOptionPane.showInputDialog(this, "Nombre de plan");
+				String descripcion=JOptionPane.showInputDialog(this, "descripcion de plan");
+				String idTipo=JOptionPane.showInputDialog(this,"id del plan");
 
-				String rta = "Agregar nuevo plan \n\n";
-				rta += "Plan " + ti  + " agregado exitosamente \n";
-				rta += "Operacion terminada";
-				panelDatos.actualizarInterfaz(rta);
-				JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				long id=Long.parseLong(idTipo);
+				if(idTipo != null)
+				{
+					Plan ti = hotel.adicionarPlan(id, nombre, descripcion);
+					if(ti == null)
+					{
+						throw new Exception("No se pudo agregar el tipo de usuario " + nombre);
+					}
+
+					String rta = "Agregar nuevo plan \n\n";
+					rta += "Plan " + ti  + " agregado exitosamente \n";
+					rta += "Operacion terminada";
+					panelDatos.actualizarInterfaz(rta);
+					JOptionPane.showMessageDialog(null, "Agregado exitosamente");
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				}
 			}
-			else
+			else 
 			{
-				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+				JOptionPane.showMessageDialog(null, "Esta operacion solo puede ser realizada por un administrador");
+				panelDatos.actualizarInterfaz("Esta operacion solo puede ser realizada por un administrador");
 			}
 		}
 		catch (Exception e)
@@ -1795,10 +1966,40 @@ public class InterfazApp extends JFrame implements ActionListener
 			e.printStackTrace();
 			panelDatos.actualizarInterfaz(generarMensajeError(e));
 		}
-		
+	}
+
+	public void logIn()
+	{
+		try{
+
+			String clave=JOptionPane.showInputDialog(this,"Ingrese Contrase�a");
+			System.out.println(clave);
+			if(clave.equals(CONTRASE�A))
+			{
+				String cedula=JOptionPane.showInputDialog(this, "Ingrese cedula para registrarse");
+				long cc = Long.parseLong(cedula);
+				List<Usuario> list=hotel.darUsuarioId(cc);
+				user=list.get(0);
+
+				panelDatos.actualizarInterfaz("Login exitoso");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Clave incorrecta");
+			}
+
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Clave o usuario invalido, contactarse con administrador para mayor informacion");
+			e.printStackTrace();
+			panelDatos.actualizarInterfaz(generarMensajeError(e));
+		}
+
 
 
 
 	}
+
 
 }

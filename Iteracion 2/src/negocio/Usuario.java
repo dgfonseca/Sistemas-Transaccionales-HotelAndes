@@ -17,16 +17,17 @@ public class Usuario implements VOUsuario{
 		this.identificacion=0;
 		this.nombre="";
 		this.tipoIdentificacion="";
-		this.idTipo=0;
 		this.correoElectronico="";
+		this.idTipo=0;
 	}
-	public Usuario(long pidentificacion, String pid,long ptipo,String pcorreo, String pNombre)
+	public Usuario(long pidentificacion, String pNombre, String pid,String pcorreo,long ptipo)
 	{
 		this.identificacion=pidentificacion;
-		this.tipoIdentificacion=pid;
-		this.idTipo=ptipo;
-		this.correoElectronico=pcorreo;
 		this.nombre=pNombre;
+		this.tipoIdentificacion=pid;
+		this.correoElectronico=pcorreo;
+		this.idTipo=ptipo;
+		
 	}
 
 

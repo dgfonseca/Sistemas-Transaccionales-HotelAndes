@@ -58,12 +58,23 @@ class SQLUsuario {
 
 	
 	@SuppressWarnings("rawtypes")
-	public Usuario darUsuarioPorIdentificacion (PersistenceManager pm, int identificacion) 
+	public List<Usuario> darUsuarioPorIdentificacion (PersistenceManager pm, long identificacion) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuario () + " WHERE identificacion = ?");
-		q.setResultClass(Usuario.class);
 		q.setParameters(identificacion);
-		return (Usuario) q.executeUnique();
+		List<Usuario> resp= new LinkedList<>();
+		List results=q.executeList();
+		for(Object obj:results)
+		{
+			Object[] datos = (Object[]) obj;
+			long ident =  ((BigDecimal) datos [0]).longValue ();
+			String nombre=(String)datos[1];
+			String tipoIdent=(String)datos[2];
+			String correo=(String)datos[3];
+			long iditpo =  ((BigDecimal) datos [4]).longValue ();
+			resp.add(new Usuario(ident, nombre, tipoIdent, correo, iditpo));
+		}
+		return resp;
 	}
 
 	
@@ -106,7 +117,7 @@ class SQLUsuario {
 			String tipoIdent=(String)datos[2];
 			String correo=(String)datos[3];
 			long iditpo =  ((BigDecimal) datos [4]).longValue ();
-			resp.add(new Usuario(identificacion, tipoIdent, iditpo, correo, nombre));
+			resp.add(new Usuario(identificacion, nombre, tipoIdent, correo, iditpo));
 			
 		}
 		return resp;
