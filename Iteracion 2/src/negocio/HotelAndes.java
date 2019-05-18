@@ -396,5 +396,10 @@ public class HotelAndes {
 	{
 		return pp.darTipoId(id);
 	}
+	
+	public List<Object[]> requerimientoFuncional9(long id,long ini,long fin)
+	{
+		return pp.requerimientoFuncional9(id, ini, fin);
+	}
 
 }

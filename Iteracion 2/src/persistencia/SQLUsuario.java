@@ -33,30 +33,30 @@ class SQLUsuario {
 	{
 		this.pp = pp;
 	}
-	
 
-	
+
+
 	@SuppressWarnings("rawtypes")
 	public long adicionarUsuario (PersistenceManager pm, int identificacion, String nombre, String tipoid, String correo, long idTipo) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario () + "(identificacion, nombre, tipoIdentificacion, correo, idTipo ) values ( ?, ?, ?, ?,?)");
-        q.setParameters(identificacion, nombre, tipoid, correo, idTipo);
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario () + "(identificacion, nombre, tipoIdentificacion, correo, idTipo ) values ( ?, ?, ?, ?,?)");
+		q.setParameters(identificacion, nombre, tipoid, correo, idTipo);
+		return (long) q.executeUnique();
 	}
 
-	
-	
+
+
 	@SuppressWarnings("rawtypes")
 	public long eliminarUsuarioPorIdentificacion (PersistenceManager pm, int identificacion)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario () + " WHERE identificacion = ?");
-        q.setParameters(identificacion);
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario () + " WHERE identificacion = ?");
+		q.setParameters(identificacion);
+		return (long) q.executeUnique();
 	}
 
-	
 
-	
+
+
 	@SuppressWarnings("rawtypes")
 	public List<Usuario> darUsuarioPorIdentificacion (PersistenceManager pm, long identificacion) 
 	{
@@ -77,7 +77,7 @@ class SQLUsuario {
 		return resp;
 	}
 
-	
+
 
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -87,7 +87,7 @@ class SQLUsuario {
 		q.setResultClass(Usuario.class);
 		return (List<Usuario>) q.executeList();
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darConsumoUsuario (PersistenceManager pm, String pnombre)
 	{		
@@ -102,7 +102,7 @@ class SQLUsuario {
 		Query q = pm.newQuery(SQL, sql1);
 		return q.executeList();
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public List<Usuario> darBuenosClientes(PersistenceManager pm)
 	{
@@ -118,14 +118,14 @@ class SQLUsuario {
 			String correo=(String)datos[3];
 			long iditpo =  ((BigDecimal) datos [4]).longValue ();
 			resp.add(new Usuario(identificacion, nombre, tipoIdent, correo, iditpo));
-			
+
 		}
 		return resp;
-		
-		
+
+
 	}
-	
-	
+
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> darConsumoPorUsuarioDado(PersistenceManager pm,long id,long ini,long fin)
 	{
@@ -140,4 +140,28 @@ class SQLUsuario {
 		return q.executeList();
 	}
 
+
+
+	public List<Object[]> requerimientoFuncionalConsulta9(PersistenceManager pm,long id,long ini,long fin)
+	{
+		String sql1="SELECT Select us.nombre, us.identificacion, count(*) \r\n" + 
+				"from usuario us\r\n" + 
+				"inner join reserva res\r\n" + 
+				"on us.identificacion=res.id_usuario\r\n" + 
+				"inner join apartan ap\r\n" + 
+				"on res.id=ap.idreserva\r\n" + 
+				"inner join\r\n" + 
+				"habitacion hab\r\n" + 
+				"on ap.numerohabitacion=hab.numerohabitacion\r\n" + 
+				"inner join sirven sirv\r\n" + 
+				"on hab.numerohabitacion=sirv.numerohabitacion\r\n" + 
+				"where sirv.FECHAUSO between ? and ? \r\n" + 
+				"and sirv.IDSERVICIO= ? \r\n" + 
+				"group by us.identificacion, us.nombre;";
+		Query q=pm.newQuery(SQL,sql1);
+		q.setParameters(ini,fin,id);
+		return q.executeList();
+		
+		
+	}
 }

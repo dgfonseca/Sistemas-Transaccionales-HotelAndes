@@ -555,7 +555,10 @@ public class PersistenciaHotelAndes {
 		return resp;
 	}
 	
-	
+	public List<Object[]> requerimientoFuncional9(long id, long ini,long fin)
+	{
+		return sqlUsuario.requerimientoFuncionalConsulta9(pmf.getPersistenceManager(), id, ini, fin);
+	}
 
 	public List<long []> darConsumoYUsuario (String pnombre)
 	{

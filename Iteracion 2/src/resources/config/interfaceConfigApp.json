@@ -123,10 +123,14 @@
 					"label": "Encontrar buenos clientes",
 					"event": "darBuenosClientes"
 				},
-				{
-					"label": "Encontrar servicios poca demanda",
-					"event": "nada"
-				}
+        {
+          "label": "Encontrar servicios poca demanda",
+          "event": "nada"
+        },
+        {
+          "label": "Requerimiento Funcional de Consulta 9",
+          "event": "requerimientoFuncional9"
+        }
 			]
 		}
 	]
