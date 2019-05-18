@@ -144,24 +144,20 @@ class SQLUsuario {
 
 	public List<Object[]> requerimientoFuncionalConsulta9(PersistenceManager pm,long id,long ini,long fin)
 	{
-		String sql1="SELECT Select us.nombre, us.identificacion, count(*) \r\n" + 
-				"from usuario us\r\n" + 
-				"inner join reserva res\r\n" + 
-				"on us.identificacion=res.id_usuario\r\n" + 
-				"inner join apartan ap\r\n" + 
-				"on res.id=ap.idreserva\r\n" + 
-				"inner join\r\n" + 
-				"habitacion hab\r\n" + 
-				"on ap.numerohabitacion=hab.numerohabitacion\r\n" + 
-				"inner join sirven sirv\r\n" + 
-				"on hab.numerohabitacion=sirv.numerohabitacion\r\n" + 
-				"where sirv.FECHAUSO between ? and ? \r\n" + 
-				"and sirv.IDSERVICIO= ? \r\n" + 
-				"group by us.identificacion, us.nombre;";
+		String sql1=" Select us.nombre, us.identificacion, count(*) ";
+		sql1+="from "+ pp.darTablaUsuario()+ " us " ;
+		sql1+=" inner join "+pp.darTablaReserva() +" res" ;
+		sql1+=" on us.identificacion=res.id_usuario ";
+		sql1+=" inner join "+ pp.darTablaApartan()+ " ap " ;
+		sql1+=" on res.id=ap.idreserva " ;
+		sql1+=" inner join "+pp.darTablaHabitacion()+" hab " ;
+		sql1+=" on ap.numerohabitacion=hab.numerohabitacion " ;
+		sql1+=" inner join "+ pp.darTablaSirven()+ " sirv " ;
+		sql1+=" on hab.numerohabitacion=sirv.numerohabitacion " ;
+		sql1+=" where (sirv.FECHAUSO between "+ ini+ " and " +fin+" )  and  sirv.IDSERVICIO = " +id ; 
+		sql1+=" group by us.identificacion, us.nombre ";
 		Query q=pm.newQuery(SQL,sql1);
-		q.setParameters(ini,fin,id);
 		return q.executeList();
-		
-		
+
 	}
 }
