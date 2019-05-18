@@ -1633,7 +1633,7 @@ public class InterfazApp extends JFrame implements ActionListener
 				String text="Servicios : ";
 				for(int i=0; i<hotel.darServicios().size();i++)
 				{
-					text+="identificacion: "+hotel.darServicios().get(i).getid()+" Nombre: "+hotel.darServicios().get(i).getNombre();
+					text+="identificacion: "+hotel.darServicios().get(i)[2]+" Nombre: "+hotel.darServicios().get(i)[1];
 				}
 				panelDatos.actualizarInterfaz(text);
 				String idServicio = JOptionPane.showInputDialog(this, "Id del servicio a cargar");
@@ -2015,6 +2015,42 @@ public class InterfazApp extends JFrame implements ActionListener
 				long identificacion = ((BigDecimal) tupla [1]).longValue ();
 				long count=((BigDecimal) tupla [2]).longValue ();
 				txt+="Usuario con nombre: "+nombre+" identificacion: "+identificacion+" cantidadServicios: "+ count +"\n";
+				
+			}
+			panelDatos.actualizarInterfaz(txt);
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "servicio o fecha invalida, contactarse con administrador para mayor informacion");
+			e.printStackTrace();
+			panelDatos.actualizarInterfaz(generarMensajeError(e));
+		}
+
+	}
+	
+	public void requerimientoFuncional10()
+	{
+		try
+		{
+			String text="Servicios : ";
+			System.err.println(hotel.darServicios().size());
+			for(int i=0; i<hotel.darServicios().size();i++)
+			{
+				text+="identificacion: "+hotel.darServicios().get(i)[0]+" Nombre: "+hotel.darServicios().get(i)[1]+"\n";
+			}
+			panelDatos.actualizarInterfaz(text);
+			int id=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del servicio a buscar"));
+			int ini=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fecha inicial con formato YYYYMMDDH24"));
+			int fin=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fecha inicial con formato YYYYMMDDH24"));
+			List<Object[]> lista=hotel.requerimientoFuncional10(id, ini, fin);
+			String txt="";
+			for ( Object [] tupla : lista)
+			{
+				
+
+				String nombre = ((String) tupla [0]);
+				long identificacion = ((BigDecimal) tupla [1]).longValue ();
+				txt+="Usuario con nombre: "+nombre+" identificacion: "+identificacion +"\n";
 				
 			}
 			panelDatos.actualizarInterfaz(txt);

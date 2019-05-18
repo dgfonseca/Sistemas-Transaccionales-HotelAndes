@@ -84,12 +84,10 @@ class SQLServicio {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<Servicio> darServicios (PersistenceManager pm)
+	public List<Object[]> darServicios (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio ());
-		q.setResultClass(Servicio.class);
-		List<Servicio> servicios = (List<Servicio>) q.executeList();
-		return  servicios;
+		return  q.executeList();
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

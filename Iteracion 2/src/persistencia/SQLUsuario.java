@@ -158,6 +158,23 @@ class SQLUsuario {
 		sql1+=" group by us.identificacion, us.nombre ";
 		Query q=pm.newQuery(SQL,sql1);
 		return q.executeList();
-
 	}
+	
+	
+	public List<Object[]> requerimientoFuncionalConsulta10(PersistenceManager pm,long id,long ini,long fin)
+	{
+		
+		String sql1="select nombre,identificacion from usuario where identificacion not in( Select us.identificacion from usuario us inner join reserva res on us.identificacion=res.id_usuario";
+			   sql1+="	inner join apartan ap on res.id=ap.idreserva inner join	habitacion hab on ap.numerohabitacion=hab.numerohabitacion ";
+				sql1+="inner join sirven sirv on hab.numerohabitacion=sirv.numerohabitacion where sirv.FECHAUSO between "+ ini+" and "+ fin+ " and sirv.IDSERVICIO="+id+")";
+				Query q=pm.newQuery(SQL,sql1);
+				return q.executeList();
+		
+		
+	}
+	
+	
+	
+	
+	
 }

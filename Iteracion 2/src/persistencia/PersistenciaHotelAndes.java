@@ -422,7 +422,7 @@ public class PersistenciaHotelAndes {
 	{
 		return sqlReserva.darReservas (pmf.getPersistenceManager());
 	}
-	public List<Servicio> darServicios ()
+	public List<Object[]> darServicios ()
 	{
 		return sqlServicio.darServicios (pmf.getPersistenceManager());
 	}
@@ -558,6 +558,11 @@ public class PersistenciaHotelAndes {
 	public List<Object[]> requerimientoFuncional9(long id, long ini,long fin)
 	{
 		return sqlUsuario.requerimientoFuncionalConsulta9(pmf.getPersistenceManager(), id, ini, fin);
+	}
+	
+	public List<Object[]> requerimientoFuncional10(long id, long ini,long fin)
+	{
+		return sqlUsuario.requerimientoFuncionalConsulta10(pmf.getPersistenceManager(), id, ini, fin);
 	}
 
 	public List<long []> darConsumoYUsuario (String pnombre)

@@ -96,7 +96,7 @@ public class HotelAndes {
 		return pp.darPlanes();
 	}
 	
-	public List<Servicio> darServicios()
+	public List<Object[]> darServicios()
 	{
 		return pp.darServicios();
 	}
@@ -400,6 +400,11 @@ public class HotelAndes {
 	public List<Object[]> requerimientoFuncional9(long id,long ini,long fin)
 	{
 		return pp.requerimientoFuncional9(id, ini, fin);
+	}
+	
+	public List<Object[]> requerimientoFuncional10(long id,long ini,long fin)
+	{
+		return pp.requerimientoFuncional10(id, ini, fin);
 	}
 
 }

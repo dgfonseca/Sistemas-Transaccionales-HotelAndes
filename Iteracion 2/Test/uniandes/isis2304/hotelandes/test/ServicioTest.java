@@ -75,7 +75,7 @@ private static Logger log = Logger.getLogger(ServicioTest.class.getName());
     	try
 		{
 			// Lectura de los Servicios de bebida con la tabla vacía
-			List <Servicio> lista = parranderos.darServicios();
+			List <Object[]> lista = parranderos.darServicios();
 			assertEquals ("No debe haber Servicios nuevas creadas!!", lista.size(), lista.size ());
 
 			// Lectura de los Servicios de bebida con un Servicio de bebida adicionado
@@ -137,7 +137,7 @@ private static Logger log = Logger.getLogger(ServicioTest.class.getName());
 		try
 		{
 			// Lectura de los Servicios de bebida con la tabla vacía
-			List <Servicio> lista = parranderos.darServicios();
+			List <Object[]> lista = parranderos.darServicios();
 			assertEquals ("No deberian haber Servicioes mayores a!!"+lista.size(), lista.size(), lista.size ());
 
 			// Lectura de los Servicios de bebida con un Servicio de bebida adicionado

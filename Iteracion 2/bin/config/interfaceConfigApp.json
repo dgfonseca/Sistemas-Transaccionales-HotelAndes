@@ -130,6 +130,10 @@
         {
           "label": "Requerimiento Funcional de Consulta 9",
           "event": "requerimientoFuncional9"
+        },
+        {
+        "label":"Requerimiento Funcional de Consulta 10",
+        "event":"requerimientoFuncional10"
         }
 			]
 		}
