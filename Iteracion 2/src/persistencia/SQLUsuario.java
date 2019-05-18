@@ -142,6 +142,7 @@ class SQLUsuario {
 
 
 
+	@SuppressWarnings("unchecked")
 	public List<Object[]> requerimientoFuncionalConsulta9(PersistenceManager pm,long id,long ini,long fin)
 	{
 		String sql1=" Select us.nombre, us.identificacion, count(*) ";
@@ -156,11 +157,12 @@ class SQLUsuario {
 		sql1+=" on hab.numerohabitacion=sirv.numerohabitacion " ;
 		sql1+=" where (sirv.FECHAUSO between "+ ini+ " and " +fin+" )  and  sirv.IDSERVICIO = " +id ; 
 		sql1+=" group by us.identificacion, us.nombre ";
+		@SuppressWarnings("rawtypes")
 		Query q=pm.newQuery(SQL,sql1);
 		return q.executeList();
 	}
 	
-	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Object[]> requerimientoFuncionalConsulta10(PersistenceManager pm,long id,long ini,long fin)
 	{
 		
