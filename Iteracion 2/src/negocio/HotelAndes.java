@@ -406,5 +406,9 @@ public class HotelAndes {
 	{
 		return pp.requerimientoFuncional10(id, ini, fin);
 	}
+	public List<Object[]> requerimientoFuncional12()
+	{
+		return pp.requerimientoFuncional12();
+	}
 
 }

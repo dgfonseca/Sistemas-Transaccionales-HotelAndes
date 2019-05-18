@@ -2033,7 +2033,6 @@ public class InterfazApp extends JFrame implements ActionListener
 		try
 		{
 			String text="Servicios : ";
-			System.err.println(hotel.darServicios().size());
 			for(int i=0; i<hotel.darServicios().size();i++)
 			{
 				text+="identificacion: "+hotel.darServicios().get(i)[0]+" Nombre: "+hotel.darServicios().get(i)[1]+"\n";
@@ -2062,6 +2061,34 @@ public class InterfazApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(generarMensajeError(e));
 		}
 
+	}
+	
+	public void rfc12()
+	{
+		try
+		{
+			String text="";
+			List<Object[]>rta=hotel.requerimientoFuncional12();
+			for ( Object [] tupla : rta)
+			{
+				
+
+				String nombre = ((String) tupla [0]);
+				long identificacion = ((BigDecimal) tupla [1]).longValue ();
+				String servicio =((String) tupla [2]);
+				text+="Usuario con nombre: "+nombre+" identificacion: "+identificacion +" Servicio con nombre: "+servicio+ "\n";
+				
+			}
+			panelDatos.actualizarInterfaz(text);
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "No se");
+			e.printStackTrace();
+			panelDatos.actualizarInterfaz(generarMensajeError(e));
+		}
+		
+		
 	}
 
 

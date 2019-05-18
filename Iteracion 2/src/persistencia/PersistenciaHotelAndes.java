@@ -1341,6 +1341,11 @@ public class PersistenciaHotelAndes {
 		return sqlTipo.darTipoPorId(pmf.getPersistenceManager(), id);
 	}
 	
+	public List<Object[]> requerimientoFuncional12()
+	{
+		return sqlUsuario.requerimientoFuncionalConsulta12(pmf.getPersistenceManager());
+	}
+	
 	
 	
 

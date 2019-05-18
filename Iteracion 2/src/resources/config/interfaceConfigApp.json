@@ -134,6 +134,10 @@
         {
         "label":"Requerimiento Funcional de Consulta 10",
         "event":"requerimientoFuncional10"
+        },
+        {
+         "label":"Requerimiento Funcional de Consulta 12",
+        "event":"rfc12"
         }
 			]
 		}

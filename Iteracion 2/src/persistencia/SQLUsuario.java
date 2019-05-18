@@ -172,8 +172,21 @@ class SQLUsuario {
 				Query q=pm.newQuery(SQL,sql1);
 				return q.executeList();
 		
-		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Object[]> requerimientoFuncionalConsulta12(PersistenceManager pm)
+	{
+		String sql1="SELECT us.nombre,us.identificacion,serv.nombre FROM USUARIO US INNER JOIN RESERVA RES ON US.IDENTIFICACION=RES.ID_USUARIO INNER JOIN APARTAN AP ON RES.ID=AP.IDRESERVA INNER JOIN HABITACION HAB  ON AP.NUMEROHABITACION=HAB.NUMEROHABITACION INNER JOIN SIRVEN SIRV ON HAB.NUMEROHABITACION=SIRV.NUMEROHABITACION INNER JOIN SERVICIOS SERV ON SIRV.IDSERVICIO=SERV.ID WHERE SERV.COSTO>=20 OR SERV.NOMBRE LIKE'%SPA%' OR SERV.NOMBRE LIKE '%SALA REUNIONES%' OR SERV.NOMBRE LIKE '%SALA CONFERENCIAS%' OR res.fechainicio between 20180401 and 20180701 and res.fechainicio between 20180701 and 20180901 and res.fechainicio between 20180901 and 20190101 group by us.nombre,us.identificacion,serv.nombre";
+		@SuppressWarnings("rawtypes")
+		Query q=pm.newQuery(SQL,sql1);
+		return q.executeList();
+	}
+	
+	
+	
+	
+	
 	
 	
 	
