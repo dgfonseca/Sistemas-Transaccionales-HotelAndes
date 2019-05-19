@@ -1346,6 +1346,15 @@ public class PersistenciaHotelAndes {
 		return sqlUsuario.requerimientoFuncionalConsulta12(pmf.getPersistenceManager());
 	}
 	
+	public List<Object[]> darHabitacionesOcupadasEnSemana(long fechaIn, long fechaFin)
+	{
+		return sqlHabitacion.darHabitacionesOcupadasEnSemana(pmf.getPersistenceManager(), fechaIn, fechaFin);
+	}
+	
+	public List<Object[]> darServiciosUtilizadosEnSemana(long fechaIn, long fechaFin)
+	{
+		return sqlServicio.darServiciosUtilizadosEnSemana(pmf.getPersistenceManager(), fechaIn, fechaFin);
+	}
 	
 	
 

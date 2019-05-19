@@ -139,5 +139,27 @@ class SQLHabitacion {
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList();
 	}
+	
+	public List<Object[]> darHabitacionesOcupadasEnSemana(PersistenceManager pm, long fechaIn, long fechaFin)
+	{
+		String sql = "SELECT RESP.NUMEROHABITACION, COUNT(ID) AS NUMEROVECES\r\n" + 
+				"FROM(\r\n" + 
+				"        SELECT AP.NUMEROHABITACION, RES.ID, RES.FECHAINICIO, RES.FECHAFIN\r\n" + 
+				"        FROM APARTAN AP, RESERVA RES\r\n" + 
+				"        WHERE AP.IDRESERVA = RES.ID \r\n" + 
+				"            AND ((RES.FECHAINICIO BETWEEN '"+fechaIn+"' AND '"+fechaFin+"') OR (RES.FECHAFIN BETWEEN '"+fechaIn+"' AND '"+fechaFin+"'))\r\n" + 
+				"        \r\n" + 
+				"        UNION ALL\r\n" + 
+				"        \r\n" + 
+				"        SELECT HABC.NUMEROHABITACION, RESC.ID, RESC.FECHAINICIO, RESC.FECHAFIN\r\n" + 
+				"        FROM HABITACION_CONVENCION HABC, RESERVA_CONVENCIONES RESC\r\n" + 
+				"        WHERE HABC.ID_RESERVA = RESC.ID \r\n" + 
+				"             AND ((RESC.FECHAINICIO BETWEEN '"+fechaIn+"' AND '"+fechaFin+"') OR (RESC.FECHAFIN BETWEEN '"+fechaIn+"' AND '"+fechaFin+"'))\r\n" + 
+				"    ) RESP\r\n" + 
+				"GROUP BY RESP.NUMEROHABITACION\r\n" + 
+				"ORDER BY NUMEROVECES DESC";
+		Query q = pm.newQuery(SQL,sql);
+		return q.executeList();
+	}
 
 }
