@@ -123,22 +123,26 @@
 					"label": "Encontrar buenos clientes",
 					"event": "darBuenosClientes"
 				},
-        {
-          "label": "Encontrar servicios poca demanda",
-          "event": "nada"
-        },
-        {
-          "label": "Requerimiento Funcional de Consulta 9",
-          "event": "requerimientoFuncional9"
-        },
-        {
-        "label":"Requerimiento Funcional de Consulta 10",
-        "event":"requerimientoFuncional10"
-        },
-        {
-         "label":"Requerimiento Funcional de Consulta 12",
-        "event":"rfc12"
-        }
+                {
+                    "label": "Encontrar servicios poca demanda",
+                    "event": "nada"
+                },
+                {
+                    "label": "Requerimiento Funcional de Consulta 9",
+                    "event": "requerimientoFuncional9"
+                },
+                {
+                    "label":"Requerimiento Funcional de Consulta 10",
+                    "event":"requerimientoFuncional10"
+                },
+                {
+                    "label":"Requerimiento Funcional de Consulta 11",
+                    "event":"requerimientoFuncional11"
+                },
+                {
+                     "label":"Requerimiento Funcional de Consulta 12",
+                    "event":"rfc12"
+                }
 			]
 		}
 	]

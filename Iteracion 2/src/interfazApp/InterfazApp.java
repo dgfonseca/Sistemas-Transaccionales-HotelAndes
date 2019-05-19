@@ -27,7 +27,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -91,7 +94,7 @@ public class InterfazApp extends JFrame implements ActionListener
 	private static final String CONFIG_TABLAS = "./src/resources/config/TablasBD_A.json"; 
 
 
-	private static final String CONTRASE�A ="HOTELANDES";
+	private static final String CONTRASENA ="HOTELANDES";
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -1972,9 +1975,9 @@ public class InterfazApp extends JFrame implements ActionListener
 	{
 		try{
 
-			String clave=JOptionPane.showInputDialog(this,"Ingrese Contrase�a");
+			String clave=JOptionPane.showInputDialog(this,"Ingrese Contrase�a");
 			System.out.println(clave);
-			if(clave.equals(CONTRASE�A))
+			if(clave.equals(CONTRASENA))
 			{
 				String cedula=JOptionPane.showInputDialog(this, "Ingrese cedula para registrarse");
 				long cc = Long.parseLong(cedula);
@@ -2089,6 +2092,73 @@ public class InterfazApp extends JFrame implements ActionListener
 		}
 		
 		
+	}
+	
+	public void requerimientoFuncional11()
+	{
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTime(new Date());
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		
+		String text = "";
+		Date fechaFinal = calendario.getTime();
+		while(calendario.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY)
+		{
+			calendario.roll(Calendar.DAY_OF_WEEK, -1);
+		}
+		
+		for(int i = 0; i<52; i++)
+		{
+			text += "\n";
+			fechaFinal = calendario.getTime();
+			long fechaFin = new Long (format.format(fechaFinal));
+			calendario.roll(Calendar.DAY_OF_YEAR, -7);
+			Date fechaInicio = calendario.getTime();
+			long fechaIn = new Long (format.format(fechaInicio));
+			calendario.roll(Calendar.DAY_OF_WEEK, -1);
+			
+			text += "Para la semana del " + fechaIn  + " al " + fechaFin + ": \n";
+			List<Object[]> habitaciones = hotel.requerimientoFuncional11Habitaciones(fechaIn, fechaFin);
+			List<Object[]> servicios = hotel.requerimientoFuncional11Servicios(fechaIn, fechaFin);
+			if(!habitaciones.isEmpty())
+			{
+				Object[] habitacionMas = habitaciones.get(0);
+				Object[] habitacionMenos = habitaciones.get(habitaciones.size()-1);
+				
+				long numero = ((BigDecimal) habitacionMas[0]).longValue();
+				long veces = ((BigDecimal) habitacionMas[1]).longValue();
+					
+				text += "La habítación más solicitada fue la número " + numero + ", y fue utilizada " + veces + " veces durante esa semana. \n";
+				
+				long numero2 = ((BigDecimal) habitacionMenos[0]).longValue();
+				long veces2 = ((BigDecimal) habitacionMenos[1]).longValue();
+					
+				text += "La habítación menos solicitada fue la número " + numero2 + ", y fue utilizada " + veces2 + " veces durante esa semana. \n";
+				
+			}
+			
+			if(!servicios.isEmpty())
+			{
+				Object[] servicioMas = servicios.get(0);
+				Object[] servicioMenos = servicios.get(servicios.size() - 1);
+				
+				String nombre = (String) servicioMas[1];
+				long veces3 = ((BigDecimal) servicioMas[2]).longValue();
+				
+				text += "El servicio más utilizado fue " + nombre + ", y fue utilizado " + veces3 + " veces durante esa semana. \n";
+				
+				
+				String nombre2 = (String) servicioMenos[1];
+				long veces4 = ((BigDecimal) servicioMenos[2]).longValue();
+				
+				text += "El servicio menos utilizado fue " + nombre2 + ", y fue utilizado " + veces4 + " veces durante esa semana. \n";
+				
+			}
+			
+			panelDatos.actualizarInterfaz(text);
+		}
+		panelDatos.actualizarInterfaz(text);
 	}
 
 

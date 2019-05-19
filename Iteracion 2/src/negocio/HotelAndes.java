@@ -410,5 +410,15 @@ public class HotelAndes {
 	{
 		return pp.requerimientoFuncional12();
 	}
+	public List<Object[]> requerimientoFuncional11Habitaciones(long fechaIn, long fechaFin)
+	{
+		log.info("Dando habitaciones ocupadas en semana");
+		return pp.darHabitacionesOcupadasEnSemana(fechaIn, fechaFin);
+	}
+	public List<Object[]> requerimientoFuncional11Servicios(long fechaIn, long fechaFin)
+	{
+		log.info("Dando servicios ocupadas en semana");
+		return pp.darServiciosUtilizadosEnSemana(fechaIn, fechaFin);
+	}
 
 }

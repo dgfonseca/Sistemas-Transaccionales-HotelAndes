@@ -155,6 +155,33 @@ class SQLServicio {
 		q.setParameters(num);
 		return q.executeList();
 	}
+	
+	public List<Object[]> darServiciosUtilizadosEnSemana(PersistenceManager pm, long fechaIn, long fechaFin)
+	{
+		String sql = "SELECT TOT.ID, TOT.NOMBRE, SUM(NUMVECES) AS TOTALVECES\r\n" + 
+				"FROM (\r\n" + 
+				"        SELECT RESP.ID, RESP.NOMBRE, SUM(RESP.NUMEROVECES) AS NUMVECES\r\n" + 
+				"        FROM(\r\n" + 
+				"                SELECT SER.ID, COUNT(SER.ID) AS NUMEROVECES, SER.NOMBRE,  SIR.FECHAUSO\r\n" + 
+				"                FROM SERVICIOS SER, SIRVEN SIR\r\n" + 
+				"                WHERE SER.ID = SIR.IDSERVICIO AND SIR.FECHAUSO BETWEEN '"+fechaIn+"00' AND '"+fechaFin+"23'\r\n" + 
+				"                GROUP BY SIR.FECHAUSO, SER.NOMBRE, SER.ID\r\n" + 
+				"            )RESP\r\n" + 
+				"        GROUP BY RESP.ID, RESP.NOMBRE\r\n" + 
+				"            \r\n" + 
+				"        UNION ALL\r\n" + 
+				"        \r\n" + 
+				"        SELECT SER.ID, SER.NOMBRE, COUNT(RESC.ID) AS NUMEROVECES\r\n" + 
+				"        FROM SERVICIOS SER, SERVICIOS_CONVENCION SERC, RESERVA_CONVENCIONES RESC\r\n" + 
+				"        WHERE SER.ID = SERC.ID_RESERVA AND SERC.ID_RESERVA = RESC.ID\r\n" + 
+				"         AND ((RESC.FECHAINICIO BETWEEN '"+fechaIn+"' AND '"+fechaFin+"') OR (RESC.FECHAFIN BETWEEN '"+fechaIn+"' AND '"+fechaFin+"'))\r\n" + 
+				"        GROUP BY SER.ID, SER.NOMBRE\r\n" + 
+				"    )TOT\r\n" + 
+				"GROUP BY TOT.ID, TOT.NOMBRE\r\n" + 
+				"ORDER BY TOTALVECES DESC";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList();
+	}
 
 
 
