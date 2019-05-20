@@ -1,7 +1,0 @@
-{
-  "title": "Nombres de las tablas de Parranderos Uniandes para la aplicación B",
-  "unidadPersistencia": "Parranderos",
-  "tablas": [
-    "Parranderos_sequence"
-  ]
-}
